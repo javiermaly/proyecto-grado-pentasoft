@@ -13,6 +13,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+//ESTA CLASE ES FLOR DE PORONGA
+//PROBANDO PARA TORTOISE HG
+
 
 @Inheritance(strategy=InheritanceType.JOINED)
 @NamedQueries(value = { 
