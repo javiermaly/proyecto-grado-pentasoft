@@ -16,7 +16,8 @@ public class Usuario implements Serializable {
 	   
 	@Id
 	private Long cedula;
-	private String nombreCompleto;
+	private String nombre;
+	private String apellido;//hice esta modificación desde mi PC
 	private String usuario;
 	private String pwd;
 	private String telefono;
