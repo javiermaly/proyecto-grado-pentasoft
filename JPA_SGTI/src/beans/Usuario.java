@@ -16,7 +16,7 @@ public class Usuario implements Serializable {
 	@Id
 	private long cedula;
 	private String nombre;
-	private String apellido;
+	private String apellido;//hice esta modificación desde mi PC
 	private String usuario;
 	private String pwd;
 	private String telefono;
@@ -34,20 +34,20 @@ public class Usuario implements Serializable {
 	public void setCedula(long cedula) {
 		this.cedula = cedula;
 	}   
+	
+ 
 	public String getNombre() {
-		return this.nombre;
+		return nombre;
 	}
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}   
-	public String getApellido() {
-		return this.apellido;
 	}
-
+	public String getApellido() {
+		return apellido;
+	}
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
-	}   
+	}
 	public String getUsuario() {
 		return this.usuario;
 	}
