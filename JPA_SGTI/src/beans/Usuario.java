@@ -1,7 +1,6 @@
 package beans;
 
 import java.io.Serializable;
-import java.lang.Long;
 import java.lang.String;
 import javax.persistence.*;
 
@@ -15,8 +14,9 @@ public class Usuario implements Serializable {
 
 	   
 	@Id
-	private Long cedula;
-	private String nombreCompleto;
+	private long cedula;
+	private String nombre;
+	private String apellido;
 	private String usuario;
 	private String pwd;
 	private String telefono;
@@ -27,19 +27,26 @@ public class Usuario implements Serializable {
 	public Usuario() {
 		super();
 	}   
-	public Long getCedula() {
+	public long getCedula() {
 		return this.cedula;
 	}
 
-	public void setCedula(Long cedula) {
+	public void setCedula(long cedula) {
 		this.cedula = cedula;
 	}   
-	public String getNombreCompleto() {
-		return this.nombreCompleto;
+	public String getNombre() {
+		return this.nombre;
 	}
 
-	public void setNombreCompleto(String nombreCompleto) {
-		this.nombreCompleto = nombreCompleto;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}   
+	public String getApellido() {
+		return this.apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}   
 	public String getUsuario() {
 		return this.usuario;
@@ -78,6 +85,3 @@ public class Usuario implements Serializable {
 	}
    
 }
-
-
-//estoy editando el archivo desde la web
