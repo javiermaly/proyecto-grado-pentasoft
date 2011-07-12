@@ -1,6 +1,7 @@
 package beans;
 
 import java.io.Serializable;
+import java.lang.Long;
 import java.lang.String;
 import javax.persistence.*;
 
@@ -16,7 +17,7 @@ public class Usuario implements Serializable {
 	@Id
 	private long cedula;
 	private String nombre;
-	private String apellido;//hice esta modificación desde mi PC
+	private String apellido;
 	private String usuario;
 	private String pwd;
 	private String telefono;
@@ -34,20 +35,20 @@ public class Usuario implements Serializable {
 	public void setCedula(long cedula) {
 		this.cedula = cedula;
 	}   
-	
- 
 	public String getNombre() {
-		return nombre;
+		return this.nombre;
 	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
+	}   
 	public String getApellido() {
-		return apellido;
+		return this.apellido;
 	}
+
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
-	}
+	}   
 	public String getUsuario() {
 		return this.usuario;
 	}
