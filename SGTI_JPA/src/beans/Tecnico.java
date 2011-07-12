@@ -1,5 +1,9 @@
 package beans;
 
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Tecnico extends Usuario {
 
 	/**
@@ -8,6 +12,10 @@ public class Tecnico extends Usuario {
 	private static final long serialVersionUID = 1L;
 
 	private boolean esExterno;
+	
+	@ManyToOne
+	private Grupo grupo;
+	
 	
 	public Tecnico(){
 		

@@ -1,7 +1,9 @@
 package beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -25,7 +27,8 @@ public class Cliente implements Serializable {
 	//private Calendar fechaFinGarantia;
 	//private ColTareas colTareas;
 	
-	
+	@OneToMany(mappedBy="cliente", cascade=CascadeType.ALL)
+	private List<Tarea> tareas= new ArrayList<Tarea>();
 	
 	private static final long serialVersionUID = 1L;
 

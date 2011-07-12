@@ -28,6 +28,8 @@ public class Tarea implements Serializable {
 	private @Temporal(TemporalType.TIMESTAMP) Calendar horaInicio;
 	private @Temporal(TemporalType.DATE) Calendar fechaComprometida;
 	private Tipo tipo;
+	@ManyToOne
+	private Cliente cliente;
 	
 	
 	private static final long serialVersionUID = 1L;
