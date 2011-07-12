@@ -8,11 +8,13 @@
 		<class>beans.Tiene</class>
 		<class>beans.Tipo</class>
 		<class>beans.Cliente</class>
+		<class>beans.Grupo</class>
 		
 		
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sgtidb"/>
 			<property name="javax.persistence.jdbc.user" value="root"/>
+			<property name="javax.persistence.jdbc.password" value="proyecto"/>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 			<property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" /> 

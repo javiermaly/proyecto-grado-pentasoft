@@ -18,6 +18,7 @@ public class Tarea implements Serializable {
 
 	   
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private boolean esExterna;
 	private String descripcion;
