@@ -9,6 +9,9 @@
 		<class>beans.Tipo</class>
 		<class>beans.Cliente</class>
 		<class>beans.Grupo</class>
+		<class>beans.Realiza</class>
+		<class>beans.Tecnico</class>
+		<class>beans.Encargado</class>
 		
 		
 		<properties>

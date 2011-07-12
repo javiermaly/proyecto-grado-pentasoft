@@ -3,6 +3,9 @@ package beans;
 import beans.Encargado;
 import java.io.Serializable;
 import java.lang.String;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -17,9 +20,16 @@ public class Grupo implements Serializable {
 	@Id
 	private int id;
 	private String descripcion;
+	@OneToOne
 	private Encargado enc;
+	
 	private static final long serialVersionUID = 1L;
-
+	
+	@OneToMany(mappedBy="grupo", cascade=CascadeType.ALL)
+	private List<Tecnico> colTecnicos= new ArrayList<Tecnico>();
+	
+	
+	
 	public Grupo() {
 		super();
 	}   
