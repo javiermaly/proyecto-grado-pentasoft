@@ -2,7 +2,9 @@ package beans;
 
 import java.io.Serializable;
 import java.lang.String;
+import java.sql.Time;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.*;
 
@@ -20,13 +22,11 @@ public class Tarea implements Serializable {
 	private boolean esExterna;
 	private String descripcion;
 	private String observacion;
-	private Calendar fechaInicio;
-	private Calendar fechaFin;
-	private Calendar horaInicio;
-	private Calendar fechaComprometida;
+	private @Temporal(TemporalType.DATE) Calendar fechaInicio;
+	private @Temporal(TemporalType.TIMESTAMP) Calendar fechaFin;
+	private @Temporal(TemporalType.TIMESTAMP) Calendar horaInicio;
+	private @Temporal(TemporalType.DATE) Calendar fechaComprometida;
 	private Tipo tipo;
-	
-	
 	
 	
 	private static final long serialVersionUID = 1L;

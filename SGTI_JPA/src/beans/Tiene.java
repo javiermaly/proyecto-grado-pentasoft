@@ -16,8 +16,8 @@ public class Tiene implements Serializable {
 	@Id
 	private Tarea tarea;////////////////////////// VER PARA PONER ESTADO COMO ID COMPUESTA CON TAREA
 	private Estado estado;
-	private Calendar fechaInicio;
-	private Calendar fechaFin;
+//	private Calendar fechaInicio;
+//	private Calendar fechaFin;
 	
 	
 	private static final long serialVersionUID = 1L;
@@ -25,20 +25,20 @@ public class Tiene implements Serializable {
 	public Tiene() {
 		super();
 	}   
-	public Calendar getFechaInicio() {
-		return this.fechaInicio;
-	}
-
-	public void setFechaInicio(Calendar fechaInicio) {
-		this.fechaInicio = fechaInicio;
-	}   
-	public Calendar getFechaFin() {
-		return this.fechaFin;
-	}
-
-	public void setFechaFin(Calendar fechaFin) {
-		this.fechaFin = fechaFin;
-	}   
+//	public Calendar getFechaInicio() {
+//		return this.fechaInicio;
+//	}
+//
+//	public void setFechaInicio(Calendar fechaInicio) {
+//		this.fechaInicio = fechaInicio;
+//	}   
+//	public Calendar getFechaFin() {
+//		return this.fechaFin;
+//	}
+//
+//	public void setFechaFin(Calendar fechaFin) {
+//		this.fechaFin = fechaFin;
+//	}   
 	public Tarea getTarea() {
 		return this.tarea;
 	}
