@@ -22,7 +22,7 @@ public class Cliente implements Serializable {
 	private Long rut;
 	private String telefono;
 	private String direccion;
-	private Calendar fechaFinGarantía;
+	//private Calendar fechaFinGarantia;
 	//private ColTareas colTareas;
 	
 	
@@ -45,7 +45,7 @@ public class Cliente implements Serializable {
 		this.rut = rut;
 		this.telefono = telefono;
 		this.direccion = direccion;
-		this.fechaFinGarantía = fechaFinGarantía;
+	//	this.fechaFinGarantia = fechaFinGarantia;
 	}
 
 
@@ -105,14 +105,14 @@ public class Cliente implements Serializable {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-
-	public Calendar getFechaFinGarantía() {
-		return fechaFinGarantía;
-	}
-
-	public void setFechaFinGarantía(Calendar fechaFinGarantía) {
-		this.fechaFinGarantía = fechaFinGarantía;
-	}
+//
+//	public Calendar getFechaFinGarantía() {
+//		return fechaFinGarantia;
+//	}
+//
+//	public void setFechaFinGarantía(Calendar fechaFinGarantía) {
+//		this.fechaFinGarantia = fechaFinGarantia;
+//	}
 	
 	
    

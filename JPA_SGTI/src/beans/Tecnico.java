@@ -1,30 +1,33 @@
 package beans;
 
-import beans.Usuario;
-import java.io.Serializable;
-import javax.persistence.*;
+public class Tecnico extends Usuario {
 
-/**
- * Entity implementation class for Entity: Tecnico
- *
- */
-@Entity
-
-public class Tecnico extends Usuario implements Serializable {
-
-	
-	private boolean esExterno;
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 
-	public Tecnico() {
-		super();
-	}   
-	public boolean getEsExterno() {
-		return this.esExterno;
+	private boolean esExterno;
+	
+	public Tecnico(){
+		
+	}
+	public Tecnico(long cedula, String ape,String nom,String celular, String direccion ){
+		this.setCedula(cedula);
+		this.setApellido(ape);
+		this.setCelular(celular);
+		this.setDireccion(direccion);
+		this.setNombre(nom);
+		
+		
+	}
+
+	public boolean isEsExterno() {
+		return esExterno;
 	}
 
 	public void setEsExterno(boolean esExterno) {
 		this.esExterno = esExterno;
 	}
-   
+	
 }
