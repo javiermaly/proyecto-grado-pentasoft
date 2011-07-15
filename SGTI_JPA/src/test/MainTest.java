@@ -6,6 +6,7 @@ import java.util.Calendar;
 import javax.persistence.EntityManager;
 
 import conexion.DBConection;
+import beans.Estado;
 import beans.Tarea;
 import beans.Usuario;
 
@@ -29,29 +30,40 @@ public class MainTest {
 //		u.setPwd("pwd");
 //		u.setTelefono("29287833");
 //		u.setUsuario("jmaly");
-		Tarea t= new Tarea();
-		t.setDescripcion("ESTA ES UNA TAREA eSterna je");
-		t.setEsExterna(true);
+//		Tarea t= new Tarea();
+//		t.setDescripcion("ESTA ES UNA TAREA eSterna je");
+//		t.setEsExterna(true);
+//		
+//		fecCom.set(2011, 8, 15);
+//		t.setFechaComprometida(fecCom);
+//		
+//		t.setFechaFin(Calendar.getInstance());
+//		horaI.set(Calendar.HOUR_OF_DAY, 16);
+//		horaI.set(Calendar.MINUTE,44);
+//		t.setFechaInicio(horaI);
+//		
+//		t.setHoraInicio(Calendar.getInstance());
+//		
+//		t.setObservacion("OBSERVACION DE TAREA");
+//		t.setTipo(null);
+//	
+		Estado e1= new Estado();
+		Estado e2 = new Estado();
 		
-		fecCom.set(2011, 8, 15);
-		t.setFechaComprometida(fecCom);
+		e1.setId(1);
+		e1.setDescripcion("Abierta");
 		
-		t.setFechaFin(Calendar.getInstance());
-		horaI.set(Calendar.HOUR_OF_DAY, 16);
-		horaI.set(Calendar.MINUTE,44);
-		t.setFechaInicio(horaI);
+		e2.setId(2);
+		e2.setDescripcion("Asignada");
 		
-		t.setHoraInicio(Calendar.getInstance());
 		
-		t.setObservacion("OBSERVACION DE TAREA");
-		t.setTipo(null);
-	
 		try {
 			
 			em.getTransaction().begin();
-			em.persist(t);
+			em.persist(e1);
+			em.persist(e2);
 			em.getTransaction().commit();
-			System.out.println("guarde una tarea: "+t.getDescripcion());
+			//System.out.println("guarde una tarea: "+t.getDescripcion());
 				
 			em.close();
 		}

@@ -13,9 +13,7 @@ public class Tecnico extends Usuario {
 
 	private boolean esExterno;
 	
-	@ManyToOne
-	private Grupo grupo;
-	
+
 	
 	public Tecnico(){
 		
@@ -37,5 +35,6 @@ public class Tecnico extends Usuario {
 	public void setEsExterno(boolean esExterno) {
 		this.esExterno = esExterno;
 	}
+	
 	
 }

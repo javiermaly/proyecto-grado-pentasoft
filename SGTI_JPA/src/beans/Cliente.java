@@ -24,10 +24,9 @@ public class Cliente implements Serializable {
 	private Long rut;
 	private String telefono;
 	private String direccion;
-	//private Calendar fechaFinGarantia;
-	//private ColTareas colTareas;
-	
-	@OneToMany(mappedBy="cliente", cascade=CascadeType.ALL)
+	private @Temporal(TemporalType.DATE)Calendar fechaFinGarantia;
+		
+	@OneToMany(mappedBy="cliente")
 	private List<Tarea> tareas= new ArrayList<Tarea>();
 	
 	private static final long serialVersionUID = 1L;
@@ -39,7 +38,7 @@ public class Cliente implements Serializable {
 	
 	public Cliente(int id, String empresa, String nombre_RazonSocial,
 			Long cedula, Long rut, String telefono, String direccion,
-			Calendar fechaFinGarantía) {
+			Calendar fechaFinGarantia) {
 		super();
 		this.id = id;
 		this.empresa = empresa;
@@ -48,7 +47,7 @@ public class Cliente implements Serializable {
 		this.rut = rut;
 		this.telefono = telefono;
 		this.direccion = direccion;
-	//	this.fechaFinGarantia = fechaFinGarantia;
+		this.fechaFinGarantia = fechaFinGarantia;
 	}
 
 
@@ -116,6 +115,26 @@ public class Cliente implements Serializable {
 //	public void setFechaFinGarantía(Calendar fechaFinGarantía) {
 //		this.fechaFinGarantia = fechaFinGarantia;
 //	}
+
+
+	public void setTareas(List<Tarea> tareas) {
+		this.tareas = tareas;
+	}
+
+
+	public List<Tarea> getTareas() {
+		return tareas;
+	}
+
+
+	public void setFechaFinGarantia(Calendar fechaFinGarantia) {
+		this.fechaFinGarantia = fechaFinGarantia;
+	}
+
+
+	public Calendar getFechaFinGarantia() {
+		return fechaFinGarantia;
+	}
 	
 	
    
