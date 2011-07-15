@@ -1,9 +1,9 @@
 package beans;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+
 import java.util.Calendar;
-import java.util.List;
+
 
 import javax.persistence.*;
 
@@ -16,13 +16,15 @@ public class Realiza implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;//?????
+	private int id;
 	private @Temporal(TemporalType.DATE) Calendar fechaInicio;
 	private @Temporal(TemporalType.DATE) Calendar fechaFin;
+	@ManyToOne
 	private Usuario usu;
 	
-	//@OneToMany(mappedBy="realiza", cascade=CascadeType.ALL)// consulta en mappedBy realiza o usuario?
-	private List<Tarea> colTareas= new ArrayList<Tarea>();;
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	private Tarea tarea;
+	
 	
 	private static final long serialVersionUID = 1L;
 
@@ -50,6 +52,18 @@ public class Realiza implements Serializable {
 
 	public void setUsu(Usuario usu) {
 		this.usu = usu;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setTarea(Tarea tarea) {
+		this.tarea = tarea;
+	}
+	public Tarea getTarea() {
+		return tarea;
 	}   
 	
 	

@@ -2,9 +2,10 @@ package beans;
 
 import java.io.Serializable;
 import java.lang.String;
-import java.sql.Time;
+
 import java.util.Calendar;
-import java.util.Date;
+
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -23,14 +24,16 @@ public class Tarea implements Serializable {
 	private boolean esExterna;
 	private String descripcion;
 	private String observacion;
-	private @Temporal(TemporalType.DATE) Calendar fechaInicio;
-	private @Temporal(TemporalType.TIMESTAMP) Calendar fechaFin;
-	private @Temporal(TemporalType.TIMESTAMP) Calendar horaInicio;
+	private @Temporal(TemporalType.DATE) Calendar fechaApertura;
+	private @Temporal(TemporalType.DATE) Calendar fechaCierre;
+	//private @Temporal(TemporalType.TIMESTAMP) Calendar horaInicio;
 	private @Temporal(TemporalType.DATE) Calendar fechaComprometida;
-	private Tipo tipo;
+	@ManyToOne
+	private Tipo tipo;	
+	@OneToMany(mappedBy="tarea")
+	private List<Realiza> listRealiza;	
 	@ManyToOne
 	private Cliente cliente;
-	
 	
 	private static final long serialVersionUID = 1L;
 
@@ -64,23 +67,19 @@ public class Tarea implements Serializable {
 	public void setObservacion(String observacion) {
 		this.observacion = observacion;
 	}
-	public Calendar getFechaInicio() {
-		return fechaInicio;
+	
+	
+	public Calendar getFechaApertura() {
+		return fechaApertura;
 	}
-	public void setFechaInicio(Calendar fechaInicio) {
-		this.fechaInicio = fechaInicio;
+	public void setFechaApertura(Calendar fechaApertura) {
+		this.fechaApertura = fechaApertura;
 	}
-	public Calendar getFechaFin() {
-		return fechaFin;
+	public Calendar getFechaCierre() {
+		return fechaCierre;
 	}
-	public void setFechaFin(Calendar fechaFin) {
-		this.fechaFin = fechaFin;
-	}
-	public Calendar getHoraInicio() {
-		return horaInicio;
-	}
-	public void setHoraInicio(Calendar horaInicio) {
-		this.horaInicio = horaInicio;
+	public void setFechaCierre(Calendar fechaCierre) {
+		this.fechaCierre = fechaCierre;
 	}
 	public Calendar getFechaComprometida() {
 		return fechaComprometida;
@@ -93,6 +92,18 @@ public class Tarea implements Serializable {
 	}
 	public void setTipo(Tipo tipo) {
 		this.tipo = tipo;
+	}
+	public void setListRealiza(List<Realiza> listRealiza) {
+		this.listRealiza = listRealiza;
+	}
+	public List<Realiza> getListRealiza() {
+		return listRealiza;
+	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	public Cliente getCliente() {
+		return cliente;
 	}
    
 	

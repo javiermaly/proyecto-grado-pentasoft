@@ -21,14 +21,11 @@ public class Grupo implements Serializable {
 	private int id;
 	private String descripcion;
 	@OneToOne
-	private Encargado enc;
-	
-	private static final long serialVersionUID = 1L;
-	
-	@OneToMany(mappedBy="grupo", cascade=CascadeType.ALL)
+	private Encargado enc;	
+	@OneToMany
 	private List<Tecnico> colTecnicos= new ArrayList<Tecnico>();
 	
-	
+	private static final long serialVersionUID = 1L;
 	
 	public Grupo() {
 		super();
@@ -53,6 +50,12 @@ public class Grupo implements Serializable {
 
 	public void setEnc(Encargado enc) {
 		this.enc = enc;
+	}
+	public void setColTecnicos(List<Tecnico> colTecnicos) {
+		this.colTecnicos = colTecnicos;
+	}
+	public List<Tecnico> getColTecnicos() {
+		return colTecnicos;
 	}
    
 }
