@@ -1,7 +1,7 @@
 package beans;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+
 
 @Entity
 public class Tecnico extends Usuario {

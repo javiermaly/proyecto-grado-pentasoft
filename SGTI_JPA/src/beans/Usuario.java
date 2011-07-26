@@ -4,10 +4,13 @@ import java.io.Serializable;
 import java.lang.String;
 import javax.persistence.*;
 
-/**
- * Entity implementation class for Entity: Usuario
- *
- */
+
+@Inheritance(strategy=InheritanceType.JOINED)
+@NamedQueries(value = { 
+		@NamedQuery(name="todosUsuarios", query="select u from Usuario u"),
+		@NamedQuery(name="usuarioPorCedula", query="select u from Usuario u where u.cedula = :cedula"),
+	})
+
 @Entity
 
 public class Usuario implements Serializable {
