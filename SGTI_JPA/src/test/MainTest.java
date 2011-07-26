@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import manager.ManagerUsuario;
+
 import conexion.DBConection;
 import beans.Administrador;
 import beans.Encargado;
@@ -28,17 +30,18 @@ public class MainTest {
 		EntityManager em = db.conectar();
 		Calendar fecCom=Calendar.getInstance();
 		Calendar horaI=Calendar.getInstance();
+		ManagerUsuario mu = new ManagerUsuario();
 		
 		Tecnico u = new Tecnico();
-		u.setApellido("MALY");
-		u.setCedula(4043468);
-		u.setCelular("099722146");
-		u.setDireccion("Paysandu 1242 / 203");
-		u.setNombre("JAVIER");
-		u.setPwd("pwd");
-		u.setTelefono("29287833");
-		u.setUsuario("jmaly");
-		u.setEsExterno(true);
+		u.setApellido("tecnicity");
+		u.setCedula(12345678);
+		u.setCelular("099111111");
+		u.setDireccion("sarasa 345 apto 999	");
+		u.setNombre("alfredo");
+		u.setPwd("pass");
+		u.setTelefono("27092835");
+		u.setUsuario("atecnicity");
+		u.setEsExterno(false);
 		
 		Encargado enc = new Encargado();
 		enc.setApellido("encargueti");
@@ -99,29 +102,34 @@ public class MainTest {
 		
 		try {
 			
-			//INGRESOS:
-			
 			em.getTransaction().begin();
-			em.persist(e1); //ESTADOS
-			em.persist(e2);
-			
-			em.persist(u);//USUARIO	Tecnico
-			em.persist(enc);//USUARIO Encargado	
-			em.persist(adm);//USUARIO Administrador	
-			
-			em.persist(g);//GRUPO	
-			
-			em.persist(tip);//tipo de tarea
-			em.persist(t);//TAREA
-			
-			
-					
-			
+			//INGRESOS:
+			mu.altaUsuario(em, u); //alta de un tecnico
+			mu.altaUsuario(em, enc); //alta de un encargado
+			mu.altaUsuario(em, adm);
 			
 			em.getTransaction().commit();
-			//System.out.println("guarde una tarea: "+t.getDescripcion());
-				
-			em.close();
+			
+//			em.getTransaction().begin();
+//			em.persist(e1); //ESTADOS
+//			em.persist(e2);
+//			
+//			em.persist(u);//USUARIO	Tecnico
+//			em.persist(enc);//USUARIO Encargado	
+//			em.persist(adm);//USUARIO Administrador	
+//			
+//			em.persist(g);//GRUPO	
+//			
+//			em.persist(tip);//tipo de tarea
+//			em.persist(t);//TAREA
+//			
+//							
+//			
+//			
+//			em.getTransaction().commit();
+//			//System.out.println("guarde una tarea: "+t.getDescripcion());
+//				
+//			em.close();
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -129,6 +137,74 @@ public class MainTest {
 		}
 		
 
+		
+		//LISTADOS
+		System.out.println("Listo todas las personas guardadas");
+		System.out.println("==============================");
+		System.out.println("==============================");
+		System.out.println("==============================");
+		
+		List<Usuario> listaUsuarios = mu.traerTodosUsuarios(em);
+		//Tecnico tec;
+		for (Usuario usu : listaUsuarios) {
+
+			System.out.println("NOMBRE: " + usu.getNombre());
+			System.out.println("APELLIDO: " + usu.getApellido());
+			System.out.println("CEDULA: " + usu.getCedula());
+			System.out.println("DIRECCION: " + usu.getDireccion());
+			System.out.println("TELEFONO: " + usu.getTelefono());
+
+			if (usu instanceof Encargado) {
+				//tec=(Tecnico)usu;
+				System.out.println("TIPO: Encargado");
+				
+			}else if(usu instanceof Tecnico){
+				System.out.println("TIPO: tecnico");
+			}
+
+			System.out.println("==============================");
+			
+		}
+		
+		System.out.println("==============================");
+		System.out.println("encontrar un usuario");
+		
+		Usuario ubuscado = mu.encontrarUsuario(em, enc.getCedula());
+		if (ubuscado instanceof Tecnico) {
+			
+			System.out.println("NOMBRE: " + ubuscado.getNombre());
+			System.out.println("DIRECCION: " + ubuscado.getDireccion());
+			System.out.println("TELEFONO: " + ubuscado.getTelefono());
+		}
+		
+		
+		//MODIFICAR
+		System.out.println("\n### Modifico los datos del encargado ");
+		ubuscado.setTelefono("66666666");
+		ubuscado = mu.actualizarUsuario(em, ubuscado); //hay que buscar antes de actualizar
+				
+		System.out.println(u.getNombre());
+		System.out.println(u.getTelefono());
+		
+		
+		//ELIMINAR
+		System.out.println("\n### Elimino a un usuario");
+		mu.eliminarUsuario(em, ubuscado); 
+		System.out.println("\n### persona eliminada: "+ubuscado.getNombre());
+	
+
+		System.out.println("\n### Busco la persona recien eliminada");
+		ubuscado = mu.encontrarUsuario(em, ubuscado.getCedula());
+		System.out.println(ubuscado);
+		
+		
+		System.out.println("\n### Busco la persona de cedula: " + u.getCedula());
+		ubuscado = mu.encontrarUsuario(em, u.getCedula());
+		System.out.println("NOMBRE: " + u.getNombre());
+		
+		
+		
+		
 	}
 
 }
