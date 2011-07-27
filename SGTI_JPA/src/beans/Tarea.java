@@ -9,10 +9,11 @@ import java.util.List;
 
 import javax.persistence.*;
 
-/**
- * Entity implementation class for Entity: Tarea
- *
- */
+@NamedQueries(value = { 
+		@NamedQuery(name="todosTareas", query="select t from Tarea t"),
+		
+	})
+	
 @Entity
 
 public class Tarea implements Serializable {

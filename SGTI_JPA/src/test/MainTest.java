@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import manager.ManagerTarea;
 import manager.ManagerUsuario;
 
 import conexion.DBConection;
@@ -31,6 +32,7 @@ public class MainTest {
 		Calendar fecCom=Calendar.getInstance();
 		Calendar horaI=Calendar.getInstance();
 		ManagerUsuario mu = new ManagerUsuario();
+		ManagerTarea mt = new ManagerTarea();
 		
 		Tecnico u = new Tecnico();
 		u.setApellido("tecnicity");
@@ -78,7 +80,7 @@ public class MainTest {
 			
 		
 		Tarea t= new Tarea();
-		t.setDescripcion("ESTA ES UNA TAREA eSterna je");
+		t.setDescripcion("Desarrollar proyecto final");
 		t.setEsExterna(true);		
 		fecCom.set(2011, 8, 15);
 		t.setFechaApertura(horaI);	
@@ -107,6 +109,9 @@ public class MainTest {
 			mu.altaUsuario(em, u); //alta de un tecnico
 			mu.altaUsuario(em, enc); //alta de un encargado
 			mu.altaUsuario(em, adm);
+			
+			em.persist(tip);//tipo de tarea
+			mt.altaTarea(em, t);
 			
 			em.getTransaction().commit();
 			
@@ -138,7 +143,7 @@ public class MainTest {
 		
 
 		
-		//LISTADOS
+		/////////LISTADOS//////////////
 		System.out.println("Listo todas las personas guardadas");
 		System.out.println("==============================");
 		System.out.println("==============================");
@@ -178,7 +183,7 @@ public class MainTest {
 		}
 		
 		
-		//MODIFICAR
+		/////////MODIFICAR/////////////
 		System.out.println("\n### Modifico los datos del encargado ");
 		ubuscado.setTelefono("66666666");
 		ubuscado = mu.actualizarUsuario(em, ubuscado); //hay que buscar antes de actualizar
@@ -187,7 +192,7 @@ public class MainTest {
 		System.out.println(u.getTelefono());
 		
 		
-		//ELIMINAR
+		/////////ELIMINAR//////////////
 		System.out.println("\n### Elimino a un usuario");
 		mu.eliminarUsuario(em, ubuscado); 
 		System.out.println("\n### persona eliminada: "+ubuscado.getNombre());
