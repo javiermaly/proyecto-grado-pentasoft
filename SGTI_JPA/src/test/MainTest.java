@@ -12,9 +12,11 @@ import manager.ManagerUsuario;
 
 import conexion.DBConection;
 import beans.Administrador;
+import beans.Cliente;
 import beans.Encargado;
 import beans.Estado;
 import beans.Grupo;
+import beans.Realiza;
 import beans.Tarea;
 import beans.Tecnico;
 import beans.Tipo;
@@ -73,6 +75,8 @@ public class MainTest {
 		g.setColTecnicos(colTecnicos);
 		g.setId(1);
 		
+		Cliente cli =new Cliente(1,"asdf","ffff",233333,2222,"ddddd","eeee",horaI);
+		Grupo gru = new Grupo(1,"grupo",enc);
 		
 		Tipo tip=new Tipo();
 		tip.setDescripcion("Desarrollo");
@@ -90,7 +94,16 @@ public class MainTest {
 		//horaI.set(Calendar.MINUTE,44);			
 		t.setObservacion("OBSERVACION DE TAREA");
 		t.setTipo(tip);
+		t.setCliente(cli);
+		t.setGrupo(gru);
 
+		
+		
+		Realiza r= new Realiza(1,horaI,fecCom,enc,t);
+		List<Realiza> colRealiza= new ArrayList<Realiza>();
+		colRealiza.add(r);
+		t.setListRealiza(colRealiza);
+		
 		
 		Estado e1= new Estado();
 		Estado e2 = new Estado();
@@ -111,7 +124,13 @@ public class MainTest {
 			mu.altaUsuario(em, adm);
 			
 			em.persist(tip);//tipo de tarea
-			mt.altaTarea(em, t);
+			em.persist(cli);
+			em.persist(gru);
+			
+			mt.altaTareaRealiza(em, t, r);//alta tarea con realiza
+			//mt.altaTarea(em, t);
+			
+			
 			
 			em.getTransaction().commit();
 			
@@ -174,7 +193,7 @@ public class MainTest {
 		System.out.println("==============================");
 		System.out.println("encontrar un usuario");
 		
-		Usuario ubuscado = mu.encontrarUsuario(em, enc.getCedula());
+		Usuario ubuscado = mu.encontrarUsuario(em, u.getCedula());
 		if (ubuscado instanceof Tecnico) {
 			
 			System.out.println("NOMBRE: " + ubuscado.getNombre());

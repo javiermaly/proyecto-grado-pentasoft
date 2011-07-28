@@ -20,8 +20,8 @@ public class Cliente implements Serializable {
 	private int id;
 	private String empresa;
 	private String nombre_RazonSocial;
-	private Long cedula;
-	private Long rut;
+	private long cedula;
+	private long rut;
 	private String telefono;
 	private String direccion;
 	private @Temporal(TemporalType.DATE)Calendar fechaFinGarantia;
@@ -37,7 +37,7 @@ public class Cliente implements Serializable {
 	
 	
 	public Cliente(int id, String empresa, String nombre_RazonSocial,
-			Long cedula, Long rut, String telefono, String direccion,
+			long cedula, long rut, String telefono, String direccion,
 			Calendar fechaFinGarantia) {
 		super();
 		this.id = id;
@@ -48,6 +48,19 @@ public class Cliente implements Serializable {
 		this.telefono = telefono;
 		this.direccion = direccion;
 		this.fechaFinGarantia = fechaFinGarantia;
+	}
+	
+	public Cliente(int id, String empresa, String nombre_RazonSocial,
+			long cedula, long rut, String telefono, String direccion) {
+		super();
+		this.id = id;
+		this.empresa = empresa;
+		this.nombre_RazonSocial = nombre_RazonSocial;
+		this.cedula = cedula;
+		this.rut = rut;
+		this.telefono = telefono;
+		this.direccion = direccion;
+		
 	}
 
 
@@ -76,19 +89,19 @@ public class Cliente implements Serializable {
 		this.nombre_RazonSocial = nombre_RazonSocial;
 	}
 
-	public Long getCedula() {
+	public long getCedula() {
 		return cedula;
 	}
 
-	public void setCedula(Long cedula) {
+	public void setCedula(long cedula) {
 		this.cedula = cedula;
 	}
 
-	public Long getRut() {
+	public long getRut() {
 		return rut;
 	}
 
-	public void setRut(Long rut) {
+	public void setRut(long rut) {
 		this.rut = rut;
 	}
 
