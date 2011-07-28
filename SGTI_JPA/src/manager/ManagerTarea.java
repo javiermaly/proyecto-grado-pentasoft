@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import beans.Realiza;
 import beans.Tarea;
 import beans.Usuario;
 
@@ -12,7 +13,13 @@ public class ManagerTarea {
 	public void altaTarea(EntityManager em, Tarea t){
 		em.persist(t);
 				
-	}	
+	}
+	
+	public void altaTareaRealiza(EntityManager em, Tarea t, Realiza r){
+		em.persist(t);
+		em.persist(r);
+		
+	}
 	
 	public List<Tarea> traerTodasTareas(EntityManager em) {
 		@SuppressWarnings(value="unchecked")//para que deje de mostrar advertencia List need unchecked convertion

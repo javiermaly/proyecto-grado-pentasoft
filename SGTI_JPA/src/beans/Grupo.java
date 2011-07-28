@@ -27,6 +27,17 @@ public class Grupo implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
+	
+	
+	public Grupo(int id, String descripcion, Encargado enc
+		) {
+		super();
+		this.id = id;
+		this.descripcion = descripcion;
+		this.enc = enc;
+		
+	}
+	
 	public Grupo() {
 		super();
 	}   

@@ -3,6 +3,7 @@ package beans;
 import java.io.Serializable;
 import java.lang.String;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import java.util.List;
@@ -32,12 +33,17 @@ public class Tarea implements Serializable {
 	@ManyToOne
 	private Tipo tipo;	
 	@OneToMany(mappedBy="tarea")
-	private List<Realiza> listRealiza;	
+	private List<Realiza> listRealiza=new ArrayList<Realiza>();	
 	@ManyToOne
-	private Cliente cliente;
+	private Cliente cliente;	
+	
+	@ManyToOne   //??? ManyToMany crea una tabla intermedia con las claves de los dos entitys
+	private Grupo grupo;
+	
 	
 	private static final long serialVersionUID = 1L;
 
+	
 	public Tarea() {
 		super();
 	}   
@@ -106,6 +112,13 @@ public class Tarea implements Serializable {
 	public Cliente getCliente() {
 		return cliente;
 	}
+	public Grupo getGrupo() {
+		return grupo;
+	}
+	public void setGrupo(Grupo grupo) {
+		this.grupo = grupo;
+	}
    
+	
 	
 }

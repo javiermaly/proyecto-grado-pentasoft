@@ -32,6 +32,19 @@ public class Realiza implements Serializable {
 	public Realiza() {
 		super();
 	}   
+	
+	
+	public Realiza(int id, Calendar fechaInicio, Calendar fechaFin,
+			Usuario usu, Tarea tarea) {
+		super();
+		this.id = id;
+		this.fechaInicio = fechaInicio;
+		this.fechaFin = fechaFin;
+		this.usu = usu;
+		this.tarea = tarea;
+	}
+
+
 	public Calendar getFechaInicio() {
 		return this.fechaInicio;
 	}
