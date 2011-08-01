@@ -47,6 +47,7 @@ public class MainTest {
 		u.setUsuario("atecnicity");
 		u.setEsExterno(false);
 		
+		
 		Encargado enc = new Encargado();
 		enc.setApellido("encargueti");
 		enc.setCedula(4111111);
@@ -69,6 +70,7 @@ public class MainTest {
 		
 		List<Tecnico> colTecnicos= new ArrayList<Tecnico>();
 		colTecnicos.add(u);
+		colTecnicos.add(enc);
 		Grupo g = new Grupo();
 		g.setDescripcion("soporte tecnico externo");
 		g.setEnc(enc);
@@ -76,33 +78,38 @@ public class MainTest {
 		g.setId(1);
 		
 		Cliente cli =new Cliente(1,"asdf","ffff",233333,2222,"ddddd","eeee",horaI);
-		Grupo gru = new Grupo(1,"grupo",enc);
+		//Grupo gru = new Grupo(1,"grupo",enc);
 		
 		Tipo tip=new Tipo();
 		tip.setDescripcion("Desarrollo");
 		tip.setId(1);
+		
 			
 		
 		Tarea t= new Tarea();
-		t.setDescripcion("Desarrollar proyecto final");
+		t.setDescripcion("Soporte tecnico a la Empresa X: revisar maquina en garantía");
 		t.setEsExterna(true);		
 		fecCom.set(2011, 8, 15);
 		t.setFechaApertura(horaI);	
 		t.setFechaComprometida(fecCom);		
-		t.setFechaCierre(Calendar.getInstance());
+		//t.setFechaCierre(Calendar.getInstance());
 		//horaI.set(Calendar.HOUR_OF_DAY, 16);
 		//horaI.set(Calendar.MINUTE,44);			
-		t.setObservacion("OBSERVACION DE TAREA");
+		//t.setObservacion("OBSERVACION DE TAREA");
 		t.setTipo(tip);
 		t.setCliente(cli);
-		t.setGrupo(gru);
+		t.setGrupo(g);
+
 
 		
 		
-		Realiza r= new Realiza(1,horaI,fecCom,enc,t);
+		
+		Realiza r= new Realiza(1,horaI,null,enc,t);
 		List<Realiza> colRealiza= new ArrayList<Realiza>();
 		colRealiza.add(r);
-		t.setListRealiza(colRealiza);
+		//t.setListRealiza(colRealiza);
+		Realiza r2= new Realiza(1,horaI,null,u,t);
+		colRealiza.add(r2);
 		
 		
 		Estado e1= new Estado();
@@ -125,12 +132,15 @@ public class MainTest {
 			
 			em.persist(tip);//tipo de tarea
 			em.persist(cli);
-			em.persist(gru);
+			em.persist(g);
+			
 			
 			mt.altaTareaRealiza(em, t, r);//alta tarea con realiza
+			mt.altaTareaRealiza(em, t, r2);//misma tarea realizada por otro usuario
 			//mt.altaTarea(em, t);
 			
-			
+			//administrativo abre una tarea
+			//mt.altaTarea(em, t);
 			
 			em.getTransaction().commit();
 			
