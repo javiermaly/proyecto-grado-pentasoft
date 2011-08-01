@@ -11,14 +11,20 @@ import javax.persistence.*;
  */
 @Entity
 
+//@IdClass(TieneId.class) // problemas con los objetos???? con int funciono bien.
+
 public class Tiene implements Serializable {
 
-	@Id
+	@EmbeddedId
+	private TieneId id;
+	
 	private Tarea tarea;////////////////////////// VER PARA PONER ESTADO COMO ID COMPUESTA CON TAREA y fechaini
+	
+	
 	private @Temporal(TemporalType.DATE) Calendar fechaInicio;
 	private @Temporal(TemporalType.DATE) Calendar fechaFin;	
 	
-	@ManyToOne
+	
 	private Estado estado;
 	
 	private static final long serialVersionUID = 1L;
@@ -64,3 +70,5 @@ public class Tiene implements Serializable {
 	}
    
 }
+
+

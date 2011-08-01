@@ -25,6 +25,7 @@ public class Grupo implements Serializable {
 	@OneToMany
 	private List<Tecnico> colTecnicos= new ArrayList<Tecnico>();
 	
+	
 	private static final long serialVersionUID = 1L;
 	
 	

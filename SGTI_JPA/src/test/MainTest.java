@@ -19,6 +19,7 @@ import beans.Grupo;
 import beans.Realiza;
 import beans.Tarea;
 import beans.Tecnico;
+import beans.Tiene;
 import beans.Tipo;
 import beans.Usuario;
 
@@ -84,7 +85,14 @@ public class MainTest {
 		tip.setDescripcion("Desarrollo");
 		tip.setId(1);
 		
-			
+		Estado e1= new Estado();
+		Estado e2 = new Estado();
+		
+		e1.setId(1);
+		e1.setDescripcion("Abierta");
+		
+		e2.setId(2);
+		e2.setDescripcion("Asignada");
 		
 		Tarea t= new Tarea();
 		t.setDescripcion("Soporte tecnico a la Empresa X: revisar maquina en garantía");
@@ -99,11 +107,27 @@ public class MainTest {
 		t.setTipo(tip);
 		t.setCliente(cli);
 		t.setGrupo(g);
+		
+		
+		//Asigna un estado a una tarea
+		Tiene tiene=new Tiene();
+		tiene.setTarea(t);
+		tiene.setFechaInicio(fecCom);
+		tiene.setEstado(e1);
+		
+		//finalizar estado
+		tiene.setFechaFin(horaI);
+		
+		Tiene tiene2 =  new Tiene();
+		tiene2.setTarea(t);
+		tiene2.setFechaInicio(fecCom);
+		tiene2.setEstado(e2);
+		
+		
+		
 
 
-		
-		
-		
+			
 		Realiza r= new Realiza(1,horaI,null,enc,t);
 		List<Realiza> colRealiza= new ArrayList<Realiza>();
 		colRealiza.add(r);
@@ -112,14 +136,7 @@ public class MainTest {
 		colRealiza.add(r2);
 		
 		
-		Estado e1= new Estado();
-		Estado e2 = new Estado();
 		
-		e1.setId(1);
-		e1.setDescripcion("Abierta");
-		
-		e2.setId(2);
-		e2.setDescripcion("Asignada");
 		
 		
 		try {
@@ -134,10 +151,19 @@ public class MainTest {
 			em.persist(cli);
 			em.persist(g);
 			
+			em.persist(e1);//alta de estados.
+			em.persist(e2);
+			
+			
 			
 			mt.altaTareaRealiza(em, t, r);//alta tarea con realiza
 			mt.altaTareaRealiza(em, t, r2);//misma tarea realizada por otro usuario
 			//mt.altaTarea(em, t);
+			
+			
+			em.persist(tiene);//asigna un estado a una tarea
+			
+			em.persist(tiene2);//cambia el estado de una tarea
 			
 			//administrativo abre una tarea
 			//mt.altaTarea(em, t);
