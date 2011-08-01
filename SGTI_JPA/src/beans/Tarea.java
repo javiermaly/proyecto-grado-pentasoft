@@ -37,7 +37,7 @@ public class Tarea implements Serializable {
 	@ManyToOne
 	private Cliente cliente;	
 	
-	@ManyToOne   //??? ManyToMany crea una tabla intermedia con las claves de los dos entitys
+	@ManyToOne //??? ManyToMany crea una tabla intermedia con las claves de los dos entitys
 	private Grupo grupo;
 	
 	
@@ -47,6 +47,8 @@ public class Tarea implements Serializable {
 	public Tarea() {
 		super();
 	}   
+	
+	
 	public int getId() {
 		return this.id;
 	}
