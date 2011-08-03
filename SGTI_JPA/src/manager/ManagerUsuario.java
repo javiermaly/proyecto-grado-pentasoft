@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import conexion.DBConection;
+
 import beans.Administrador;
 import beans.Administrativo;
 import beans.Tarea;
@@ -12,8 +14,13 @@ import beans.Usuario;
 
 public class ManagerUsuario {
 
-	public void altaUsuario(EntityManager em, Usuario u){
+	DBConection db = new DBConection();
+	EntityManager em = db.conectar();
+
+	public void altaUsuario(Usuario u){
+		em.getTransaction().begin();
 		em.persist(u);
+		em.getTransaction().commit();
 				
 	}	
 	

@@ -1,5 +1,6 @@
 package manager;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -15,51 +16,76 @@ public class ManagerTarea {
 	DBConection db = new DBConection();
 	EntityManager em = db.conectar();
 
-	public void altaTarea(EntityManager em, Tarea t){
-		em.getTransaction().begin();
-		em.persist(t);
-		em.getTransaction().commit();
+	public boolean altaTarea(Tarea t) {
+		try {
+			em.getTransaction().begin();
+			em.persist(t);
+			em.getTransaction().commit();
+			return true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
 	}
-	
-//	public void altaTareaRealiza(EntityManager em, Tarea t, Realiza r){
-//		em.getTransaction().begin();
-//		em.persist(t);
-//		em.persist(r);
-//		em.getTransaction().commit();
-//		
-//	}
-	
-	public List<Tarea> traerTodasTareas(EntityManager em) {
-		@SuppressWarnings(value="unchecked")//para que deje de mostrar advertencia List need unchecked convertion
+
+	public List<Tarea> traerTodasTareas() {
+		// para que deje de mostrar advertencia List need unchecked convertion
+		@SuppressWarnings(value = "unchecked")
 		List<Tarea> todasT = em.createNamedQuery("todosTareas").getResultList();
 		return todasT;
 	}
-	
-	public Tarea encontrarTarea(EntityManager em, int id) {
+
+	public Tarea encontrarTarea(int id) {
 		Tarea t = em.find(Tarea.class, id);
 		return t;
 	}
-	
-	public List<Tarea> tareasPorUsuario(EntityManager em,Usuario u) {
-		@SuppressWarnings(value="unchecked")
-		List<Tarea> tareas = em.createNamedQuery("tareasPorUsuario").setParameter("Usuario",u).getResultList();
+
+	public List<Tarea> tareasPorUsuario(Usuario u) {
+		@SuppressWarnings(value = "unchecked")
+		List<Tarea> tareas = em.createNamedQuery("tareasPorUsuario")
+				.setParameter("Usuario", u).getResultList();
 		return tareas;
 	}
-	
-	//ACTUALIZAR TAREA
-	public Tarea actualizarTarea(EntityManager em, Tarea t) {
+
+	// ACTUALIZAR TAREA
+	public Tarea actualizarTarea(Tarea t) {
 		em.getTransaction().begin();
 		t = em.merge(t);
 		em.getTransaction().commit();
 		return t;
 	}
-	
-	
-	//ELIMINAR TAREA
-	public void eliminarTarea(EntityManager em, Tarea t) {
+
+	// ELIMINAR TAREA
+	public void eliminarTarea(Tarea t) {
 		em.getTransaction().begin();
 		em.remove(t);
 		em.getTransaction().commit();
 	}
+
+	 public void altaTareaRealiza(Tarea t, Realiza r){
+	 em.getTransaction().begin();
+	 em.persist(t);
+	 em.persist(r);
+	 em.getTransaction().commit();
 	
+	 }
+	
+	//ASIGNAR TAREA A USUARIO
+	 public boolean asignaTareaUsuario(Tarea t, Usuario u, Calendar fecIni){
+		 boolean retorno=false;
+		 Realiza r= new Realiza();
+		 r.setTarea(t);
+		 r.setUsu(u);
+		 r.setFechaInicio(fecIni);
+		 
+		 if(t.agregarRealiza(r)){
+			 actualizarTarea(t);
+			 retorno=true;
+		 }
+		 	 
+		 return retorno;
+		 
+	 }
 }

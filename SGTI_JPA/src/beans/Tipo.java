@@ -18,7 +18,6 @@ public class Tipo implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String descripcion;
-	//private ColTareas colTareas;	
 	private static final long serialVersionUID = 1L;
 
 	

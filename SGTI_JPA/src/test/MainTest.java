@@ -1,6 +1,5 @@
 package test;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -139,9 +138,9 @@ public class MainTest {
 			
 			em.getTransaction().begin();
 			//INGRESOS:
-			mu.altaUsuario(em, u); //alta de un tecnico
-			mu.altaUsuario(em, enc); //alta de un encargado
-			mu.altaUsuario(em, adm);
+			mu.altaUsuario(u); //alta de un tecnico
+			mu.altaUsuario(enc); //alta de un encargado
+			mu.altaUsuario(adm);
 			
 			em.persist(tip);//tipo de tarea
 			em.persist(cli);

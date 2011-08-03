@@ -116,13 +116,6 @@ public class Tarea implements Serializable {
 	public Cliente getCliente() {
 		return cliente;
 	}
-//	public Grupo getGrupo() {
-//		return grupo;
-//	}
-//	public void setGrupo(Grupo grupo) {
-//		this.grupo = grupo;
-//	}
-
 
 	public List<Tiene> getColTiene() {
 		return colTiene;
@@ -133,6 +126,16 @@ public class Tarea implements Serializable {
 		this.colTiene = colTiene;
 	}
    
-	
+	public boolean agregarRealiza(Realiza r){
+		boolean retorno;
+		if(listRealiza.add(r)){
+			retorno=true;
+		}
+		else{
+			retorno=false;
+		}
+		
+		return retorno;
+	}
 	
 }

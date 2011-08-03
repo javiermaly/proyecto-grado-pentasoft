@@ -14,16 +14,10 @@ public class PruebasTarea {
 		
 	}
 	
-	public void agregarTarea(){
-		Tarea t= new Tarea();
-		Tipo tipo= new Tipo();
-		tipo.setDescripcion("TIPO DE TAREA");
-		t.setEsExterna(true);	
-		t.setDescripcion("Soporte tecnico a la Empresa X: revisar maquina en garantía");
-		t.setObservacion("Observacion de la tarea");
-		t.setFechaApertura(Calendar.getInstance());
-		t.setFechaComprometida(Calendar.getInstance());
-		t.setTipo(tipo);
+	public boolean agregarTarea(Tarea t){
+				
+		return mt.altaTarea(t);
+	
 	}
 		
 
