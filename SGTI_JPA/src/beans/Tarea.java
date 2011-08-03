@@ -27,9 +27,8 @@ public class Tarea implements Serializable {
 	private String descripcion;
 	private String observacion;
 	private @Temporal(TemporalType.DATE) Calendar fechaApertura;
-	private @Temporal(TemporalType.DATE) Calendar fechaCierre;
-	//private @Temporal(TemporalType.TIMESTAMP) Calendar horaInicio;
 	private @Temporal(TemporalType.DATE) Calendar fechaComprometida;
+	private @Temporal(TemporalType.DATE) Calendar fechaCierre;
 	@ManyToOne
 	private Tipo tipo;	
 	@OneToMany(mappedBy="tarea")
@@ -37,8 +36,11 @@ public class Tarea implements Serializable {
 	@ManyToOne
 	private Cliente cliente;	
 	
-	@ManyToOne //??? ManyToMany crea una tabla intermedia con las claves de los dos entitys
-	private Grupo grupo;
+//	@ManyToOne //??? ManyToMany crea una tabla intermedia con las claves de los dos entitys
+//	private Grupo grupo;
+	
+	@OneToMany
+	private List<Tiene> colTiene=new ArrayList<Tiene>();	
 	
 	
 	private static final long serialVersionUID = 1L;
@@ -114,11 +116,21 @@ public class Tarea implements Serializable {
 	public Cliente getCliente() {
 		return cliente;
 	}
-	public Grupo getGrupo() {
-		return grupo;
+//	public Grupo getGrupo() {
+//		return grupo;
+//	}
+//	public void setGrupo(Grupo grupo) {
+//		this.grupo = grupo;
+//	}
+
+
+	public List<Tiene> getColTiene() {
+		return colTiene;
 	}
-	public void setGrupo(Grupo grupo) {
-		this.grupo = grupo;
+
+
+	public void setColTiene(List<Tiene> colTiene) {
+		this.colTiene = colTiene;
 	}
    
 	

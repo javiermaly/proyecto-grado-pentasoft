@@ -18,6 +18,7 @@ public class Grupo implements Serializable {
 
 	   
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String descripcion;
 	@OneToOne
@@ -25,6 +26,8 @@ public class Grupo implements Serializable {
 	@OneToMany
 	private List<Tecnico> colTecnicos= new ArrayList<Tecnico>();
 	
+	@OneToMany
+	private List<Tarea> colTareas= new ArrayList<Tarea>();
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -68,6 +71,14 @@ public class Grupo implements Serializable {
 	}
 	public List<Tecnico> getColTecnicos() {
 		return colTecnicos;
+	}
+
+	public List<Tarea> getColTareas() {
+		return colTareas;
+	}
+
+	public void setColTareas(List<Tarea> colTareas) {
+		this.colTareas = colTareas;
 	}
    
 }

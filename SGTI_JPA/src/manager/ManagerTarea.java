@@ -4,22 +4,30 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import conexion.DBConection;
+
 import beans.Realiza;
 import beans.Tarea;
 import beans.Usuario;
 
 public class ManagerTarea {
 
+	DBConection db = new DBConection();
+	EntityManager em = db.conectar();
+
 	public void altaTarea(EntityManager em, Tarea t){
+		em.getTransaction().begin();
 		em.persist(t);
-				
+		em.getTransaction().commit();
 	}
 	
-	public void altaTareaRealiza(EntityManager em, Tarea t, Realiza r){
-		em.persist(t);
-		em.persist(r);
-		
-	}
+//	public void altaTareaRealiza(EntityManager em, Tarea t, Realiza r){
+//		em.getTransaction().begin();
+//		em.persist(t);
+//		em.persist(r);
+//		em.getTransaction().commit();
+//		
+//	}
 	
 	public List<Tarea> traerTodasTareas(EntityManager em) {
 		@SuppressWarnings(value="unchecked")//para que deje de mostrar advertencia List need unchecked convertion
@@ -38,16 +46,20 @@ public class ManagerTarea {
 		return tareas;
 	}
 	
-	//ACTUALIZAR 
+	//ACTUALIZAR TAREA
 	public Tarea actualizarTarea(EntityManager em, Tarea t) {
+		em.getTransaction().begin();
 		t = em.merge(t);
+		em.getTransaction().commit();
 		return t;
 	}
 	
 	
-	//ELIMINAR
+	//ELIMINAR TAREA
 	public void eliminarTarea(EntityManager em, Tarea t) {
+		em.getTransaction().begin();
 		em.remove(t);
+		em.getTransaction().commit();
 	}
 	
 }

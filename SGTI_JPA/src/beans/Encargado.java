@@ -1,14 +1,17 @@
 package beans;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
 
-@SuppressWarnings("serial")
 @Entity
 public class Encargado extends Tecnico {
 	
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Encargado(){
 		super();
 	}
