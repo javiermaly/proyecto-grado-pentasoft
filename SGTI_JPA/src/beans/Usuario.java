@@ -17,7 +17,6 @@ public class Usuario implements Serializable {
 
 	   
 	@Id
-	
 	private long cedula;
 	private String nombre;
 	private String apellido;

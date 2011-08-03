@@ -15,6 +15,7 @@ public class Tipo implements Serializable {
 
 	   
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String descripcion;
 	//private ColTareas colTareas;	

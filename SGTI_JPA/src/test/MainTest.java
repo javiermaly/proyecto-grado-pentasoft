@@ -94,48 +94,44 @@ public class MainTest {
 		e2.setId(2);
 		e2.setDescripcion("Asignada");
 		
-		Tarea t= new Tarea();
-		t.setDescripcion("Soporte tecnico a la Empresa X: revisar maquina en garantía");
-		t.setEsExterna(true);		
-		fecCom.set(2011, 8, 15);
-		t.setFechaApertura(horaI);	
-		t.setFechaComprometida(fecCom);		
+		
 		//t.setFechaCierre(Calendar.getInstance());
 		//horaI.set(Calendar.HOUR_OF_DAY, 16);
 		//horaI.set(Calendar.MINUTE,44);			
 		//t.setObservacion("OBSERVACION DE TAREA");
-		t.setTipo(tip);
-		t.setCliente(cli);
-		t.setGrupo(g);
+//		t.setTipo(tip);
+//		t.setCliente(cli);
+//		t.setGrupo(g);
 		
 		
-		//Asigna un estado a una tarea
-		Tiene tiene=new Tiene();
-		tiene.setTarea(t);
-		tiene.setFechaInicio(fecCom);
-		tiene.setEstado(e1);
-		
-		//finalizar estado
-		tiene.setFechaFin(horaI);
-		
-		Tiene tiene2 =  new Tiene();
-		tiene2.setTarea(t);
-		tiene2.setFechaInicio(fecCom);
-		tiene2.setEstado(e2);
-		
-		
+//		
+//		//Asigna un estado a una tarea
+//		Tiene tiene=new Tiene();
+//		tiene.setTarea(t);
+//		tiene.setFechaInicio(fecCom);
+//		tiene.setEstado(e1);
+//		
+//		//finalizar estado
+//		tiene.setFechaFin(horaI);
+//		
+//		Tiene tiene2 =  new Tiene();
+//		tiene2.setTarea(t);
+//		tiene2.setFechaInicio(fecCom);
+//		tiene2.setEstado(e2);
+//		
+//		
 		
 
 
 			
-		Realiza r= new Realiza(1,horaI,null,enc,t);
-		List<Realiza> colRealiza= new ArrayList<Realiza>();
-		colRealiza.add(r);
-		//t.setListRealiza(colRealiza);
-		Realiza r2= new Realiza(1,horaI,null,u,t);
-		colRealiza.add(r2);
-		
-		
+//		Realiza r= new Realiza(1,horaI,null,enc,t);
+//		List<Realiza> colRealiza= new ArrayList<Realiza>();
+//		colRealiza.add(r);
+//		//t.setListRealiza(colRealiza);
+//		Realiza r2= new Realiza(1,horaI,null,u,t);
+//		colRealiza.add(r2);
+//		
+//		
 		
 		
 		
@@ -156,15 +152,15 @@ public class MainTest {
 			
 			
 			
-			mt.altaTareaRealiza(em, t, r);//alta tarea con realiza
-			mt.altaTareaRealiza(em, t, r2);//misma tarea realizada por otro usuario
-			//mt.altaTarea(em, t);
-			
-			
-			em.persist(tiene);//asigna un estado a una tarea
-			
-			em.persist(tiene2);//cambia el estado de una tarea
-			
+//			mt.altaTareaRealiza(em, t, r);//alta tarea con realiza
+//			mt.altaTareaRealiza(em, t, r2);//misma tarea realizada por otro usuario
+//			//mt.altaTarea(em, t);
+//			
+//			
+//			em.persist(tiene);//asigna un estado a una tarea
+//			
+//			em.persist(tiene2);//cambia el estado de una tarea
+//			
 			//administrativo abre una tarea
 			//mt.altaTarea(em, t);
 			
