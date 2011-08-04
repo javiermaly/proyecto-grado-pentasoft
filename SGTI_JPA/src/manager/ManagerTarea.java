@@ -51,8 +51,7 @@ public class ManagerTarea {
 
 	public List<Tarea> tareasPorUsuario(Usuario u) {
 		@SuppressWarnings(value = "unchecked")
-		List<Tarea> tareas = em.createNamedQuery("tareasPorUsuario")
-				.setParameter("Usuario", u).getResultList();
+		List<Tarea> tareas = em.createNamedQuery("tareasPorUsuario").setParameter("Usuario", u).getResultList();
 		return tareas;
 	}
 
@@ -138,5 +137,28 @@ public class ManagerTarea {
 	 public Estado encontrarEstado(int id) {
 			Estado e = em.find(Estado.class, id);
 			return e;
+	}
+	 
+	//ENCONTRAR Tiene
+	 public Tiene encontrarTiene(Tarea t) {
+			Tiene tiene = em.find(Tiene.class, t.getId());
+			return tiene;
+		}
+	 
+	//ACTUALIZAR Tiene
+	 public Tiene actualizarTiene(Tiene tiene) {
+			em.getTransaction().begin();
+			tiene = em.merge(tiene);
+			em.getTransaction().commit();
+			return tiene;
+		}
+
+	
+	 //agregar estado.......PROVISORIO
+	 public void agregarEstado(Estado est) {
+		em.getTransaction().begin();
+		em.persist(est);
+		em.getTransaction().commit();
+		
 	}
 }

@@ -21,6 +21,9 @@ public class Tiene implements Serializable {
 	@ManyToOne		//ACA NO SERIA ONE TO MANY????
 	private Estado estado;
 	
+	@ManyToOne
+	private Tarea tarea;
+	
 	private static final long serialVersionUID = 1L;
 
 	public Tiene() {
@@ -65,6 +68,16 @@ public class Tiene implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+
+	public Tarea getTarea() {
+		return tarea;
+	}
+
+
+	public void setTarea(Tarea tarea) {
+		this.tarea = tarea;
 	}
 	
 	
