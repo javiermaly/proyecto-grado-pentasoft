@@ -81,4 +81,11 @@ public class Grupo implements Serializable {
 		this.colTareas = colTareas;
 	}
    
+	public boolean asignaTarea(Tarea t){
+		boolean retorno = false;
+		if (colTareas.add(t)){
+			retorno=true;
+		}
+	return retorno;
+	}
 }

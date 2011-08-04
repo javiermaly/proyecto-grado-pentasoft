@@ -14,11 +14,11 @@ public class PruebasTarea {
 		
 	}
 	
-	public boolean agregarTarea(Tarea t){
-				
-		return mt.altaTarea(t);
-	
-	}
+//	public boolean agregarTarea(Tarea t){
+//				
+//		//return mt.altaTarea(t);
+//	
+//	}
 		
 
 }
