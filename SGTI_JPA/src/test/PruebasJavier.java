@@ -1,8 +1,7 @@
 package test;
 
-import java.util.ArrayList;
+
 import java.util.Calendar;
-import java.util.List;
 
 import manager.ManagerTarea;
 import manager.ManagerUsuario;
@@ -19,6 +18,7 @@ public class PruebasJavier {
 	
 		ManagerTarea mt = new ManagerTarea();
 		Tarea t= new Tarea();		
+		Tarea t2= new Tarea();
 		
 		Estado estado = new Estado();
 		estado.setId(1);
@@ -45,9 +45,7 @@ public class PruebasJavier {
 		t.setFechaApertura(Calendar.getInstance());
 		t.setFechaComprometida(Calendar.getInstance());
 		t.setTipo(tipo);
-//		List<Tiene> colTiene = new ArrayList<Tiene>();
-//		colTiene.add(tiene);
-//		t.setColTiene(colTiene);
+		t.agregarTiene(tiene);		
 		
 		if (mt.altaTarea(t,tipo,tiene))
 			System.out.println("TAREA DADA DE ALTA");
@@ -70,9 +68,17 @@ public class PruebasJavier {
 		grupo.setDescripcion("Grupo 1");
 		mt.altaGrupo(grupo);
 		
+		t2.setEsExterna(true);	
+		t2.setDescripcion("Soporte tecnico a la Empresa X: revisar maquina en garantía");
+		t2.setObservacion("Observacion de la tarea");
+		t2.setFechaApertura(Calendar.getInstance());
+		t2.setFechaComprometida(Calendar.getInstance());
+		t2.setTipo(tipo);
+		
 		//asigno tarea a grupo
 		Grupo gr=mt.encontrarGrupo(1);
 		mt.asignarTareaGrupo(t, gr);
+		mt.asignarTareaGrupo(t2, gr);
 		
 		//asigno tarea a usuario
 		mt.asignaTareaUsuario(t, u, Calendar.getInstance());

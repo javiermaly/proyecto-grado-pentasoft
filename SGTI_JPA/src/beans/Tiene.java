@@ -9,6 +9,8 @@ import javax.persistence.*;
  * Entity implementation class for Entity: Tiene
  *
  */
+
+
 @Entity
 
 public class Tiene implements Serializable {
