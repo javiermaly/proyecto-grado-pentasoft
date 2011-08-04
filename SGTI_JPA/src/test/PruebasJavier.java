@@ -20,9 +20,22 @@ public class PruebasJavier {
 		ManagerTarea mt = new ManagerTarea();
 		Tarea t= new Tarea();		
 		
+		Estado estado = new Estado();
+		estado.setId(1);
+		estado.setDescripcion("Abierta");		
+		mt.agregarEstado(estado);
+		Estado estado2 = new Estado();
+		estado2.setId(2);
+		estado2.setDescripcion("Asignada");
+		mt.agregarEstado(estado2);
+		
+		
 		Tiene tiene = new Tiene();		
 		tiene.setEstado(mt.encontrarEstado(1));
 		tiene.setFechaInicio(Calendar.getInstance());
+		tiene.setTarea(t);
+		
+	
 		
 		Tipo tipo= new Tipo();
 		tipo.setDescripcion("TIPO DE TAREA");
@@ -32,9 +45,9 @@ public class PruebasJavier {
 		t.setFechaApertura(Calendar.getInstance());
 		t.setFechaComprometida(Calendar.getInstance());
 		t.setTipo(tipo);
-		List<Tiene> colTiene = new ArrayList<Tiene>();
-		colTiene.add(tiene);
-		t.setColTiene(colTiene);
+//		List<Tiene> colTiene = new ArrayList<Tiene>();
+//		colTiene.add(tiene);
+//		t.setColTiene(colTiene);
 		
 		if (mt.altaTarea(t,tipo,tiene))
 			System.out.println("TAREA DADA DE ALTA");
@@ -56,12 +69,25 @@ public class PruebasJavier {
 		Grupo grupo= new Grupo();
 		grupo.setDescripcion("Grupo 1");
 		mt.altaGrupo(grupo);
+		
 		//asigno tarea a grupo
 		Grupo gr=mt.encontrarGrupo(1);
 		mt.asignarTareaGrupo(t, gr);
 		
 		//asigno tarea a usuario
 		mt.asignaTareaUsuario(t, u, Calendar.getInstance());
+		
+		
+		//cambiar de estado una tarea
+		//1ro encontrar el tiene de esta tarea
+		tiene = mt.encontrarTiene(t);
+		tiene.setFechaFin(Calendar.getInstance());//poner fecha de fin al último tiene de esta tarea
+		mt.actualizarTiene(tiene);
+		Tiene tiene2 = new Tiene();
+		tiene2.setEstado(mt.encontrarEstado(2));//pone el nuevo estado de esta tarea en tiene
+		tiene2.setFechaInicio(Calendar.getInstance());
+		tiene2.setTarea(t);
+		mt.actualizarTiene(tiene2);
 	}
 
 }
