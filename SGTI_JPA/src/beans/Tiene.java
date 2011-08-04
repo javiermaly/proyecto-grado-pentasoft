@@ -56,6 +56,18 @@ public class Tiene implements Serializable {
 	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
+
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	
    
 }
 

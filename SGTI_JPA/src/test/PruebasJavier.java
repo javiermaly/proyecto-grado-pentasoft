@@ -1,11 +1,15 @@
 package test;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import manager.ManagerTarea;
 import manager.ManagerUsuario;
+import beans.Estado;
 import beans.Grupo;
 import beans.Tarea;
+import beans.Tiene;
 import beans.Tipo;
 import beans.Usuario;
 
@@ -14,7 +18,12 @@ public class PruebasJavier {
 	public static void main(String[] args) {
 	
 		ManagerTarea mt = new ManagerTarea();
-		Tarea t= new Tarea();
+		Tarea t= new Tarea();		
+		
+		Tiene tiene = new Tiene();		
+		tiene.setEstado(mt.encontrarEstado(1));
+		tiene.setFechaInicio(Calendar.getInstance());
+		
 		Tipo tipo= new Tipo();
 		tipo.setDescripcion("TIPO DE TAREA");
 		t.setEsExterna(true);	
@@ -23,7 +32,11 @@ public class PruebasJavier {
 		t.setFechaApertura(Calendar.getInstance());
 		t.setFechaComprometida(Calendar.getInstance());
 		t.setTipo(tipo);
-		if (mt.altaTarea(t,tipo))
+		List<Tiene> colTiene = new ArrayList<Tiene>();
+		colTiene.add(tiene);
+		t.setColTiene(colTiene);
+		
+		if (mt.altaTarea(t,tipo,tiene))
 			System.out.println("TAREA DADA DE ALTA");
 		else
 			System.out.println("ERROR AL DAR DE ALTA LA TAREA");

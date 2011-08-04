@@ -7,9 +7,11 @@ import javax.persistence.EntityManager;
 
 import conexion.DBConection;
 
+import beans.Estado;
 import beans.Grupo;
 import beans.Realiza;
 import beans.Tarea;
+import beans.Tiene;
 import beans.Tipo;
 import beans.Usuario;
 
@@ -18,11 +20,13 @@ public class ManagerTarea {
 	DBConection db = new DBConection();
 	EntityManager em = db.conectar();
 
-	public boolean altaTarea(Tarea t, Tipo tipo) {
+	public boolean altaTarea(Tarea t, Tipo tipo, Tiene tiene) {
 		try {
 			em.getTransaction().begin();
-			em.persist(t);
 			em.persist(tipo);
+			em.persist(tiene);
+			em.persist(t);
+			
 			em.getTransaction().commit();
 			return true;
 
@@ -129,4 +133,10 @@ public class ManagerTarea {
 		 		 
 		 return retorno;
 	 }
+	 
+	 //traer un estado
+	 public Estado encontrarEstado(int id) {
+			Estado e = em.find(Estado.class, id);
+			return e;
+	}
 }
