@@ -54,6 +54,7 @@ public class ManagerTarea {
 		List<Tarea> tareas = em.createNamedQuery("tareasPorUsuario").setParameter("Usuario", u).getResultList();
 		return tareas;
 	}
+	
 
 	// ACTUALIZAR TAREA
 	public Tarea actualizarTarea(Tarea t) {
@@ -144,6 +145,12 @@ public class ManagerTarea {
 			Tiene tiene = em.find(Tiene.class, t.getId());
 			return tiene;
 		}
+	 
+//	//ENCONTRAR Tiene en ColTienes de Tarea
+//	 public Tiene encontrarTieneEnTarea(Tarea t, Tiene tie) {
+//			Tiene tiene = em.find( //Tarea.class, t.getColTiene());//(tie.getId()));
+//			return tiene;
+//		}
 	 
 	//ACTUALIZAR Tiene
 	 public Tiene actualizarTiene(Tiene tiene) {
