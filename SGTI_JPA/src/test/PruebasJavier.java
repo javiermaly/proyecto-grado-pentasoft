@@ -4,6 +4,7 @@ import java.util.Calendar;
 
 import manager.ManagerTarea;
 import manager.ManagerUsuario;
+import beans.Grupo;
 import beans.Tarea;
 import beans.Tipo;
 import beans.Usuario;
@@ -14,15 +15,15 @@ public class PruebasJavier {
 	
 		ManagerTarea mt = new ManagerTarea();
 		Tarea t= new Tarea();
-		//Tipo tipo= new Tipo();
-		//tipo.setDescripcion("TIPO DE TAREA");
+		Tipo tipo= new Tipo();
+		tipo.setDescripcion("TIPO DE TAREA");
 		t.setEsExterna(true);	
 		t.setDescripcion("Soporte tecnico a la Empresa X: revisar maquina en garantía");
 		t.setObservacion("Observacion de la tarea");
 		t.setFechaApertura(Calendar.getInstance());
 		t.setFechaComprometida(Calendar.getInstance());
-		//t.setTipo(tipo);
-		if (mt.altaTarea(t))
+		t.setTipo(tipo);
+		if (mt.altaTarea(t,tipo))
 			System.out.println("TAREA DADA DE ALTA");
 		else
 			System.out.println("ERROR AL DAR DE ALTA LA TAREA");
@@ -38,10 +39,16 @@ public class PruebasJavier {
 		u.setCelular("099722146");
 		mu.altaUsuario(u);
 		
-		//asigno tarea
 		
+		Grupo grupo= new Grupo();
+		grupo.setDescripcion("Grupo 1");
+		mt.altaGrupo(grupo);
+		//asigno tarea a grupo
+		Grupo gr=mt.encontrarGrupo(1);
+		mt.asignarTareaGrupo(t, gr);
+		
+		//asigno tarea a usuario
 		mt.asignaTareaUsuario(t, u, Calendar.getInstance());
-		
 	}
 
 }

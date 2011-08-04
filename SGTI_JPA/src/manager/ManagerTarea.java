@@ -7,8 +7,10 @@ import javax.persistence.EntityManager;
 
 import conexion.DBConection;
 
+import beans.Grupo;
 import beans.Realiza;
 import beans.Tarea;
+import beans.Tipo;
 import beans.Usuario;
 
 public class ManagerTarea {
@@ -16,10 +18,11 @@ public class ManagerTarea {
 	DBConection db = new DBConection();
 	EntityManager em = db.conectar();
 
-	public boolean altaTarea(Tarea t) {
+	public boolean altaTarea(Tarea t, Tipo tipo) {
 		try {
 			em.getTransaction().begin();
 			em.persist(t);
+			em.persist(tipo);
 			em.getTransaction().commit();
 			return true;
 
@@ -87,5 +90,43 @@ public class ManagerTarea {
 		 	 
 		 return retorno;
 		 
+	 }
+	 
+	 //ALTA GRUPO
+	 public boolean altaGrupo(Grupo gr) {
+			try {
+				em.getTransaction().begin();
+				em.persist(gr);
+				em.getTransaction().commit();
+				return true;
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				return false;
+			}
+
+		}
+	 //ENCONTRAR GRUPO
+	 public Grupo encontrarGrupo(int id) {
+			Grupo gru = em.find(Grupo.class, id);
+			return gru;
+		}
+	 //ACTUALIZAR GRUPO
+	 public Grupo actualizarGrupo(Grupo gr) {
+			em.getTransaction().begin();
+			gr = em.merge(gr);
+			em.getTransaction().commit();
+			return gr;
+		}
+	 
+	 //ASIGNAR TAREA A GRUPO
+	 public boolean asignarTareaGrupo(Tarea t , Grupo gr){
+		 boolean retorno=false;
+		 if(gr.asignaTarea(t))
+			 actualizarGrupo(gr);
+			 retorno=true;
+		 
+		 		 
+		 return retorno;
 	 }
 }
