@@ -1,10 +1,12 @@
 package test;
 
-
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import manager.ManagerTarea;
 import manager.ManagerUsuario;
+import beans.Encargado;
 import beans.Estado;
 import beans.Grupo;
 import beans.Tarea;
@@ -18,7 +20,6 @@ public class PruebasJavier {
 	
 		ManagerTarea mt = new ManagerTarea();
 		Tarea t= new Tarea();		
-		Tarea t2= new Tarea();
 		
 		Estado estado = new Estado();
 		estado.setId(1);
@@ -29,23 +30,24 @@ public class PruebasJavier {
 		estado2.setDescripcion("Asignada");
 		mt.agregarEstado(estado2);
 		
-		
 		Tiene tiene = new Tiene();		
 		tiene.setEstado(mt.encontrarEstado(1));
 		tiene.setFechaInicio(Calendar.getInstance());
-		tiene.setTarea(t);
-		
-	
+		//tiene.setFechaFin(Calendar.getInstance());
 		
 		Tipo tipo= new Tipo();
-		tipo.setDescripcion("TIPO DE TAREA");
+		tipo.setDescripcion("BASE DE DATOS");
 		t.setEsExterna(true);	
 		t.setDescripcion("Soporte tecnico a la Empresa X: revisar maquina en garantía");
 		t.setObservacion("Observacion de la tarea");
 		t.setFechaApertura(Calendar.getInstance());
 		t.setFechaComprometida(Calendar.getInstance());
 		t.setTipo(tipo);
-		t.agregarTiene(tiene);		
+		t.agregarTiene(tiene);
+		
+//		List<Tiene> colTiene = new ArrayList<Tiene>();
+//		colTiene.add(tiene);
+//		t.setColTiene(colTiene);
 		
 		if (mt.altaTarea(t,tipo,tiene))
 			System.out.println("TAREA DADA DE ALTA");
@@ -53,47 +55,34 @@ public class PruebasJavier {
 			System.out.println("ERROR AL DAR DE ALTA LA TAREA");
 		
 		ManagerUsuario mu= new ManagerUsuario();
-		Usuario u = new Usuario();
-		u.setCedula(40434685);
+		Encargado u = new Encargado();
+		u.setCedula(11);
 		u.setNombre("Javier");
 		u.setApellido("Maly");
 		u.setUsuario("usu");
 		u.setPwd("pwd");
 		u.setDireccion("Paysandu 1242 / 203");
 		u.setCelular("099722146");
-		mu.altaUsuario(u);
+		//no lo persisto porque ya lo tengo en la base
+		//mu.altaUsuario(u);
 		
-		
+		//alta de un grupo
 		Grupo grupo= new Grupo();
 		grupo.setDescripcion("Grupo 1");
 		mt.altaGrupo(grupo);
 		
-		t2.setEsExterna(true);	
-		t2.setDescripcion("Soporte tecnico a la Empresa X: revisar maquina en garantía");
-		t2.setObservacion("Observacion de la tarea");
-		t2.setFechaApertura(Calendar.getInstance());
-		t2.setFechaComprometida(Calendar.getInstance());
-		t2.setTipo(tipo);
+		//asignar encargado a grupo
+		//grupo.setEnc(u);
 		
 		//asigno tarea a grupo
 		Grupo gr=mt.encontrarGrupo(1);
 		mt.asignarTareaGrupo(t, gr);
-		mt.asignarTareaGrupo(t2, gr);
 		
 		//asigno tarea a usuario
 		mt.asignaTareaUsuario(t, u, Calendar.getInstance());
 		
-		
-		//cambiar de estado una tarea
-		//1ro encontrar el tiene de esta tarea
-		tiene = mt.encontrarTiene(t);
-		tiene.setFechaFin(Calendar.getInstance());//poner fecha de fin al último tiene de esta tarea
-		mt.actualizarTiene(tiene);
-		Tiene tiene2 = new Tiene();
-		tiene2.setEstado(mt.encontrarEstado(2));//pone el nuevo estado de esta tarea en tiene
-		tiene2.setFechaInicio(Calendar.getInstance());
-		tiene2.setTarea(t);
-		mt.actualizarTiene(tiene2);
+		//cambio estado a tarea
+		mt.cambiarEstadoTarea(t, mt.encontrarEstado(2));
 	}
 
 }
