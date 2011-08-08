@@ -17,10 +17,18 @@ public class ManagerUsuario {
 	DBConection db = new DBConection();
 	EntityManager em = db.conectar();
 
-	public void altaUsuario(Usuario u){
-		em.getTransaction().begin();
-		em.persist(u);
-		em.getTransaction().commit();
+	public boolean altaUsuario(Usuario u){
+		
+		try {
+			em.getTransaction().begin();
+			em.persist(u);
+			em.getTransaction().commit();
+			return true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 				
 	}	
 	

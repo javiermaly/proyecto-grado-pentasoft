@@ -7,10 +7,10 @@ import java.util.List;
 
 import javax.persistence.*;
 
-/**
- * Entity implementation class for Entity: Cliente
- *
- */
+@NamedQueries(value = { 
+		@NamedQuery(name="todosClientes", query="select c from Cliente c"),
+		
+	})
 @Entity
 
 public class Cliente implements Serializable {
