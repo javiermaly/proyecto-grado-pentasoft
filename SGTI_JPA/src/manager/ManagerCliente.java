@@ -4,14 +4,34 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import conexion.DBConection;
+
 import beans.Cliente;
 import beans.Tarea;
+import beans.Usuario;
 
-public class Manager {
+public class ManagerCliente {
 	
-	public List<Cliente> traerTodasCliente(EntityManager em) {
+	
+	DBConection db = new DBConection();
+	EntityManager em = db.conectar();
+
+	public boolean altaCliente(Cliente c){
+		try {
+			em.getTransaction().begin();
+			em.persist(c);			
+			em.getTransaction().commit();
+			return true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}	
+	
+	public List<Cliente> traerTodosCliente(EntityManager em) {
 		@SuppressWarnings(value="unchecked")//para que deje de mostrar advertencia List need unchecked convertion
-		List<Cliente> todos = em.createNamedQuery("todasClientes").getResultList();
+		List<Cliente> todos = em.createNamedQuery("todosClientes").getResultList();
 		return todos;
 	}
 	
@@ -30,8 +50,7 @@ public class Manager {
 	public Cliente actualizarCliente(EntityManager em, Cliente p) {
 		p = em.merge(p);
 		return p;
-	}
-	
+	}	
 	
 	//ELIMINAR
 	public void eliminarCliente(EntityManager em, Cliente p) {
