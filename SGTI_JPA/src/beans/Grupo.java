@@ -27,7 +27,7 @@ public class Grupo implements Serializable {
 	private List<Tecnico> colTecnicos= new ArrayList<Tecnico>();
 	
 	@OneToMany
-	private List<Tarea> colTareas= new ArrayList<Tarea>();
+	private List<Tarea> colTareas;
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -83,7 +83,12 @@ public class Grupo implements Serializable {
    
 	public boolean asignaTarea(Tarea t){
 		boolean retorno = false;
-		if (colTareas.add(t)){
+		if(colTareas.isEmpty()){
+			colTareas= new ArrayList<Tarea>();
+			colTareas.add(t);
+			retorno=true;
+		}
+		else if (colTareas.add(t)){
 			retorno=true;
 		}
 	return retorno;

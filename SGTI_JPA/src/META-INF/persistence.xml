@@ -13,8 +13,7 @@
 		<class>beans.Tecnico</class>
 		<class>beans.Encargado</class>
 		<class>beans.Administrador</class>
-		<class>beans.Administrativo</class>
-		<validation-mode>CALLBACK</validation-mode>		
+		<class>beans.Administrativo</class>		
 		
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sgtidb"/>

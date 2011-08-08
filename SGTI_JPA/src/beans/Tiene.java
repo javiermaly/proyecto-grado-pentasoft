@@ -5,12 +5,16 @@ import java.util.Calendar;
 
 import javax.persistence.*;
 
+@NamedQueries(value = { 
+		//@NamedQuery(name="tieneSinFechaFin", query="select t from Tiene t where t.fechafin = 0"),
+		
+		
+	})
+	
 /**
  * Entity implementation class for Entity: Tiene
  *
  */
-
-
 @Entity
 
 public class Tiene implements Serializable {
@@ -22,9 +26,6 @@ public class Tiene implements Serializable {
 	private @Temporal(TemporalType.DATE) Calendar fechaFin;	
 	@ManyToOne		//ACA NO SERIA ONE TO MANY????
 	private Estado estado;
-	
-	@ManyToOne
-	private Tarea tarea;
 	
 	private static final long serialVersionUID = 1L;
 
@@ -70,16 +71,6 @@ public class Tiene implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-
-	public Tarea getTarea() {
-		return tarea;
-	}
-
-
-	public void setTarea(Tarea tarea) {
-		this.tarea = tarea;
 	}
 	
 	

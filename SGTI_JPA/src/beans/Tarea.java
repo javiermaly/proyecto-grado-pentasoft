@@ -138,14 +138,15 @@ public class Tarea implements Serializable {
 		return retorno;
 	}
 	
-	//agregar los Tiene a la coleccion colTiene
-	public boolean agregarTiene(Tiene t){
+	public boolean agregarTiene(Tiene tiene){
 		boolean retorno;
-		if(colTiene.add(t)){
+		if(colTiene.add(tiene)){
 			retorno=true;
-		}else{
+		}
+		else{
 			retorno=false;
 		}
+		
 		return retorno;
 	}
 	
