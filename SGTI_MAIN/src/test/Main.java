@@ -16,9 +16,22 @@ public static void main(String[] args) {
 			
 			Singleton singleton = new Singleton();//acceso al JNDI
 			
-			// Llamada al Stateless del EJB		
-			UsuarioRemote statelessMUsu = singleton.conectarMU();
-			ClienteRemote statelessMCli = singleton.conectarMC();
+			// Llamada al Stateless del EJB				
+			UsuarioRemote statelessMUsu = null;
+			try {
+				statelessMUsu = singleton.conectarMU();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			ClienteRemote statelessMCli = null; 
+			try {
+				statelessMCli = singleton.conectarMC();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			//statelessMUsu.toString();
 			//System.out.println("Llamado... " +mp+ " ID: " );ProyectoEAR/managerPersona/remote
 			

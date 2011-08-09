@@ -40,7 +40,7 @@ public class ManagerC implements ClienteRemote {
 		listaClientes= mc.traerTodosCliente(em);
 		return listaClientes;
 	}
-	
+		
 	public void encontrarCliente(int ced){
 		mc.encontrarCliente(em, ced);
 	}

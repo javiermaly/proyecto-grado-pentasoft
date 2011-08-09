@@ -52,6 +52,5 @@ public class ManagerU implements UsuarioRemote{
 		mu.actualizarUsuario(em, u);		
 	}
 	
-	
-	
+		
 }
