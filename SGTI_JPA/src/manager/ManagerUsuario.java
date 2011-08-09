@@ -13,16 +13,14 @@ import beans.Tecnico;
 import beans.Usuario;
 
 public class ManagerUsuario {
+//
+//	DBConection db = new DBConection();
+//	EntityManager em = db.conectar();
 
-	DBConection db = new DBConection();
-	EntityManager em = db.conectar();
-
-	public boolean altaUsuario(Usuario u){
+	public boolean altaUsuario(EntityManager em, Usuario u){
 		
-		try {
-			em.getTransaction().begin();
-			em.persist(u);
-			em.getTransaction().commit();
+		try {			
+			em.persist(u);			
 			return true;
 
 		} catch (Exception e) {

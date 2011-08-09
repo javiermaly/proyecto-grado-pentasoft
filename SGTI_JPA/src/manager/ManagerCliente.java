@@ -13,14 +13,12 @@ import beans.Usuario;
 public class ManagerCliente {
 	
 	
-	DBConection db = new DBConection();
-	EntityManager em = db.conectar();
+//	DBConection db = new DBConection();
+//	EntityManager em = db.conectar();
 
-	public boolean altaCliente(Cliente c){
+	public boolean altaCliente(EntityManager em, Cliente c){
 		try {
-			em.getTransaction().begin();
-			em.persist(c);			
-			em.getTransaction().commit();
+			em.persist(c);	
 			return true;
 
 		} catch (Exception e) {

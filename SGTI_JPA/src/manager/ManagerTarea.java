@@ -18,17 +18,16 @@ import beans.Usuario;
 
 public class ManagerTarea {
 
-	DBConection db = new DBConection();
-	EntityManager em = db.conectar();
+//	DBConection db = new DBConection();
+//	EntityManager em = db.conectar();
 
-	public boolean altaTarea(Tarea t, Tipo tipo, Tiene tiene) {
+	public boolean altaTarea(EntityManager em ,Tarea t, Tipo tipo, Tiene tiene) {
 		try {
-			em.getTransaction().begin();
+			
 			em.persist(tipo);
 			em.persist(tiene);
 			em.persist(t);
-
-			em.getTransaction().commit();
+		
 			return true;
 
 		} catch (Exception e) {
@@ -38,19 +37,19 @@ public class ManagerTarea {
 
 	}
 
-	public List<Tarea> traerTodasTareas() {
+	public List<Tarea> traerTodasTareas(EntityManager em ) {
 		// para que deje de mostrar advertencia List need unchecked convertion
 		@SuppressWarnings(value = "unchecked")
 		List<Tarea> todasT = em.createNamedQuery("todosTareas").getResultList();
 		return todasT;
 	}
 
-	public Tarea encontrarTarea(int id) {
+	public Tarea encontrarTarea(EntityManager em ,int id) {
 		Tarea t = em.find(Tarea.class, id);
 		return t;
 	}
 
-	public List<Tarea> tareasPorUsuario(Usuario u) {
+	public List<Tarea> tareasPorUsuario(EntityManager em ,Usuario u) {
 		@SuppressWarnings(value = "unchecked")
 		List<Tarea> tareas = em.createNamedQuery("tareasPorUsuario")
 				.setParameter("Usuario", u).getResultList();
@@ -58,30 +57,30 @@ public class ManagerTarea {
 	}
 
 	// ACTUALIZAR TAREA
-	public Tarea actualizarTarea(Tarea t) {
-		em.getTransaction().begin();
+	public Tarea actualizarTarea(EntityManager em , Tarea t) {
+		
 		t = em.merge(t);
-		em.getTransaction().commit();
+		
 		return t;
 	}
 
 	// ELIMINAR TAREA
-	public void eliminarTarea(Tarea t) {
-		em.getTransaction().begin();
+	public void eliminarTarea(EntityManager em , Tarea t) {
+		
 		em.remove(t);
-		em.getTransaction().commit();
+		
 	}
 
-	public void altaTareaRealiza(Tarea t, Realiza r) {
-		em.getTransaction().begin();
+	public void altaTareaRealiza(EntityManager em , Tarea t, Realiza r) {
+	
 		em.persist(t);
 		em.persist(r);
-		em.getTransaction().commit();
+	
 
 	}
 
 	// ASIGNAR TAREA A USUARIO
-	public boolean asignaTareaUsuario(Tarea t, Usuario u, Calendar fecIni) {
+	public boolean asignaTareaUsuario(EntityManager em , Tarea t, Usuario u, Calendar fecIni) {
 		boolean retorno = false;
 		Realiza r = new Realiza();
 		r.setTarea(t);
@@ -89,7 +88,7 @@ public class ManagerTarea {
 		r.setFechaInicio(fecIni);
 
 		if (t.agregarRealiza(r)) {
-			actualizarTarea(t);
+			actualizarTarea(em, t);
 			retorno = true;
 		}
 
@@ -98,11 +97,11 @@ public class ManagerTarea {
 	}
 
 	// ALTA GRUPO
-	public boolean altaGrupo(Grupo gr) {
+	public boolean altaGrupo(EntityManager em , Grupo gr) {
 		try {
-			em.getTransaction().begin();
+			
 			em.persist(gr);
-			em.getTransaction().commit();
+			
 			return true;
 
 		} catch (Exception e) {
@@ -113,16 +112,16 @@ public class ManagerTarea {
 	}
 
 	// ENCONTRAR GRUPO
-	public Grupo encontrarGrupo(int id) {
+	public Grupo encontrarGrupo(EntityManager em , int id) {
 		Grupo gru = em.find(Grupo.class, id);
 		return gru;
 	}
 
 	// ACTUALIZAR GRUPO
-	public Grupo actualizarGrupo(Grupo gr) {
-		em.getTransaction().begin();
+	public Grupo actualizarGrupo(EntityManager em , Grupo gr) {
+		
 		gr = em.merge(gr);
-		em.getTransaction().commit();
+		
 		return gr;
 	}
 
@@ -130,17 +129,17 @@ public class ManagerTarea {
 	// pasar un TIENE para que cambie el estado de la tarea
 	// seria el caso de cuando se abre la tarea y se la asigna a un grupo
 	// se pasa un tiene porque la tarea queda en estado ABIERTA.
-	public boolean asignarTareaGrupo(Tarea t, Grupo gr) {
+	public boolean asignarTareaGrupo(EntityManager em , Tarea t, Grupo gr) {
 		boolean retorno = false;
 		if (gr.asignaTarea(t))
-			actualizarGrupo(gr);
+			actualizarGrupo(em, gr);
 		retorno = true;
 
 		return retorno;
 	}
 
 	// traer un estado
-	public Estado encontrarEstado(int id) {
+	public Estado encontrarEstado(EntityManager em , int id) {
 		Estado e = em.find(Estado.class, id);
 		return e;
 	}
@@ -163,18 +162,18 @@ public class ManagerTarea {
 	}
 
 	// CAMBIAR ESTADO A TAREA
-	public boolean cambiarEstadoTarea(Tarea t, Estado est) {//aca en vez de pasarle el estado podriamos pasarle el id dl estado
+	public boolean cambiarEstadoTarea(EntityManager em ,Tarea t, Estado est) {//aca en vez de pasarle el estado podriamos pasarle el id dl estado
 		boolean retorno = false;
 		Tiene ti=tieneDeTarea(t);
 		if(ti!=null){
 			ti.setFechaFin(Calendar.getInstance());
-			actualizarTarea(t);
+			actualizarTarea(em, t);
 			Tiene tiene2 = new Tiene();
 			tiene2.setFechaInicio(Calendar.getInstance());
 			//tiene2.setEstado(encontrarEstado(1));
 			tiene2.setEstado(est);
 			t.agregarTiene(tiene2);
-			actualizarTarea(t);
+			actualizarTarea(em,t);
 			retorno=true;
 		}
 		
@@ -185,10 +184,9 @@ public class ManagerTarea {
 
 	
 	//agregar estado.......PROVISORIO
-	 public void agregarEstado(Estado est) {
-		em.getTransaction().begin();
-		em.persist(est);
-		em.getTransaction().commit();
+	 public void agregarEstado(EntityManager em , Estado est) {
+		
+		em.persist(est);	
 		
 	}
 	// HABRIA QUE TENER UN METODO QUE RECIBA EL ESTADO ACTUAL DE LA TAREA
