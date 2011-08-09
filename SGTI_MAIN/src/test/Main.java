@@ -12,8 +12,7 @@ import stateless.UsuarioRemote;
 public class Main {
 
 public static void main(String[] args) {		
-		
-			
+					
 			Singleton singleton = new Singleton();//acceso al JNDI
 			
 			// Llamada al Stateless del EJB				
