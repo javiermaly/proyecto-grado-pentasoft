@@ -14,4 +14,5 @@ public interface UsuarioRemote  {
 	public List<Usuario> listarUsuarios();	
 	public void encontrarUsuario(int ced);	
 	public void actualizarUsuario(Usuario u);
+	
 }
