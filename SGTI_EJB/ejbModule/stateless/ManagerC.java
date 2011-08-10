@@ -18,11 +18,17 @@ public class ManagerC implements ClienteRemote {
 
 	@PersistenceContext(unitName = "SGTI_JPA")
 	private EntityManager em;
+	
 	ManagerCliente mc= new ManagerCliente();//manager Cliente del jpa que maneja los beans	
 	private List<Cliente> listaClientes;
 	
 	public void agregarCliente(Cliente c){		
-		mc.altaCliente(em, c); //devuelve un booleano, ver como lo vamos a manejar		
+			
+		if(mc.altaCliente(em, c)){//devuelve un booleano, ver como lo vamos a manejar
+			System.out.println(" CLIENTE ingresado en la BD");
+		}else{
+			System.out.println(" EERRORRR INGRESO DE CLIENTE POR ALGUN MOTIVO");
+		} 		
 	}
 	
 	public void eliminarCliente(int ced){
