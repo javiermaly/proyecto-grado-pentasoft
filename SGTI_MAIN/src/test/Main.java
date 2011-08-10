@@ -1,7 +1,11 @@
 package test;
 
+import java.util.List;
+
 import beans.Cliente;
 import beans.Encargado;
+import beans.Tecnico;
+import beans.Usuario;
 
 import singleton.Singleton;
 import stateless.ClienteRemote;
@@ -31,8 +35,6 @@ public static void main(String[] args) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			//statelessMUsu.toString();
-			//System.out.println("Llamado... " +mp+ " ID: " );ProyectoEAR/managerPersona/remote
 			
 			Encargado enc = new Encargado();
 			enc.setCedula(12345678);
@@ -43,7 +45,17 @@ public static void main(String[] args) {
 			enc.setDireccion("Paysandu 1242 / 203");
 			enc.setCelular("099722146");
 			
-			statelessMUsu.agregarUsuario(enc);	
+			Tecnico t = new Tecnico();
+			t.setCedula(41649489);
+			t.setApellido("rodriguez");
+			t.setNombre("pepe");
+			t.setUsuario("pepe09");
+			t.setPwd("passssssssss");
+			
+			//statelessMUsu.agregarUsuario(enc);	
+			//statelessMUsu.agregarUsuario(t);
+			//statelessMUsu.actualizarUsuario(t);
+			statelessMUsu.eliminarUsuario(41649489);
 			
 			Cliente cli = new Cliente();
 			cli.setCedula(1234);
@@ -51,16 +63,20 @@ public static void main(String[] args) {
 			cli.setDireccion("La calle 321");
 			cli.setNombre_RazonSocial("La razon social");
 						
-			statelessMCli.agregarCliente(cli);			
+			//statelessMCli.agregarCliente(cli);			
 						
 			
 			
-//			Programador programador= new Programador("Pedro",120830,"20 de setiembre","27093825","JAVA");
-//			statelessEjb.agregarPersona(programador);
-//						
-//			
-//			statelessEjb.listarPersonas();
-//			
+			//listar
+			List<Usuario> listaUsu= statelessMUsu.listarUsuarios();
+			for (Usuario usuario : listaUsu) {
+				
+					System.out.println("NOMBRE: " + usuario.getNombre());
+					System.out.println("APELLIDO: " + usuario.getApellido());
+					System.out.println("CEDULA: " + usuario.getCedula());
+					System.out.println(" ************************************* ");
+			}							
+			
 		
 	}	
 	

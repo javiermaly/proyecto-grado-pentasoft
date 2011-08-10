@@ -29,7 +29,7 @@ public class Singleton {
 			
 			// Llamada al Stateless
 			//System.out.println("########\nVoy a llamar al Stateless EJB.\n########");
-			UsuarioRemote statelessUsuario = (UsuarioRemote)ctx.lookup("SGTI_EAR/ManagerUsuario/remote");///???????????
+			UsuarioRemote statelessUsuario = (UsuarioRemote)ctx.lookup("SGTI_EAR/ManagerU/remote");///???????????
 			return statelessUsuario;		
 		
 		} catch (NamingException e) {
@@ -51,7 +51,7 @@ public class Singleton {
 			
 			// Llamada al Stateless
 			//System.out.println("########\nVoy a llamar al Stateless EJB.\n########");
-			ClienteRemote statelessCliente = (ClienteRemote)ctx.lookup("SGTI_EAR/ManagerCliente/remote");///???????????
+			ClienteRemote statelessCliente = (ClienteRemote)ctx.lookup("SGTI_EAR/ManagerC/remote");///???????????
 			return statelessCliente;		
 		
 		} catch (NamingException e) {

@@ -16,7 +16,8 @@ public class ManagerU implements UsuarioRemote{
 
 	@PersistenceContext(unitName ="SGTI_JPA")
 	private EntityManager em;
-	ManagerUsuario mu= new ManagerUsuario();//manager usuario del jpa que maneja los beans	
+	
+	ManagerUsuario mu = new ManagerUsuario();//manager usuario del jpa que maneja los beans	
 	private List<Usuario> listaUsuarios;
 	
 	
