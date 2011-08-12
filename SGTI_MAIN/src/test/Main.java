@@ -125,6 +125,13 @@ public static void main(String[] args) {
 					System.out.println(" ************************************* ");
 			}							
 			
+			List<Tarea> listaTarea=statelessMTar.traerTodasTareas();
+			Tiene tie=null;
+			for(Tarea tarea : listaTarea){
+				tie=statelessMTar.tieneDeTarea(tarea);
+				System.out.println(tarea.getDescripcion()+"- Estado: "+tie.getEstado().getDescripcion());
+				
+			}
 		
 	}	
 	
