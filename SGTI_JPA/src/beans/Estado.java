@@ -2,6 +2,8 @@ package beans;
 
 import java.io.Serializable;
 import java.lang.String;
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -16,6 +18,9 @@ public class Estado implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String descripcion;
+	
+	@OneToMany
+	private List<Estado> colEstadosSgtes;
 	private static final long serialVersionUID = 1L;
 
 	public Estado() {
@@ -35,5 +40,12 @@ public class Estado implements Serializable {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+	public List<Estado> getColEstadosSgtes() {
+		return colEstadosSgtes;
+	}
+	public void setColEstadosSgtes(List<Estado> colEstadosSgtes) {
+		this.colEstadosSgtes = colEstadosSgtes;
+	}
+	
    
 }

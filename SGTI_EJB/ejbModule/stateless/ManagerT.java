@@ -1,6 +1,7 @@
 package stateless;
 
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -23,59 +24,171 @@ public class ManagerT implements TareaRemote {
 	
 	@PersistenceContext(unitName = "SGTI_JPA")
 	private EntityManager em;
-	ManagerTarea mt= new ManagerTarea();//manager Tarea del jpa que maneja los beans
+	//ManagerTarea mt= new ManagerTarea();//manager Tarea del jpa que maneja los beans
 	
 		
 	public boolean agregarTarea(Tarea t, Tipo tipo, Tiene tiene) {
-		return mt.altaTarea(em, t, tipo, tiene);
+		try {
+			
+			em.persist(tipo);
+			em.persist(tiene);
+			em.persist(t);
+
+			return true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 	public List<Tarea> traerTodasTareas() {
-		return mt.traerTodasTareas(em);
+		List<Tarea> todasT = em.createNamedQuery("todosTareas").getResultList();
+		return todasT;
 		
 	}
 	public Tarea encontrarTarea(int id) {
-		return mt.encontrarTarea(em, id);
+		Tarea t = em.find(Tarea.class, id);
+		return t;
 	}
 	public List<Tarea> tareasPorUsuario(Usuario u) {
-		return mt.tareasPorUsuario(em, u);
+		List<Tarea> tareas = em.createNamedQuery("tareasPorUsuario")
+		.setParameter("Usuario", u).getResultList();
+return tareas;
 	}
 	public Tarea actualizarTarea(Tarea t) {
-		return  mt.actualizarTarea(em, t);
+		t = em.merge(t);
+
+		return t;
 	}
 	public boolean eliminarTarea(Tarea t) {
-		return mt.eliminarTarea(em, t);		
+
+		try{
+			em.remove(t);
+			return true;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}	
 	}
 	public boolean altaTareaRealiza(Tarea t, Realiza r) {
-		return mt.altaTareaRealiza(em, t, r);
+
+		try{
+		em.persist(t);
+		em.persist(r);
+		return true;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
 	}
 	public boolean asignaTareaUsuario(Tarea t, Usuario u, Calendar fecIni) {
-		return mt.asignaTareaUsuario(em, t, u, fecIni);
+		boolean retorno = false;
+		Realiza r = new Realiza();
+		r.setTarea(t);
+		r.setUsu(u);
+		r.setFechaInicio(fecIni);
+
+		if (t.agregarRealiza(r)) {
+			actualizarTarea(em, t);
+			retorno = true;
+		}
+
+		return retorno;
 		
 	}
 	public boolean altaGrupo(Grupo gr) {
-		return mt.altaGrupo(em, gr);
+		try {
+
+			em.persist(gr);
+
+			return true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 	public Grupo encontrarGrupo(int id) {
-		return mt.encontrarGrupo(em, id);
+		Grupo gru = em.find(Grupo.class, id);
+		return gru;
 	}
 	public Grupo actualizarGrupo(Grupo gr) {
-		return mt.actualizarGrupo(em, gr);
+		gr = em.merge(gr);
+
+		return gr;
 	}
+	// ASIGNAR TAREA A GRUPO
+	// pasar un TIENE para que cambie el estado de la tarea
+	// seria el caso de cuando se abre la tarea y se la asigna a un grupo
+	// se pasa un tiene porque la tarea queda en estado ABIERTA.
 	public boolean asignarTareaGrupo(Tarea t, Grupo gr) {
-		return mt.asignarTareaGrupo(em, t, gr);
+		boolean retorno = false;
+		if (gr.asignaTarea(t))
+			actualizarGrupo(em, gr);
+		retorno = true;
+
+		return retorno;
 	}
 	public Estado encontrarEstado(int id) {
-		return mt.encontrarEstado(em, id);
+		Estado e = em.find(Estado.class, id);
+		return e;
 	}
+	// OBTIENE EL TIENE SIN FINALIZAR DE UNA TAREA
 	public Tiene tieneDeTarea(Tarea t) {
-		return mt.tieneDeTarea(t);
+		List<Tiene> colTiene = t.getColTiene();
+		Tiene tiene = null;
+		Tiene tieneIt = null;
+		Iterator iter = colTiene.iterator();
+		while (iter.hasNext()) {
+			tieneIt = (Tiene) iter.next();
+			if (tieneIt.getFechaFin() == null) {
+				tiene = tieneIt;
+
+			}
+
+		}
+		return tiene;
 	}
 	public boolean cambiarEstadoTarea(Tarea t, Estado est) {
-		return mt.cambiarEstadoTarea(em, t, est);
+		boolean retorno = false;
+		Tiene ti = tieneDeTarea(t);
+		if (ti != null) {
+			ti.setFechaFin(Calendar.getInstance());
+			actualizarTarea(em, t);
+			Tiene tiene2 = new Tiene();
+			tiene2.setFechaInicio(Calendar.getInstance());
+			// tiene2.setEstado(encontrarEstado(1));
+			tiene2.setEstado(est);
+			t.agregarTiene(tiene2);
+			actualizarTarea(em, t);
+			retorno = true;
+		}
+
+		return retorno;
 	}
 	public boolean agregarEstado(Estado est) {
-		return mt.agregarEstado(em, est);
+		try{
+			em.persist(est);
+			return true;
+			}catch(Exception e){
+				e.printStackTrace();
+				return false;
+			}
 		
+	}
+	public Grupo actualizarGrupo(EntityManager em, Grupo gr) {
+
+		gr = em.merge(gr);
+
+		return gr;
+	}
+	public Tarea actualizarTarea(EntityManager em, Tarea t) {
+
+		t = em.merge(t);
+
+		return t;
 	}
 	
 	
