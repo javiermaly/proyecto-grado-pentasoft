@@ -12,6 +12,7 @@ import javax.persistence.*;
 
 @NamedQueries(value = { 
 		@NamedQuery(name="todosTareas", query="select t from Tarea t"),
+		@NamedQuery(name="tareasPorUsuario", query="select t from Tarea t where (select r from Realiza r where r.usu.cedula = :cedula) IN t.listRealiza")
 		
 	})
 	
