@@ -24,7 +24,8 @@ public class Tiene implements Serializable {
 	private int id;
 	private @Temporal(TemporalType.DATE) Calendar fechaInicio;
 	private @Temporal(TemporalType.DATE) Calendar fechaFin;	
-	@ManyToOne		//ACA NO SERIA ONE TO MANY????
+	
+	@ManyToOne(fetch=FetchType.EAGER)
 	private Estado estado;
 	
 	private static final long serialVersionUID = 1L;

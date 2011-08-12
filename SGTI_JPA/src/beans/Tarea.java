@@ -36,10 +36,7 @@ public class Tarea implements Serializable {
 	@ManyToOne
 	private Cliente cliente;	
 	
-//	@ManyToOne //??? ManyToMany crea una tabla intermedia con las claves de los dos entitys
-//	private Grupo grupo;
-	
-	@OneToMany
+	@OneToMany(fetch=FetchType.EAGER)
 	private List<Tiene> colTiene=new ArrayList<Tiene>();	
 	
 	
