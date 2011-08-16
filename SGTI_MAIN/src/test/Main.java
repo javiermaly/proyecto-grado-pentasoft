@@ -61,11 +61,11 @@ public static void main(String[] args) {
 			enc.setCelular("099722146");
 			
 			Tecnico t = new Tecnico();
-			t.setCedula(41649489);
-			t.setApellido("rodriguez");
-			t.setNombre("pepe");
-			t.setUsuario("pepe09");
-			t.setPwd("passssssssss");
+			t.setCedula(4164949);
+			t.setApellido("prueba");
+			t.setNombre("juan");
+			t.setUsuario("juan");
+			t.setPwd("passw");
 			
 			
 			//statelessMUsu.agregarUsuario(enc);	
@@ -130,6 +130,16 @@ public static void main(String[] args) {
 			for(Tarea tarea : listaTarea){
 				tie=statelessMTar.tieneDeTarea(tarea);
 				System.out.println(tarea.getDescripcion()+"- Estado: "+tie.getEstado().getDescripcion());
+				
+			}
+			
+			
+			System.out.println("- TODAS LAS TAREAS DEL USUARIO CEDULA 9999-");
+			List<Tarea> listaTareaU=statelessMTar.tareasPorUsuario(t);
+			
+			for(Tarea tarea : listaTareaU){
+				
+				System.out.println("- Descripcion: "+tarea.getDescripcion()+"- id: "+tarea.getId());
 				
 			}
 		
