@@ -45,6 +45,7 @@ public class Tarea implements Serializable {
 	@OneToMany(fetch=FetchType.EAGER)
 	private List<Tiene> colTiene=new ArrayList<Tiene>();	
 	
+	int prioridad;
 	
 	private static final long serialVersionUID = 1L;
 
@@ -122,6 +123,17 @@ public class Tarea implements Serializable {
 
 	public List<Tiene> getColTiene() {
 		return colTiene;
+	}
+
+	
+
+	public int getPrioridad() {
+		return prioridad;
+	}
+
+
+	public void setPrioridad(int prioridad) {
+		this.prioridad = prioridad;
 	}
 
 
