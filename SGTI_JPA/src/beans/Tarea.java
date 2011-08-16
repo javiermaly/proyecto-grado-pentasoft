@@ -12,9 +12,15 @@ import javax.persistence.*;
 
 @NamedQueries(value = { 
 		@NamedQuery(name="todosTareas", query="select t from Tarea t"),
-		@NamedQuery(name="tareasPorUsuario", query="select t from Tarea t where (select r from Realiza r where r.usu.cedula = :cedula) IN t.listRealiza")
-		})
-	
+		//@NamedQuery(name="tareasPorUsuario", query="select t from Tarea t where (select r from Realiza r where r.usu.cedula = :cedula) IN t.listRealiza")
+		
+})
+//@NamedNativeQuery(
+//    name="tareasPorUsuario",
+//    query = "SELECT * FROM Tarea T join Realiza R on T.id=R.tarea_id where ((R.usu_cedula = ?))",
+//    resultClass=Tarea.class
+//)
+
 @Entity
 
 public class Tarea implements Serializable {
