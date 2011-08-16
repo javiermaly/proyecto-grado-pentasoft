@@ -6,6 +6,7 @@ import java.util.List;
 import beans.Cliente;
 import beans.Encargado;
 import beans.Estado;
+import beans.Realiza;
 import beans.Tarea;
 import beans.Tecnico;
 import beans.Tiene;
@@ -61,7 +62,7 @@ public static void main(String[] args) {
 			enc.setCelular("099722146");
 			
 			Tecnico t = new Tecnico();
-			t.setCedula(4164949);
+			t.setCedula(9999);
 			t.setApellido("prueba");
 			t.setNombre("juan");
 			t.setUsuario("juan");
@@ -100,13 +101,20 @@ public static void main(String[] args) {
 			
 			Tipo tipo= new Tipo();
 			tipo.setDescripcion("BASE DE DATOS");
+			
+			Realiza r= new Realiza();
+			r.setId(1);
+			r.setFechaInicio(Calendar.getInstance());
+			r.setUsu(t);
+			
 			tar.setEsExterna(true);	
 			tar.setDescripcion("Soporte tecnico a la Empresa X: revisar maquina en garantía");
-			tar.setObservacion("Observacion de la tarea");
+			tar.setObservacion("Tarea 19");
 			tar.setFechaApertura(Calendar.getInstance());
 			tar.setFechaComprometida(Calendar.getInstance());
 			tar.setTipo(tipo);
 			tar.agregarTiene(tiene);
+			tar.agregarRealiza(r);
 			
 
 			

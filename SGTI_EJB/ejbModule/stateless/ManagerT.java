@@ -51,8 +51,11 @@ public class ManagerT implements TareaRemote {
 		return t;
 	}
 	public List<Tarea> tareasPorUsuario(Usuario u) {
-		List<Tarea> tareas = em.createNamedQuery("tareasPorUsuario").setParameter("cedula", u.getCedula()).getResultList();
-return tareas;
+		//List<Tarea> tareas = em.createNativeQuery("tareasPorUsuario").setParameter(1, u.getCedula()).getResultList();
+		String ORG_QUERY = "SELECT * FROM Tarea T join Realiza R on T.id=R.tarea_id where ((R.usu_cedula = ?))";		
+		
+		List<Tarea> tareas = em.createNativeQuery(ORG_QUERY, Tarea.class).setParameter(1, u.getCedula()).getResultList();
+		return tareas;
 	}
 	public Tarea actualizarTarea(Tarea t) {
 		t = em.merge(t);
