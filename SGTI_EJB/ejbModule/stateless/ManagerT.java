@@ -51,8 +51,7 @@ public class ManagerT implements TareaRemote {
 		return t;
 	}
 	public List<Tarea> tareasPorUsuario(Usuario u) {
-		List<Tarea> tareas = em.createNamedQuery("tareasPorUsuario")
-		.setParameter("Usuario", u).getResultList();
+		List<Tarea> tareas = em.createNamedQuery("tareasPorUsuario").setParameter("cedula", u.getCedula()).getResultList();
 return tareas;
 	}
 	public Tarea actualizarTarea(Tarea t) {
