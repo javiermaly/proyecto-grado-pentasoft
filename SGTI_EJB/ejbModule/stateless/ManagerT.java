@@ -193,5 +193,13 @@ public class ManagerT implements TareaRemote {
 		return t;
 	}
 	
+	public Estado actualizarEstado(Estado est) {
+		est = em.merge(est);
+
+		return est;
+	}
+	
+	
+	
 	
 }
