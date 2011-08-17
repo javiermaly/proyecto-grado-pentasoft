@@ -11,6 +11,11 @@ import javax.persistence.*;
  * Entity implementation class for Entity: Estado
  *
  */
+
+@NamedQueries(value = { 
+		@NamedQuery(name="estadosSgtes", query="SELECT e.colEstadosSgtes FROM Estado e where e.id=:id"),
+})
+
 @Entity
 public class Estado implements Serializable {
 
@@ -20,7 +25,8 @@ public class Estado implements Serializable {
 	private int id;
 	private String descripcion;
 	
-	@OneToMany(fetch=FetchType.EAGER)
+		
+	@ManyToMany(fetch=FetchType.EAGER)
 	private List<Estado> colEstadosSgtes=new ArrayList<Estado>();
 	
 	private static final long serialVersionUID = 1L;
@@ -52,6 +58,6 @@ public class Estado implements Serializable {
 	public boolean addEstadoSgte(Estado est){
 		return colEstadosSgtes.add(est);
 	}
-	
+
    
 }

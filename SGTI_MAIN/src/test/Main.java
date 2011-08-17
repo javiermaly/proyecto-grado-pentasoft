@@ -107,13 +107,22 @@ public static void main(String[] args) {
 			
 			//GUARDO LOS ESTADOS
 
-//			statelessMTar.agregarEstado(estado);
-//			statelessMTar.agregarEstado(estado2);
-//			statelessMTar.agregarEstado(estado3);
-//			statelessMTar.agregarEstado(estado4);
-//			statelessMTar.agregarEstado(estado5);
-//			statelessMTar.agregarEstado(estado6);
-//			statelessMTar.agregarEstado(estado7);
+			statelessMTar.agregarEstado(estado);
+			statelessMTar.agregarEstado(estado2);
+			statelessMTar.agregarEstado(estado3);
+			statelessMTar.agregarEstado(estado4);
+			statelessMTar.agregarEstado(estado5);
+			statelessMTar.agregarEstado(estado6);
+			statelessMTar.agregarEstado(estado7);
+			
+			
+			estado=statelessMTar.encontrarEstado(1);
+			estado2=statelessMTar.encontrarEstado(2);
+			estado3=statelessMTar.encontrarEstado(3);
+			estado4=statelessMTar.encontrarEstado(4);
+			estado5=statelessMTar.encontrarEstado(5);
+			estado6=statelessMTar.encontrarEstado(6);
+			estado7=statelessMTar.encontrarEstado(7);
 			
 			//ASIGNO ESTADOS SIGUIENTES PERMITIDOS POR ESTADO
 			
@@ -132,15 +141,21 @@ public static void main(String[] args) {
 			estado6.addEstadoSgte(statelessMTar.encontrarEstado(7));
 			estado6.addEstadoSgte(statelessMTar.encontrarEstado(5));
 			
+			
+			
+			
 			//MERGEO LOS ESTADOS PARA QUE TOMEN LOS CAMBIOS
 			statelessMTar.actualizarEstado(estado);
-			//statelessMTar.actualizarEstado(estado2);
-//			statelessMTar.actualizarEstado(estado3);
-//			statelessMTar.actualizarEstado(estado4);
-//			statelessMTar.actualizarEstado(estado5);
-//			statelessMTar.actualizarEstado(estado6);
+			statelessMTar.actualizarEstado(estado2);
+			statelessMTar.actualizarEstado(estado3);
+			statelessMTar.actualizarEstado(estado4);
+			statelessMTar.actualizarEstado(estado5);
+			statelessMTar.actualizarEstado(estado6);
+			
+			System.out.println("********FIN MERGEO ESTADOS*******");
 			
 			
+				
 			//FIN ARMADO FLUJO ESTADOS
 			//****************************************************
 			
@@ -201,7 +216,21 @@ public static void main(String[] args) {
 				
 				System.out.println("- Descripcion: "+tarea.getDescripcion()+"- id: "+tarea.getId());
 				
+				
 			}
+			
+			
+			System.out.println(" ************************************* ");
+			System.out.println(" Tareas posibles desde el estado 'En proceso': ");
+
+			List<Estado> listSgteEst=statelessMTar.dameEstadosSgtes(estado3);
+			for(Estado est : listSgteEst){
+				
+				System.out.println("- Estado sgte: "+est.getDescripcion()+"- id: "+est.getId());
+				
+				
+			}
+			
 		
 	}	
 	
