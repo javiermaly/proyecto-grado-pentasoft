@@ -193,10 +193,26 @@ public class ManagerT implements TareaRemote {
 		return t;
 	}
 	
-	public Estado actualizarEstado(Estado est) {
-		est = em.merge(est);
+	public Estado actualizarEstado(int id) {
+		
+		Estado est=encontrarEstado(id);
+		em.merge(est);
 
 		return est;
+	}
+	
+	public Estado actualizarEstado(Estado est){
+		est=em.merge(est);
+		return est;
+	}
+	@Override
+	public List<Estado> dameEstadosSgtes(Estado est) {
+		List<Estado> colEstSgtes = null;
+		colEstSgtes=em.createNamedQuery("estadosSgtes").setParameter("id", est.getId()).getResultList();
+		
+		return colEstSgtes;
+		
+		
 	}
 	
 	

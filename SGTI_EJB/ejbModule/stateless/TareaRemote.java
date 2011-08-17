@@ -32,7 +32,9 @@ public interface TareaRemote {
 	public Tiene tieneDeTarea(Tarea t);
 	public boolean cambiarEstadoTarea(Tarea t, Estado est) ;
 	public boolean agregarEstado(Estado est);
+	public Estado actualizarEstado(int id);
 	public Estado actualizarEstado(Estado est);
+	public List<Estado> dameEstadosSgtes(Estado est);
 	
 	
 }

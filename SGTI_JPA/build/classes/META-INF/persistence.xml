@@ -3,7 +3,6 @@
 	<persistence-unit name="SGTI_JPA" transaction-type="JTA">
 		<jta-data-source>java:mysqlds_sgti</jta-data-source>
 	
-	
 		<class>beans.Usuario</class>
 		<class>beans.Estado</class>
 		<class>beans.Tarea</class>
@@ -17,13 +16,12 @@
 		<class>beans.Administrador</class>
 		<class>beans.Administrativo</class>		
 		
+		
 		<properties>
-			
+			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" /> 
 			<property name="hibernate.hbm2ddl.auto" value="update" />
-			<property name="eclipselink.ddl-generation" value="drop-and-create-tables"/> 
-			<property name="hibernate.show_sql" value="true" />
-						
+			<property name="eclipselink.ddl-generation" value="drop-and-create-tables"/> 			
 		</properties>
 	</persistence-unit>
 </persistence>
