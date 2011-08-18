@@ -4,18 +4,13 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 
-import beans.Administrador;
-import beans.Administrativo;
-import beans.Cliente;
-import beans.Encargado;
-import beans.Estado;
-import beans.Grupo;
-import beans.Tarea;
-import beans.Tecnico;
-import beans.Usuario;
+import singleton.Singleton;
+
+import beans.*;
 
 @Stateless
 public class FacadeMain  implements FacadeRemote{
+	TareaRemote statelessMTar=null;
 
 	@Override
 	public boolean altaTarea(Tarea t) {
@@ -150,9 +145,24 @@ public class FacadeMain  implements FacadeRemote{
 	}
 
 	@Override
-	public boolean avanzarTareaEstado(Tarea tar, Estado est) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean avanzarTareaEstado(Tarea tar, Estado sigEst) {
+		boolean retorno=false;
+		ManagerT mt=new ManagerT();
+		Tiene tiene=null;
+		tiene=mt.tieneDeTarea(tar);
+		Estado estActual=tiene.getEstado();
+		System.out.println("Estado Actual: "+estActual.getDescripcion());
+		if(!(estActual==sigEst)){
+			System.out.println("los estados son diferentes");
+			if(mt.validarEstadoSiguiente(estActual, sigEst)){
+				System.out.println("valide que el sgte estado es posible");
+				if(mt.cambiarEstadoTarea(tar, sigEst)){
+					retorno=true;
+				}
+			}
+			
+		}
+		return retorno;
 	}
 
 	@Override
