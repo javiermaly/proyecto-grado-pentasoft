@@ -20,6 +20,7 @@ import manager.ManagerTarea;
 
 
 @Stateless
+@SuppressWarnings("unchecked")
 public class ManagerT implements TareaRemote {
 	
 	@PersistenceContext(unitName = "SGTI_JPA")
@@ -41,6 +42,21 @@ public class ManagerT implements TareaRemote {
 			return false;
 		}
 	}
+	//aca mepa vamos a tener que actualizar en vez de crear la tarea
+	public boolean altaTareaRealiza(Tarea t, Realiza r, Tipo ti) {
+
+		try{
+		em.persist(ti);
+		em.persist(t);
+		em.persist(r);
+		return true;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 	public List<Tarea> traerTodasTareas() {
 		List<Tarea> todasT = em.createNamedQuery("todosTareas").getResultList();
 		return todasT;
@@ -51,11 +67,11 @@ public class ManagerT implements TareaRemote {
 		return t;
 	}
 	public List<Tarea> tareasPorUsuario(Usuario u) {
-		//List<Tarea> tareas = em.createNativeQuery("tareasPorUsuario").setParameter(1, u.getCedula()).getResultList();
-		String ORG_QUERY = "SELECT * FROM Tarea T join Realiza R on T.id=R.tarea_id where ((R.usu_cedula = ?))";		
-		
-		List<Tarea> tareas = em.createNativeQuery(ORG_QUERY, Tarea.class).setParameter(1, u.getCedula()).getResultList();
-		return tareas;
+		//List<Tarea> tareas = em.createNativeQuery("tareasPorUsuario").setParameter("ced",u.getCedula()).getResultList();
+		//String ORG_QUERY = "SELECT * FROM Tarea T join Realiza R on T.id=R.tarea_id where ((R.usu_cedula = ?))";		
+		//List<Tarea> tareas = em.createNativeQuery(ORG_QUERY, Tarea.class).setParameter(1, u.getCedula()).getResultList();
+		List<Tarea> tareas= em.createNamedQuery("tareasPorUsuario").setParameter(1, em.getReference(Usuario.class, u.getCedula())).getResultList();
+		return tareas;		
 	}
 	public Tarea actualizarTarea(Tarea t) {
 		t = em.merge(t);
@@ -73,18 +89,7 @@ public class ManagerT implements TareaRemote {
 			return false;
 		}	
 	}
-	public boolean altaTareaRealiza(Tarea t, Realiza r) {
-
-		try{
-		em.persist(t);
-		em.persist(r);
-		return true;
-		}
-		catch(Exception e){
-			e.printStackTrace();
-			return false;
-		}
-	}
+	
 	public boolean asignaTareaUsuario(Tarea t, Usuario u, Calendar fecIni) {
 		boolean retorno = false;
 		Realiza r = new Realiza();
@@ -137,6 +142,9 @@ public class ManagerT implements TareaRemote {
 		Estado e = em.find(Estado.class, id);
 		return e;
 	}
+	
+	
+	
 	// OBTIENE EL TIENE SIN FINALIZAR DE UNA TAREA
 	public Tiene tieneDeTarea(Tarea t) {
 		List<Tiene> colTiene = t.getColTiene();
@@ -170,7 +178,6 @@ public class ManagerT implements TareaRemote {
 
 		return retorno;
 	}
-	
 	public boolean agregarEstado(Estado est) {
 		try{
 			em.persist(est);
@@ -195,51 +202,27 @@ public class ManagerT implements TareaRemote {
 	}
 	
 	public Estado actualizarEstado(int id) {
-		
-		Estado est=encontrarEstado(id);
-		em.merge(est);
+		  Estado est=encontrarEstado(id);
+          em.merge(est);
 
-		return est;
+          return est;
+
 	}
 	
-	public Estado actualizarEstado(Estado est){
-		est=em.merge(est);
-		return est;
-	}
-	
-	//DEVUELVE LA COLECCION DE ESTADOS POSIBLES A AVANZAR DADO EL ESTADO ACTUAL
-	@Override
-	public List<Estado> dameEstadosSgtes(Estado est) {
-		System.out.println("metodo que ejecuta el jpql pa traer la coleccion.");
-		int id;
-		id=est.getId();
-		List<Estado> colEstSgtes=em.createNamedQuery("estadosSgtes").setParameter("id",id ).getResultList();
-		System.out.println("retorno");
-		
-		return colEstSgtes;
-		
-		
-	}
-	
-	//DETERMINA SI EL ESTADO QUE TIENE LA TAREA (PASADO POR PARAMETRO)
-	//PUEDE AVANZAR AL SIGUIENTE ESTADO PROPUESTO
-	public boolean validarEstadoSiguiente(Estado estadoActual, Estado estadoSgte){
-		boolean retorno=false;
-		System.out.println("estado actual: "+estadoActual.getDescripcion());
-		System.out.println("estado sgte: "+estadoSgte.getDescripcion());
-		
-		List<Estado> listSgteEst=dameEstadosSgtes(estadoActual);
-		
-		if(listSgteEst.contains(estadoSgte)){
-			System.out.println("entro a validar si el estadoSgte ta en la coleccion");
-			retorno=true;
-		}
-		
-		return retorno;
-		
-	}
-	
-	
+	 public Estado actualizarEstado(Estado est){
+         est=em.merge(est);
+         return est;
+ }
+    
+    public List<Estado> dameEstadosSgtes(Estado est){
+         List<Estado> colEstSgtes = null;
+         colEstSgtes=em.createNamedQuery("estadosSgtes").setParameter("id", est.getId()).getResultList();
+         
+         return colEstSgtes;
+         
+         
+ }
+
 	
 	
 }
