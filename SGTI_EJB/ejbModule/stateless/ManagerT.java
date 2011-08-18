@@ -170,6 +170,7 @@ public class ManagerT implements TareaRemote {
 
 		return retorno;
 	}
+	
 	public boolean agregarEstado(Estado est) {
 		try{
 			em.persist(est);
@@ -205,13 +206,36 @@ public class ManagerT implements TareaRemote {
 		est=em.merge(est);
 		return est;
 	}
+	
+	//DEVUELVE LA COLECCION DE ESTADOS POSIBLES A AVANZAR DADO EL ESTADO ACTUAL
 	@Override
 	public List<Estado> dameEstadosSgtes(Estado est) {
-		List<Estado> colEstSgtes = null;
-		colEstSgtes=em.createNamedQuery("estadosSgtes").setParameter("id", est.getId()).getResultList();
+		System.out.println("metodo que ejecuta el jpql pa traer la coleccion.");
+		int id;
+		id=est.getId();
+		List<Estado> colEstSgtes=em.createNamedQuery("estadosSgtes").setParameter("id",id ).getResultList();
+		System.out.println("retorno");
 		
 		return colEstSgtes;
 		
+		
+	}
+	
+	//DETERMINA SI EL ESTADO QUE TIENE LA TAREA (PASADO POR PARAMETRO)
+	//PUEDE AVANZAR AL SIGUIENTE ESTADO PROPUESTO
+	public boolean validarEstadoSiguiente(Estado estadoActual, Estado estadoSgte){
+		boolean retorno=false;
+		System.out.println("estado actual: "+estadoActual.getDescripcion());
+		System.out.println("estado sgte: "+estadoSgte.getDescripcion());
+		
+		List<Estado> listSgteEst=dameEstadosSgtes(estadoActual);
+		
+		if(listSgteEst.contains(estadoSgte)){
+			System.out.println("entro a validar si el estadoSgte ta en la coleccion");
+			retorno=true;
+		}
+		
+		return retorno;
 		
 	}
 	
