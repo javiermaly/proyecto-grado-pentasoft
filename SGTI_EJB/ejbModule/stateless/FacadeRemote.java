@@ -8,8 +8,10 @@ import beans.*;
 
 @Remote
 public interface FacadeRemote {
-	public boolean altaTarea(Tarea t);//queda dada de alta y asignada a un grupo con una prioridad determinada
-	public boolean modificarTarea(Tarea t);
+	public boolean abrirTarea(Tarea t, Tipo tipo, Tiene tiene);//queda dada de alta y asignada a un grupo con una prioridad determinada
+	public boolean tomarTarea(Tarea t, Realiza r, Tipo ti);
+	public Tarea buscarTarea(int id);
+	public Tarea modificarTarea(Tarea t);
 	public boolean bajaTarea(Tarea t); //Solo si estado=ABIERTA
 	public boolean altaCliente(Cliente c);
 	public boolean modificarCliente(Cliente c);
