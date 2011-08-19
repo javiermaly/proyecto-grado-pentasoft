@@ -15,11 +15,11 @@ import javax.persistence.*;
 		//@NamedQuery(name="tareasPorUsuario", query="select t from Tarea t where (select r from Realiza r where r.usu.cedula = :cedula) IN t.listRealiza")
 		
 })
-@NamedNativeQuery(
-    name="tareasPorUsuario",
-    query = "SELECT * FROM Tarea T join Realiza R on T.id=R.tarea_id where ((R.usu_cedula = 1?))",
-    resultClass=Tarea.class
-)
+//@NamedNativeQuery(
+//    name="tareasPorUsuario",
+//    query = "SELECT * FROM Tarea T join Realiza R on T.id=R.tarea_id where ((R.usu_cedula = ?))",
+//    resultClass=Tarea.class
+//)
 
 @Entity
 

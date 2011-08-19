@@ -7,46 +7,37 @@ import javax.ejb.Stateless;
 import singleton.Singleton;
 
 import beans.*;
-import beans.Administrador;
-import beans.Administrativo;
-import beans.Cliente;
-import beans.Encargado;
-import beans.Estado;
-import beans.Grupo;
-import beans.Realiza;
-import beans.Tarea;
-import beans.Tecnico;
-import beans.Tiene;
-import beans.Tipo;
-import beans.Usuario;
 
 @Stateless
-public class FacadeMain  implements FacadeRemote{
+public class FacadeMain implements FacadeRemote {
+	TareaRemote statelessMTar = null;
 	ManagerT mt = new ManagerT();
-	ManagerU mu=new ManagerU();
-	ManagerC mc=new ManagerC();
+    ManagerU mu=new ManagerU();
+    ManagerC mc=new ManagerC();
+
 	
-	
-	//TAREAS//
-	@Override
-	public boolean abrirTarea(Tarea t, Tipo tipo, Tiene tiene)  {//la que realiza el administrativo		
-		mt.agregarTarea(t, tipo, tiene);		
+	public boolean abrirTarea(Tarea t, Tipo tipo, Tiene tiene) {// la que
+																// realiza el
+													// administrativo
+		mt.agregarTarea(t, tipo, tiene);
 		return true;
 	}
-	
-	public boolean tomarTarea(Tarea t, Realiza r, Tipo ti){//cuando un técnico trabaja sobre la tarea
-		mt.altaTareaRealiza(t, r, ti);
+
+	public boolean tomarTarea(Tarea t, Realiza r, Tipo ti) {// cuando un técnico
+															// trabaja sobre la
+															// tarea
+		mt.altaTareaRealiza(t, r);
 		return true;
 	}
-	
-	public Tarea buscarTarea(int id){	//buscar una tarea	
+
+	public Tarea buscarTarea(int id) { // buscar una tarea
 		Tarea t = mt.encontrarTarea(id);
-		return t;		
-	}	
+		return t;
+	}
 
 	@Override
-	public Tarea modificarTarea(Tarea tar) { //modificar tarea
-		Tarea t = mt.actualizarTarea(tar);		
+	public Tarea modificarTarea(Tarea tar) { // modificar tarea
+		Tarea t = mt.actualizarTarea(tar);
 		return t;
 	}
 
@@ -171,31 +162,30 @@ public class FacadeMain  implements FacadeRemote{
 	}
 
 	@Override
-    public boolean avanzarTareaEstado(Tarea tar, Estado sigEst) {
-            boolean retorno=false;
-            Tiene tiene=null;
-            tiene=mt.tieneDeTarea(tar);
-            Estado estActual=tiene.getEstado();
-            System.out.println("Estado Actual: "+estActual.getDescripcion());
-            if(!(estActual==sigEst)){
-                    System.out.println("los estados son diferentes");
-                    if(mt.validarEstadoSiguiente(estActual, sigEst)){
-                            System.out.println("valide que el sgte estado es posible");
-                            if(mt.cambiarEstadoTarea(tar, sigEst)){
-                                    retorno=true;
-                            }
-                    }
-                    
-            }
-            return retorno;
+	public boolean avanzarTareaEstado(Tarea tar, Estado sigEst) {
+		boolean retorno = false;
+		ManagerT mt = new ManagerT();
+		Tiene tiene = null;
+		tiene = mt.tieneDeTarea(tar);
+		Estado estActual = tiene.getEstado();
+		System.out.println("Estado Actual: " + estActual.getDescripcion());
+		if (!(estActual == sigEst)) {
+			System.out.println("los estados son diferentes");
+			if (mt.validarEstadoSiguiente(estActual, sigEst)) {
+				System.out.println("valide que el sgte estado es posible");
+				if (mt.cambiarEstadoTarea(tar, sigEst)) {
+					retorno = true;
+				}
+			}
+
+		}
 		return retorno;
-    }
+	}
 
 	@Override
 	public List<Tarea> listadoTareasPendientesPorGrupo(Encargado enc, Grupo gr) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
 
 }
