@@ -7,9 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import beans.Cliente;
-import beans.Usuario;
 
-import manager.ManagerCliente;
 
 
 
@@ -17,42 +15,52 @@ import manager.ManagerCliente;
 public class ManagerC implements ClienteRemote {
 
 	@PersistenceContext(unitName = "SGTI_JPA")
-	private EntityManager em;
-	
-	ManagerCliente mc= new ManagerCliente();//manager Cliente del jpa que maneja los beans	
-	private List<Cliente> listaClientes;
-	
-	public void agregarCliente(Cliente c){		
+	private EntityManager em;	
+		
+	public boolean agregarCliente(Cliente c){		
 			
-		if(mc.altaCliente(em, c)){//devuelve un booleano, ver como lo vamos a manejar
-			System.out.println(" CLIENTE ingresado en la BD");
-		}else{
-			System.out.println(" EERRORRR INGRESO DE CLIENTE POR ALGUN MOTIVO");
-		} 		
+		try {
+			em.persist(c);	
+			return true;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 	
-	public void eliminarCliente(int ced){
+	public boolean eliminarCliente(int ced){
 		Cliente c;
-		c = mc.encontrarCliente(em, ced);		
-		if (c!=null){			
-			mc.eliminarCliente(em, c);
-			System.out.println("Cliente "+c.getNombre_RazonSocial() +" eliminadoo ");
+		c = encontrarCliente(ced);		
+		if (c!=null){	
+			try{
+				em.remove(c);
+				return true;
+			}
+			catch(Exception e){
+				e.printStackTrace();
+				return false;
+			}
+			
 		}else{
-			System.out.println("no existe Cliente en la BD");
+			return false;
 		}		
 	}		
 	
 	public List<Cliente> listarClientes() {		
-		listaClientes= mc.traerTodosCliente(em);
+		@SuppressWarnings(value="unchecked")//para que deje de mostrar advertencia List need unchecked convertion
+		List<Cliente> listaClientes = em.createNamedQuery("todosClientes").getResultList();
 		return listaClientes;
 	}
 		
-	public void encontrarCliente(int ced){
-		mc.encontrarCliente(em, ced);
+	public Cliente encontrarCliente(int ced){
+		Cliente p = em.find(Cliente.class, ced);
+		return p;
 	}
 	
-	public void actualizarCliente(Cliente u){
-		mc.actualizarCliente(em, u);		
+	public Cliente actualizarCliente(Cliente u){
+		u = em.merge(u);
+		return u;	
 	}
 	
 }
