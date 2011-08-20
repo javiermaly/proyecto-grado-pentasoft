@@ -36,6 +36,7 @@ public interface TareaRemote {
 	public Estado actualizarEstado(Estado est);
 	public List<Estado> dameEstadosSgtes(Estado est);
 	public boolean validarEstadoSiguiente(Estado estadoActual, Estado estadoSgte);
+	public boolean avanzarTareaEstado(Tarea tar, Estado sigEst);
 	
 	
 }

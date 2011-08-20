@@ -255,8 +255,8 @@ public static void main(String[] args) {
 				
 			}
 			
-			
-			if(statelessFacade.avanzarTareaEstado(tare, estSgte)){
+			System.out.println("**********************************************");
+			if(statelessMTar.avanzarTareaEstado(tare, estSgte)){
 				System.out.println("ESTADO CAMBIADO");
 			}
 			else

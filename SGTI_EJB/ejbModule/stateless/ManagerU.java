@@ -12,6 +12,7 @@ import beans.Usuario;
 
 
 @Stateless
+@SuppressWarnings(value="unchecked")
 public class ManagerU implements UsuarioRemote{
 
         @PersistenceContext(unitName ="SGTI_JPA")
