@@ -82,7 +82,7 @@ public class ManagerT implements TareaRemote {
 			return false;
 		}
 	}
-	public boolean asignaTareaUsuario(Tarea t, Usuario u, Calendar fecIni) {
+	public boolean asignaTareaUsuario(Tarea t, Usuario u, Calendar fecIni, Tiene tiene) {
 		boolean retorno = false;
 		Realiza r = new Realiza();
 		r.setTarea(t);
@@ -90,7 +90,7 @@ public class ManagerT implements TareaRemote {
 		r.setFechaInicio(fecIni);
 
 		if (t.agregarRealiza(r)) {
-			actualizarTarea(em, t);
+			actualizarTarea(t, tiene);
 			retorno = true;
 		}
 
@@ -125,7 +125,7 @@ public class ManagerT implements TareaRemote {
 	public boolean asignarTareaGrupo(Tarea t, Grupo gr) {
 		boolean retorno = false;
 		if (gr.asignaTarea(t))
-			actualizarGrupo(em, gr);
+			actualizarGrupo(gr);
 		retorno = true;
 
 		return retorno;
@@ -155,13 +155,15 @@ public class ManagerT implements TareaRemote {
 		Tiene ti = tieneDeTarea(t);
 		if (ti != null) {
 			ti.setFechaFin(Calendar.getInstance());
-			actualizarTarea(em, t);
+			//em.merge(ti);
+			actualizarTarea(t,ti);
 			Tiene tiene2 = new Tiene();
 			tiene2.setFechaInicio(Calendar.getInstance());
 			// tiene2.setEstado(encontrarEstado(1));
 			tiene2.setEstado(est);
+			em.persist(tiene2);
 			t.agregarTiene(tiene2);
-			actualizarTarea(em, t);
+			actualizarTarea(t, tiene2);
 			retorno = true;
 		}
 
@@ -178,15 +180,12 @@ public class ManagerT implements TareaRemote {
 			}
 		
 	}
-	public Grupo actualizarGrupo(EntityManager em, Grupo gr) {
-
-		gr = em.merge(gr);
-
-		return gr;
-	}
-	public Tarea actualizarTarea(EntityManager em, Tarea t) {
+	
+	
+	public Tarea actualizarTarea(Tarea t, Tiene ti) {
 
 		t = em.merge(t);
+		ti=em.merge(ti);
 
 		return t;
 	}
@@ -228,11 +227,29 @@ public class ManagerT implements TareaRemote {
 		
 		List<Estado> listSgteEst=dameEstadosSgtes(estadoActual);
 		
-		if(listSgteEst.equals(estadoSgte)){
-			System.out.println("entro a validar si el estadoSgte ta en la coleccion");
-			retorno=true;
+		System.out.println(" ************************************* ");
+		System.out.println(" Tareas posibles desde el estado: ");
+
+		for(Estado esta : listSgteEst){
+			
+			System.out.println("validarEstadoSiguiente ManagerT - Estado sgte: "+esta.getDescripcion()+"- id: "+esta.getId());
+			
 		}
 		
+			
+		for(Estado esta : listSgteEst){
+			if(esta.getId()==estadoSgte.getId()){
+				System.out.println("entro a validar si el estadoSgte ta en la coleccion");
+				retorno=true;
+				break;
+			}
+			else{
+				System.out.println("el estado actual no es igual al estado siguiente");
+				System.out.println("estado de la coleccion "+esta.getDescripcion()+"- estado sigte: "+estadoSgte.getDescripcion());
+			}
+		
+		} 
+				
 		return retorno;
 		
 	}
@@ -255,6 +272,7 @@ public class ManagerT implements TareaRemote {
 		}
 		return retorno;
 	}
+	
 	
 	
 	
