@@ -32,7 +32,7 @@ public interface FacadeRemote {
         public boolean asignarTareaTecnico(Tarea tar, Tecnico tec);//Solo lo puede hacer el encargado y a los tecnicos de su grupo
         public boolean derivarTarea(Tarea tar, Grupo gr); //solo encargado y administrador
         public List<Tarea> listadoTareasPorUsuario();//Ordenadas por PRIORIDAD, si hay mas de una con la misma prioridad se ordenan por id
-        public boolean avanzarTareaEstado(Tarea tar, Estado est);
+       // public boolean avanzarTareaEstado(Tarea tar, Estado est);
         public List<Tarea> listadoTareasPendientesPorGrupo(Encargado enc, Grupo gr);//Tareas sin asignar por grupo y encargado, ordenadas por prioridad, si hay mas de una con la misma prioridad se ordenan por id
         
         

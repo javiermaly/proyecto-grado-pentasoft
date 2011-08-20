@@ -19,6 +19,7 @@ import beans.Usuario;
 
 
 @Stateless
+@SuppressWarnings(value="unchecked")
 public class ManagerT implements TareaRemote {
 	
 	@PersistenceContext(unitName = "SGTI_JPA")
@@ -50,10 +51,7 @@ public class ManagerT implements TareaRemote {
 		return t;
 	}
 	public List<Tarea> tareasPorUsuario(Usuario u) {
-		//List<Tarea> tareas = em.createNativeQuery("tareasPorUsuario").setParameter(1, u.getCedula()).getResultList();
-		String ORG_QUERY = "SELECT * FROM Tarea T join Realiza R on T.id=R.tarea_id where ((R.usu_cedula = ?))";		
-		
-		List<Tarea> tareas = em.createNativeQuery(ORG_QUERY, Tarea.class).setParameter(1, u.getCedula()).getResultList();
+		List<Tarea> tareas= em.createNamedQuery("tareasPorUsuario").setParameter(1, em.getReference(Usuario.class, u.getCedula())).getResultList();
 		return tareas;
 	}
 	public Tarea actualizarTarea(Tarea t) {
@@ -210,9 +208,8 @@ public class ManagerT implements TareaRemote {
 	@Override
 	public List<Estado> dameEstadosSgtes(Estado est) {
 		System.out.println("metodo que ejecuta el jpql pa traer la coleccion.");
-		int id;
-		id=est.getId();
-		List<Estado> colEstSgtes=em.createNamedQuery("estadosSgtes").setParameter("id",1 ).getResultList();
+
+		List<Estado> colEstSgtes=em.createNamedQuery("estadosSgtes").setParameter("id",est.getId()).getResultList();
 		System.out.println("retorno");
 		
 		return colEstSgtes;
@@ -224,18 +221,39 @@ public class ManagerT implements TareaRemote {
 	//PUEDE AVANZAR AL SIGUIENTE ESTADO PROPUESTO
 	public boolean validarEstadoSiguiente(Estado estadoActual, Estado estadoSgte){
 		boolean retorno=false;
+	
 		System.out.println("estado actual: "+estadoActual.getDescripcion());
 		System.out.println("estado sgte: "+estadoSgte.getDescripcion());
 		
+		
 		List<Estado> listSgteEst=dameEstadosSgtes(estadoActual);
 		
-		if(listSgteEst.contains(estadoSgte)){
+		if(listSgteEst.equals(estadoSgte)){
 			System.out.println("entro a validar si el estadoSgte ta en la coleccion");
 			retorno=true;
 		}
 		
 		return retorno;
 		
+	}
+	
+	public boolean avanzarTareaEstado(Tarea tar, Estado sigEst) {
+		boolean retorno = false;
+		Tiene tiene = null;
+		tiene =tieneDeTarea(tar);
+		Estado estActual = tiene.getEstado();
+		System.out.println("Estado Actual: " + estActual.getDescripcion());
+		if (!(estActual == sigEst)) {
+			System.out.println("los estados son diferentes");
+			if (validarEstadoSiguiente(estActual, sigEst)) {
+				System.out.println("valide que el sgte estado es posible");
+				if (cambiarEstadoTarea(tar, sigEst)) {
+					retorno = true;
+				}
+			}
+
+		}
+		return retorno;
 	}
 	
 	
