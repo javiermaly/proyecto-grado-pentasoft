@@ -25,6 +25,7 @@ public class Usuario implements Serializable {
 	private String telefono;
 	private String direccion;
 	private String celular;
+	private boolean habilitado;
 	private static final long serialVersionUID = 1L;
 
 	public Usuario() {
@@ -85,6 +86,12 @@ public class Usuario implements Serializable {
 
 	public void setCelular(String celular) {
 		this.celular = celular;
+	}
+	public boolean isHabilitado() {
+		return habilitado;
+	}
+	public void setHabilitado(boolean habilitado) {
+		this.habilitado = habilitado;
 	}
    
 }

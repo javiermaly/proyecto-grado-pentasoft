@@ -133,11 +133,11 @@ public class FacadeMain implements FacadeRemote {
 		return false;
 	}
 
-	@Override
-	public boolean asignarEncargadoGrupo(Encargado enc, Grupo gr) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+//	@Override
+//	public boolean asignarEncargadoGrupo(Encargado enc, Grupo gr) {
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
 
 	@Override
 	public boolean asignarTareaTecnico(Tarea tar, Tecnico tec) {
