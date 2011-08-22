@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 
-import singleton.Singleton;
-
 import beans.*;
 
 @Stateless
@@ -39,9 +37,41 @@ public class FacadeMain implements FacadeRemote {
 
 	@Override
 	public boolean bajaTarea(Tarea t) {
+		if(buscarTarea(t.getId())!=null){//control si existe
+			if(mt.eliminarTarea(t)){
+				System.out.println("Tarea Eliminada");
+				return true;
+			}else{
+				System.out.println("No se pudo eliminar la tarea, porque no tiene estado Abierta");
+				return false;
+			}
+		}else{
+			System.out.println("no existe la Tarea");
+			return false;
+		}	
+		
+	}
+	
+	@Override
+	public boolean asignarTareaGrupo(Tarea tar, Grupo gr) {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public boolean asignarTareaTecnico(Tarea tar, Tecnico tec) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean derivarTarea(Tarea tar, Grupo gr) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	
+	
 
 	@Override
 	public boolean altaCliente(Cliente c) {
@@ -127,29 +157,7 @@ public class FacadeMain implements FacadeRemote {
 		return null;
 	}
 
-	@Override
-	public boolean asignarTareaGrupo(Tarea tar, Grupo gr) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-//	@Override
-//	public boolean asignarEncargadoGrupo(Encargado enc, Grupo gr) {
-//		// TODO Auto-generated method stub
-//		return false;
-//	}
-
-	@Override
-	public boolean asignarTareaTecnico(Tarea tar, Tecnico tec) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean derivarTarea(Tarea tar, Grupo gr) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
 
 	@Override
 	public List<Tarea> listadoTareasPorUsuario() {

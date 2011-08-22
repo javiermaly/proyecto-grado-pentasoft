@@ -14,5 +14,5 @@ public interface ClienteRemote {
 	public List<Cliente> listarClientes();	
 	public Cliente encontrarCliente(int ced);	
 	public Cliente actualizarCliente(Cliente u);
-	
+		
 }

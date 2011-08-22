@@ -24,7 +24,7 @@ public class ManagerT implements TareaRemote {
 	
 	@PersistenceContext(unitName = "SGTI_JPA")
 	private EntityManager em;
-	//ManagerTarea mt= new ManagerTarea();//manager Tarea del jpa que maneja los beans
+	
 	
 		
 	public boolean agregarTarea(Tarea t, Tipo tipo, Tiene tiene) {
@@ -50,6 +50,8 @@ public class ManagerT implements TareaRemote {
 		Tarea t = em.find(Tarea.class, id);
 		return t;
 	}
+	
+	
 	public List<Tarea> tareasPorUsuario(Usuario u) {
 		List<Tarea> tareas= em.createNamedQuery("tareasPorUsuario").setParameter(1, em.getReference(Usuario.class, u.getCedula())).getResultList();
 		return tareas;
@@ -60,16 +62,29 @@ public class ManagerT implements TareaRemote {
 		return t;
 	}
 	public boolean eliminarTarea(Tarea t) {
-
-		try{
-			em.remove(t);
-			return true;
-		}
-		catch(Exception e){
-			e.printStackTrace();
+		//control: solo se puede eliminar tareas con estado Abierta
+		//List<Tarea> TareaAbierta = em.createNamedQuery("todosTareasAbiertas").setParameter("id", t.getId()).setParameter("var", 1).getResultList();
+		Tarea ta=encontrarTarea(t.getId());
+		System.out.println("HASTA ACAAAAAAAA "+t.getId());
+		if(ta!=null){
+			if(tareaEstadoAbierta(t)){
+				System.out.println("va a eliminarla");
+				t=em.merge(t);
+				em.remove(t);	
+				System.out.println("eliminada");
+				return true;
+			}else{
+				System.out.println("no tiene estado abierta");
+				return false;	
+			}
+		}else{
+			System.out.println("no existe la tareaa");
 			return false;
-		}	
+		}
+		
 	}
+	
+	
 	public boolean altaTareaRealiza(Tarea t, Realiza r) {
 
 		try{
@@ -150,6 +165,22 @@ public class ManagerT implements TareaRemote {
 		}
 		return tiene;
 	}
+	
+	// RETORNA TRUE SI LA TAREA TIENE ESTADO ABIERTA 
+	public boolean tareaEstadoAbierta(Tarea t) {
+		boolean retorno=false;
+		List<Tiene> colTiene = t.getColTiene();		
+		for(Tiene tiene : colTiene){
+			if(tiene.getEstado().getId()==1){
+				retorno=true;
+			}else{
+				retorno=false;
+			}			
+		}
+		return retorno;
+	}	
+		
+		
 	public boolean cambiarEstadoTarea(Tarea t, Estado est) {
 		boolean retorno = false;
 		Tiene ti = tieneDeTarea(t);
