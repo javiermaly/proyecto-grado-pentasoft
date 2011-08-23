@@ -27,13 +27,18 @@ public class ManagerT implements TareaRemote {
 	
 	
 		
-	public boolean agregarTarea(Tarea t, Tipo tipo, Tiene tiene) {
+	public boolean agregarTarea(Tarea t, Tipo tipo, Tiene tiene, Grupo gr ) {
 		try {
 			
 			em.persist(tipo);
 			em.persist(tiene);
 			em.persist(t);
-
+			//em.persist(gr);
+			gr=em.merge(gr);
+			gr=encontrarGrupo(gr.getId());			
+			gr.asignaTarea(t);			
+			em.merge(gr);
+			
 			return true;
 
 		} catch (Exception e) {
@@ -103,16 +108,16 @@ public class ManagerT implements TareaRemote {
 	public boolean asignaTareaUsuario(Tarea t, Usuario u) {
 		boolean retorno = false;
 		Realiza r = new Realiza();
-		Estado estado = encontrarEstado(1);
-		//busca el estado abierta
-		//estado=encontrarEstado(1);
-		Tiene tiene= new Tiene();
+		Estado estado = encontrarEstado(2);
+			
 		r.setTarea(t);
 		r.setUsu(u);
-		tiene.setEstado(estado);
 		
-		if (t.agregarRealiza(r)) {
-			actualizarTarea(t, tiene);
+		r=em.merge(r);
+		t=em.merge(t);
+		
+		if (t.agregarRealiza(r)&& avanzarTareaEstado(t, estado)){
+			t=em.merge(t);
 			retorno = true;
 		}
 
@@ -140,18 +145,8 @@ public class ManagerT implements TareaRemote {
 
 		return gr;
 	}
-	// ASIGNAR TAREA A GRUPO
-	// pasar un TIENE para que cambie el estado de la tarea
-	// seria el caso de cuando se abre la tarea y se la asigna a un grupo
-	// se pasa un tiene porque la tarea queda en estado ABIERTA.
-	public boolean asignarTareaGrupo(Tarea t, Grupo gr) {
-		boolean retorno = false;
-		if (gr.asignaTarea(t))
-			actualizarGrupo(gr);
-		retorno = true;
 
-		return retorno;
-	}
+
 	public Estado encontrarEstado(int id) {
 		Estado e = em.find(Estado.class, id);
 		return e;
@@ -221,7 +216,7 @@ public class ManagerT implements TareaRemote {
 	
 	
 	public Tarea actualizarTarea(Tarea t, Tiene ti) {
-
+		
 		t = em.merge(t);
 		ti=em.merge(ti);
 
@@ -231,7 +226,7 @@ public class ManagerT implements TareaRemote {
 	public Estado actualizarEstado(int id) {
 		
 		Estado est=encontrarEstado(id);
-		em.merge(est);
+		est= em.merge(est);
 
 		return est;
 	}
