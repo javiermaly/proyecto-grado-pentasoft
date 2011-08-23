@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 
+import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
+
 import beans.*;
 
 @Stateless
@@ -59,9 +61,16 @@ public class FacadeMain implements FacadeRemote {
 	}
 
 	@Override
-	public boolean asignarTareaTecnico(Tarea tar, Tecnico tec) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean asignarTareaTecnico(Tarea tar, Tecnico tec, Usuario usu) {
+		boolean retorno =false;
+		if ((usu instanceof Administrador)||(usu instanceof Encargado)) {
+			if(mt.asignaTareaUsuario(tar, usu)){
+				retorno = true;
+			}
+			
+		}
+		
+		return retorno;
 	}
 
 	@Override

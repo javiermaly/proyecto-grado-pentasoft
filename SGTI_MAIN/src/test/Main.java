@@ -170,7 +170,7 @@ public static void main(String[] args) {
 //			Tiene tiene = new Tiene();		
 //			tiene.setEstado(statelessMTar.encontrarEstado(1));
 //			tiene.setFechaInicio(Calendar.getInstance());
-			//tiene.setFechaFin(Calendar.getInstance());
+//			tiene.setFechaFin(Calendar.getInstance());
 //			
 //			Tipo tipo= new Tipo();
 //			tipo.setDescripcion("hardware");
@@ -183,10 +183,10 @@ public static void main(String[] args) {
 //			tar.setFechaComprometida(Calendar.getInstance());
 //			tar.setTipo(tipo);
 //			tar.agregarTiene(tiene);
-		
-			
-
-			
+//		
+//			
+//
+//			
 //			if (statelessMTar.agregarTarea(tar, tipo, tiene))
 //				System.out.println("TAREA DADA DE ALTA id: " +tar.getId());
 //			else
@@ -235,8 +235,8 @@ public static void main(String[] args) {
 //				
 //			}
 			
-			Tarea tare = new Tarea();
-			tare=statelessMTar.encontrarTarea(8);
+//			Tarea tare = new Tarea();
+//			tare=statelessMTar.encontrarTarea(1);
 //			tare.agregarTiene(tiene);
 //			statelessMTar.cambiarEstadoTarea(t, est)
 //			statelessMTar.actualizarTarea(tare);
@@ -261,14 +261,24 @@ public static void main(String[] args) {
 //			}
 //			else
 //				System.out.println("ERROR AL CAMBIAR ESTADO");
-			System.out.println("---------------->>>>>>>>>>TAREA id: "+tare.getId());
+		//	System.out.println("---------------->>>>>>>>>>TAREA id: "+tare.getId());
 			
 			
-			if(statelessMTar.eliminarTarea(tare)){
-				System.out.println("TAREA ELIMINADA");
-			}
+//			if(statelessMTar.eliminarTarea(tare)){
+//				System.out.println("TAREA ELIMINADA");
+//			}
+//			else
+//				System.out.println("ERROR AL ELIMINAR, PQ NO TIENE ESTADO =  ABIERTA");
+		
+			
+			Tecnico tec=(Tecnico) statelessMUsu.encontrarUsuario(9999);
+			Encargado enc=(Encargado)statelessMUsu.encontrarUsuario(40434685);
+			Tarea tar=statelessMTar.encontrarTarea(1);
+			if(statelessFacade.asignarTareaTecnico(tar, tec, enc))
+				System.out.println("TAREA ASIGNADA");
 			else
-				System.out.println("ERROR AL ELIMINAR, PQ NO TIENE ESTADO =  ABIERTA");
+				System.out.println("TAREA NO ASIGNADA");
+			
 			
 	}	
 	

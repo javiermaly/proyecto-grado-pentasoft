@@ -54,7 +54,7 @@ public class ManagerU implements UsuarioRemote{
                 return todos;
         }
         
-        public Usuario encontrarUsuario(int ced){
+        public Usuario encontrarUsuario(long ced){
                 Usuario u = em.find(Usuario.class, ced);
                 return u;
         }
