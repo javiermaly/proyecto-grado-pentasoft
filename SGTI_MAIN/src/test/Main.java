@@ -6,6 +6,7 @@ import java.util.List;
 import beans.Cliente;
 import beans.Encargado;
 import beans.Estado;
+import beans.Grupo;
 import beans.Realiza;
 import beans.Tarea;
 import beans.Tecnico;
@@ -35,7 +36,7 @@ public static void main(String[] args) {
 				
 				e.printStackTrace();
 			}
-			
+						
 			ClienteRemote statelessMCli = null; 
 			try {
 				statelessMCli = singleton.conectarMC();
@@ -167,31 +168,39 @@ public static void main(String[] args) {
 //			//FIN ARMADO FLUJO ESTADOS
 //			//****************************************************
 //			
-//			Tiene tiene = new Tiene();		
-//			tiene.setEstado(statelessMTar.encontrarEstado(1));
-//			tiene.setFechaInicio(Calendar.getInstance());
-//			tiene.setFechaFin(Calendar.getInstance());
-//			
-//			Tipo tipo= new Tipo();
-//			tipo.setDescripcion("hardware");
+			Tiene tiene = new Tiene();		
+			tiene.setEstado(statelessMTar.encontrarEstado(1));
+			tiene.setFechaInicio(Calendar.getInstance());
+			
+			
+			Tipo tipo= new Tipo();
+			tipo.setDescripcion("desarr");
 //						
-//			Tarea tar= new Tarea();		
-//			tar.setEsExterna(true);	
-//			tar.setDescripcion("Soporte ");
-//			tar.setObservacion("Tarea 2");
-//			tar.setFechaApertura(Calendar.getInstance());
-//			tar.setFechaComprometida(Calendar.getInstance());
-//			tar.setTipo(tipo);
-//			tar.agregarTiene(tiene);
+			Tarea tar= new Tarea();		
+			tar.setEsExterna(true);	
+			tar.setDescripcion("desarrolloooo ");
+			tar.setObservacion("Tarea preuabaaaa");
+			tar.setFechaApertura(Calendar.getInstance());
+			tar.setFechaComprometida(Calendar.getInstance());
+			tar.setTipo(tipo);
+			tar.agregarTiene(tiene);
 //		
 //			
 //
-//			
-//			if (statelessMTar.agregarTarea(tar, tipo, tiene))
-//				System.out.println("TAREA DADA DE ALTA id: " +tar.getId());
-//			else
-//				System.out.println("ERROR AL DAR DE ALTA LA TAREA");
+//
+			Tecnico tec=(Tecnico) statelessMUsu.encontrarUsuario(9999);
 			
+			//Tarea tar=statelessMTar.encontrarTarea(1);
+			Encargado enc2=(Encargado)statelessMUsu.encontrarUsuario(40434685);
+			Grupo g = statelessMTar.encontrarGrupo(1);
+//			g.setDescripcion("Desarrollo");
+//			g.setEnc(enc2);
+			
+			if (statelessFacade.abrirTarea(tar, tipo, tiene, g))
+				System.out.println("TAREA DADA DE ALTA id: " );
+			else
+				System.out.println("ERROR AL DAR DE ALTA LA TAREA");
+//			
 //			//listar
 //			List<Usuario> listaUsu= statelessMUsu.listarUsuarios();
 //			for (Usuario usuario : listaUsu) {
@@ -271,13 +280,11 @@ public static void main(String[] args) {
 //				System.out.println("ERROR AL ELIMINAR, PQ NO TIENE ESTADO =  ABIERTA");
 		
 			
-			Tecnico tec=(Tecnico) statelessMUsu.encontrarUsuario(9999);
-			Encargado enc=(Encargado)statelessMUsu.encontrarUsuario(40434685);
-			Tarea tar=statelessMTar.encontrarTarea(1);
-			if(statelessFacade.asignarTareaTecnico(tar, tec, enc))
-				System.out.println("TAREA ASIGNADA");
-			else
-				System.out.println("TAREA NO ASIGNADA");
+			
+//			if(statelessFacade.asignarTareaTecnico(tar, tec, enc2))
+//				System.out.println("TAREA ASIGNADA");
+//			else
+//				System.out.println("TAREA NO ASIGNADA");
 			
 			
 	}	

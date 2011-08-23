@@ -1,10 +1,10 @@
 package stateless;
 
-import java.util.Calendar;
+
 import java.util.List;
 
 import javax.ejb.Remote;
-import javax.persistence.EntityManager;
+
 
 import beans.Estado;
 import beans.Grupo;
@@ -16,7 +16,7 @@ import beans.Usuario;
 
 @Remote
 public interface TareaRemote {
-	public boolean agregarTarea(Tarea t, Tipo tipo, Tiene tiene);
+	public boolean agregarTarea(Tarea t, Tipo tipo, Tiene tiene, Grupo g);
 	public List<Tarea> traerTodasTareas( );
 	public Tarea encontrarTarea(int id);
 	public List<Tarea> tareasPorUsuario(Usuario u);
@@ -27,7 +27,6 @@ public interface TareaRemote {
 	public boolean altaGrupo(Grupo gr);
 	public Grupo encontrarGrupo(int id);
 	public Grupo actualizarGrupo(Grupo gr) ;
-	public boolean asignarTareaGrupo(Tarea t, Grupo gr) ;
 	public Estado encontrarEstado(int id);
 	public Tiene tieneDeTarea(Tarea t);
 	public boolean cambiarEstadoTarea(Tarea t, Estado est) ;

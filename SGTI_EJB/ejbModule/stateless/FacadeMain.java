@@ -4,43 +4,49 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 
+import singleton.Singleton;
+
 import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
 
 import beans.*;
 
 @Stateless
 public class FacadeMain implements FacadeRemote {
-	TareaRemote statelessMTar = null;
-	ManagerT mt = new ManagerT();
+	//TareaRemote statelessMTar = null;
+	//ManagerT mt = new ManagerT();
     ManagerU mu=new ManagerU();
     ManagerC mc=new ManagerC();
+    
+    Singleton singleton = new Singleton();
+    TareaRemote statelessMTar = singleton.conectarMT();
 
 	
-	public boolean abrirTarea(Tarea t, Tipo tipo, Tiene tiene) {// la que realiza el administrativo
-		mt.agregarTarea(t, tipo, tiene);
+    
+	public boolean abrirTarea(Tarea t, Tipo tipo, Tiene tiene, Grupo g) {// la que realiza el administrativo
+		statelessMTar.agregarTarea(t, tipo, tiene, g);
 		return true;
 	}
 
 	public boolean tomarTarea(Tarea t, Realiza r, Tipo ti) {// cuando un técnico trabaja sobre la tarea
-		mt.altaTareaRealiza(t, r);
+		statelessMTar.altaTareaRealiza(t, r);
 		return true;
 	}
 
 	public Tarea buscarTarea(int id) { // buscar una tarea
-		Tarea t = mt.encontrarTarea(id);
+		Tarea t = statelessMTar.encontrarTarea(id);
 		return t;
 	}
 
 	@Override
 	public Tarea modificarTarea(Tarea tar) { // modificar tarea
-		Tarea t = mt.actualizarTarea(tar);
+		Tarea t = statelessMTar.actualizarTarea(tar);
 		return t;
 	}
 
 	@Override
 	public boolean bajaTarea(Tarea t) {
 		if(buscarTarea(t.getId())!=null){//control si existe
-			if(mt.eliminarTarea(t)){
+			if(statelessMTar.eliminarTarea(t)){
 				System.out.println("Tarea Eliminada");
 				return true;
 			}else{
@@ -62,9 +68,10 @@ public class FacadeMain implements FacadeRemote {
 
 	@Override
 	public boolean asignarTareaTecnico(Tarea tar, Tecnico tec, Usuario usu) {
+	
 		boolean retorno =false;
 		if ((usu instanceof Administrador)||(usu instanceof Encargado)) {
-			if(mt.asignaTareaUsuario(tar, usu)){
+			if(statelessMTar.asignaTareaUsuario(tar, tec)){
 				retorno = true;
 			}
 			
