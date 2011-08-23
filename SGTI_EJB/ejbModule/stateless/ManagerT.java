@@ -97,13 +97,20 @@ public class ManagerT implements TareaRemote {
 			return false;
 		}
 	}
-	public boolean asignaTareaUsuario(Tarea t, Usuario u, Calendar fecIni, Tiene tiene) {
+	
+	//asigna el la tarea a un usuario, en el realiza queda vacia la
+	//fecha de inicio, cuando el usuario toma la tarea se completa la fecha
+	public boolean asignaTareaUsuario(Tarea t, Usuario u) {
 		boolean retorno = false;
 		Realiza r = new Realiza();
+		Estado estado = encontrarEstado(1);
+		//busca el estado abierta
+		//estado=encontrarEstado(1);
+		Tiene tiene= new Tiene();
 		r.setTarea(t);
 		r.setUsu(u);
-		r.setFechaInicio(fecIni);
-
+		tiene.setEstado(estado);
+		
 		if (t.agregarRealiza(r)) {
 			actualizarTarea(t, tiene);
 			retorno = true;
@@ -257,17 +264,7 @@ public class ManagerT implements TareaRemote {
 		
 		
 		List<Estado> listSgteEst=dameEstadosSgtes(estadoActual);
-		
-		System.out.println(" ************************************* ");
-		System.out.println(" Tareas posibles desde el estado: ");
-
-		for(Estado esta : listSgteEst){
-			
-			System.out.println("validarEstadoSiguiente ManagerT - Estado sgte: "+esta.getDescripcion()+"- id: "+esta.getId());
-			
-		}
-		
-			
+						
 		for(Estado esta : listSgteEst){
 			if(esta.getId()==estadoSgte.getId()){
 				System.out.println("entro a validar si el estadoSgte ta en la coleccion");
