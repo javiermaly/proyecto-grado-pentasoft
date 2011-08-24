@@ -73,16 +73,29 @@ public class FacadeMain implements FacadeRemote {
 		if ((usu instanceof Administrador)||(usu instanceof Encargado)) {
 			if(statelessMTar.asignaTareaUsuario(tar, tec)){
 				retorno = true;
-			}
-			
-		}
+			}			
+		}		
+		return retorno;
+	}
+	
+	public boolean tomarTarea(Tarea tar, Usuario usu){	
+		
+		boolean retorno =false;
+		
+		if ((usu instanceof Encargado)||(usu instanceof Tecnico)) {
+			if(statelessMTar.tomarTarea(tar, usu)){
+				retorno = true;
+			}			
+		}	
 		
 		return retorno;
 	}
 
 	@Override
 	public boolean derivarTarea(Tarea tar, Grupo gr) {
-		// TODO Auto-generated method stub
+		
+		
+		
 		return false;
 	}
 	

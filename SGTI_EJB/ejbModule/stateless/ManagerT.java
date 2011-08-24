@@ -124,6 +124,28 @@ public class ManagerT implements TareaRemote {
 		return retorno;
 		
 	}
+	
+	public boolean tomarTarea(Tarea t, Usuario u){
+		boolean retorno = false;
+		
+		t=em.merge(t);
+		Realiza r = realizaDeTarea(t);
+		Estado estado = encontrarEstado(3);
+		
+		
+		r.setFechaInicio(Calendar.getInstance());
+		
+		r=em.merge(r);
+	
+		
+		if (avanzarTareaEstado(t, estado)){
+			t=em.merge(t);
+			retorno = true;
+		}	
+		
+		return retorno;
+	}
+	
 	public boolean altaGrupo(Grupo gr) {
 		try {
 
@@ -167,6 +189,24 @@ public class ManagerT implements TareaRemote {
 		}
 		return tiene;
 	}
+	
+	// OBTIENE EL REALIZA CON FECHA DE INICIO NULA EN TAREA
+	public Realiza realizaDeTarea(Tarea t) {
+		List<Realiza> colRealiza = t.getListRealiza();
+		Realiza r = null;
+		Realiza realizaIt = null;
+		Iterator iter = colRealiza.iterator();
+		while (iter.hasNext()) {
+			realizaIt = (Realiza) iter.next();
+			if (realizaIt.getFechaInicio() == null) {
+				r = realizaIt;
+
+			}
+
+		}
+		return r;
+	}
+	
 	
 	// RETORNA TRUE SI LA TAREA TIENE ESTADO ABIERTA 
 	public boolean tareaEstadoAbierta(Tarea t) {

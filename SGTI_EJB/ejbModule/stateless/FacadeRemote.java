@@ -17,6 +17,7 @@ public interface FacadeRemote {
         public boolean asignarTareaGrupo(Tarea tar, Grupo gr);//solo Administrativo, administrador
         // asignarTareaTecnico--cuando asigna creamos un realiza sin fecha de inicio, cuando el loco
         //toma la tarea le seteamos la fecha de inicio.
+        public boolean tomarTarea(Tarea tar, Usuario usu);
         public boolean asignarTareaTecnico(Tarea tar, Tecnico tec, Usuario usu);//Solo lo puede hacer el encargado y a los tecnicos de su grupo
         public boolean derivarTarea(Tarea tar, Grupo gr); //solo encargado y administrador
         
