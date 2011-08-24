@@ -97,110 +97,110 @@ public static void main(String[] args) {
 //			
 //			
 //	//		***************************************************
-//			//ARMADO DEL FLUJO DE ESTADOS DE LAS TAREAS.
-//			Estado estado = new Estado();
-//			estado.setDescripcion("Abierta");		
-//			Estado estado2 = new Estado();
-//			estado2.setDescripcion("Asignada");
-//			Estado estado3=new Estado();
-//			estado3.setDescripcion("En Proceso");
-//			Estado estado4=new Estado();
-//			estado4.setDescripcion("Derivada");
-//			Estado estado5=new Estado();
-//			estado5.setDescripcion("Re Abierta");
-//			Estado estado6=new Estado();
-//			estado6.setDescripcion("Finalizada");
-//			Estado estado7=new Estado();
-//			estado7.setDescripcion("Cerrada");
+			//ARMADO DEL FLUJO DE ESTADOS DE LAS TAREAS.
+			Estado estado = new Estado();
+			estado.setDescripcion("Abierta");		
+			Estado estado2 = new Estado();
+			estado2.setDescripcion("Asignada");
+			Estado estado3=new Estado();
+			estado3.setDescripcion("En Proceso");
+			Estado estado4=new Estado();
+			estado4.setDescripcion("Derivada");
+			Estado estado5=new Estado();
+			estado5.setDescripcion("Re Abierta");
+			Estado estado6=new Estado();
+			estado6.setDescripcion("Finalizada");
+			Estado estado7=new Estado();
+			estado7.setDescripcion("Cerrada");
 //			
 //			
-//			//GUARDO LOS ESTADOS
-//
-//			statelessMTar.agregarEstado(estado);
-//			statelessMTar.agregarEstado(estado2);
-//			statelessMTar.agregarEstado(estado3);
-//			statelessMTar.agregarEstado(estado4);
-//			statelessMTar.agregarEstado(estado5);
-//			statelessMTar.agregarEstado(estado6);
-//			statelessMTar.agregarEstado(estado7);
+			//GUARDO LOS ESTADOS
+
+			statelessMTar.agregarEstado(estado);
+			statelessMTar.agregarEstado(estado2);
+			statelessMTar.agregarEstado(estado3);
+			statelessMTar.agregarEstado(estado4);
+			statelessMTar.agregarEstado(estado5);
+			statelessMTar.agregarEstado(estado6);
+			statelessMTar.agregarEstado(estado7);
+			
+			
+			estado=statelessMTar.encontrarEstado(1);
+			estado2=statelessMTar.encontrarEstado(2);
+			estado3=statelessMTar.encontrarEstado(3);
+			estado4=statelessMTar.encontrarEstado(4);
+			estado5=statelessMTar.encontrarEstado(5);
+			estado6=statelessMTar.encontrarEstado(6);
+			estado7=statelessMTar.encontrarEstado(7);
 //			
+			//ASIGNO ESTADOS SIGUIENTES PERMITIDOS POR ESTADO
+			
+			estado.addEstadoSgte(statelessMTar.encontrarEstado(2));
+			estado.addEstadoSgte(statelessMTar.encontrarEstado(7));
+			
+			estado2.addEstadoSgte(statelessMTar.encontrarEstado(3));
+			estado2.addEstadoSgte(statelessMTar.encontrarEstado(7));
+			
+			estado3.addEstadoSgte(statelessMTar.encontrarEstado(4));
+			estado3.addEstadoSgte(statelessMTar.encontrarEstado(6));
+			
+			estado4.addEstadoSgte(statelessMTar.encontrarEstado(2));
+			
+			estado5.addEstadoSgte(statelessMTar.encontrarEstado(2));
+			estado2.addEstadoSgte(statelessMTar.encontrarEstado(7));
+			
+			estado6.addEstadoSgte(statelessMTar.encontrarEstado(7));
+			estado6.addEstadoSgte(statelessMTar.encontrarEstado(5));
+			
+			
+			
+			
+			//MERGEO LOS ESTADOS PARA QUE TOMEN LOS CAMBIOS
+			statelessMTar.actualizarEstado(estado);
+			statelessMTar.actualizarEstado(estado2);
+			statelessMTar.actualizarEstado(estado3);
+			statelessMTar.actualizarEstado(estado4);
+			statelessMTar.actualizarEstado(estado5);
+			statelessMTar.actualizarEstado(estado6);
 //			
-//			estado=statelessMTar.encontrarEstado(1);
-//			estado2=statelessMTar.encontrarEstado(2);
-//			estado3=statelessMTar.encontrarEstado(3);
-//			estado4=statelessMTar.encontrarEstado(4);
-//			estado5=statelessMTar.encontrarEstado(5);
-//			estado6=statelessMTar.encontrarEstado(6);
-//			estado7=statelessMTar.encontrarEstado(7);
-//			
-//			//ASIGNO ESTADOS SIGUIENTES PERMITIDOS POR ESTADO
-//			
-//			estado.addEstadoSgte(statelessMTar.encontrarEstado(2));
-//			estado.addEstadoSgte(statelessMTar.encontrarEstado(7));
-//			
-//			estado2.addEstadoSgte(statelessMTar.encontrarEstado(7));
-//			
-//			estado3.addEstadoSgte(statelessMTar.encontrarEstado(4));
-//			estado3.addEstadoSgte(statelessMTar.encontrarEstado(6));
-//			
-//			estado4.addEstadoSgte(statelessMTar.encontrarEstado(2));
-//			
-//			estado5.addEstadoSgte(statelessMTar.encontrarEstado(2));
-//			
-//			estado6.addEstadoSgte(statelessMTar.encontrarEstado(7));
-//			estado6.addEstadoSgte(statelessMTar.encontrarEstado(5));
-//			
-//			
-//			
-//			
-//			//MERGEO LOS ESTADOS PARA QUE TOMEN LOS CAMBIOS
-//			statelessMTar.actualizarEstado(estado);
-//			statelessMTar.actualizarEstado(estado2);
-//			statelessMTar.actualizarEstado(estado3);
-//			statelessMTar.actualizarEstado(estado4);
-//			statelessMTar.actualizarEstado(estado5);
-//			statelessMTar.actualizarEstado(estado6);
-//			
-//			System.out.println("********FIN MERGEO ESTADOS*******");
+			System.out.println("********FIN MERGEO ESTADOS*******");
 //			
 //			
 //				
 //			//FIN ARMADO FLUJO ESTADOS
 //			//****************************************************
 //			
-			Tiene tiene = new Tiene();		
-			tiene.setEstado(statelessMTar.encontrarEstado(1));
-			tiene.setFechaInicio(Calendar.getInstance());
-			
-			
-			Tipo tipo= new Tipo();
-			tipo.setDescripcion("desarr");
-//						
-			Tarea tar= new Tarea();		
-			tar.setEsExterna(true);	
-			tar.setDescripcion("desarrolloooo ");
-			tar.setObservacion("Tarea preuabaaaa");
-			tar.setFechaApertura(Calendar.getInstance());
-			tar.setFechaComprometida(Calendar.getInstance());
-			tar.setTipo(tipo);
-			tar.agregarTiene(tiene);
+//			Tiene tiene = new Tiene();		
+//			tiene.setEstado(statelessMTar.encontrarEstado(1));
+//			tiene.setFechaInicio(Calendar.getInstance());
+//			
+//			
+//			Tipo tipo= new Tipo();
+//			tipo.setDescripcion("desarr");
+////						
+//			Tarea tar= new Tarea();		
+//			tar.setEsExterna(true);	
+//			tar.setDescripcion("desarrolloooo ");
+//			tar.setObservacion("Tarea preuabaaaa");
+//			tar.setFechaApertura(Calendar.getInstance());
+//			tar.setFechaComprometida(Calendar.getInstance());
+//			tar.setTipo(tipo);
+//			tar.agregarTiene(tiene);
 //		
 //			
 //
 //
-			Tecnico tec=(Tecnico) statelessMUsu.encontrarUsuario(9999);
 			
-			//Tarea tar=statelessMTar.encontrarTarea(1);
-			Encargado enc2=(Encargado)statelessMUsu.encontrarUsuario(40434685);
-			Grupo g = statelessMTar.encontrarGrupo(1);
+			//Encargado enc2=(Encargado)statelessMUsu.encontrarUsuario(40434685);
+			//Grupo g = statelessMTar.encontrarGrupo(1);
 //			g.setDescripcion("Desarrollo");
 //			g.setEnc(enc2);
 			
-			if (statelessFacade.abrirTarea(tar, tipo, tiene, g))
-				System.out.println("TAREA DADA DE ALTA id: " );
-			else
-				System.out.println("ERROR AL DAR DE ALTA LA TAREA");
-//			
+//			if (statelessFacade.abrirTarea(tar, tipo, tiene, g))
+//				System.out.println("TAREA DADA DE ALTA id: " );
+//			else
+//				System.out.println("ERROR AL DAR DE ALTA LA TAREA");
+////			
 //			//listar
 //			List<Usuario> listaUsu= statelessMUsu.listarUsuarios();
 //			for (Usuario usuario : listaUsu) {
@@ -285,6 +285,15 @@ public static void main(String[] args) {
 //				System.out.println("TAREA ASIGNADA");
 //			else
 //				System.out.println("TAREA NO ASIGNADA");
+			
+			Tecnico tec=(Tecnico) statelessMUsu.encontrarUsuario(9999);
+			
+			Tarea tar=statelessMTar.encontrarTarea(1);
+			System.out.println("TAREA id"+tar.getId());
+			if(statelessMTar.tomarTarea(tar, tec))
+				System.out.println("TAREA tomada, ya tiene fecha de inicio, comenzando a trabajar sobre la tarea y el estado pasa a En Proceso");
+			else
+				System.out.println("TAREA NO tomada");
 			
 			
 	}	
