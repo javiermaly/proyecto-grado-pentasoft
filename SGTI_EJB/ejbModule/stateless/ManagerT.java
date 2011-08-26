@@ -125,18 +125,14 @@ public class ManagerT implements TareaRemote {
 		
 	}
 	
-	public boolean tomarTarea(Tarea t, Usuario u){
-		boolean retorno = false;
-		
+	public boolean tomarTarea(Tarea t, Usuario u){//obtiene el realiza de esta tarea le ponemos fecha actual de incio, y avanzamos el estado de la tarea en  #3 En proceso
+		boolean retorno = false;		
 		t=em.merge(t);
 		Realiza r = realizaDeTarea(t);
-		Estado estado = encontrarEstado(3);
+		Estado estado = encontrarEstado(3);	
 		
-		
-		r.setFechaInicio(Calendar.getInstance());
-		
-		r=em.merge(r);
-	
+		r.setFechaInicio(Calendar.getInstance());		
+		r=em.merge(r);	
 		
 		if (avanzarTareaEstado(t, estado)){
 			t=em.merge(t);
@@ -145,6 +141,23 @@ public class ManagerT implements TareaRemote {
 		
 		return retorno;
 	}
+	
+	public boolean finalizarTarea(Tarea t, Usuario u){//obtiene el realiza de esta tarea le ponemos fecha de fin, y avanzamos el estado de la tarea en  #6 Finalizada
+		boolean retorno = false;		
+		t=em.merge(t);
+		Realiza r = realizaDeTareaFechaFin(t);
+		Estado estado = encontrarEstado(6);		
+		
+		r.setFechaFin(Calendar.getInstance());		
+		r=em.merge(r);	
+		
+		if (avanzarTareaEstado(t, estado)){
+			t=em.merge(t);
+			retorno = true;
+		}	
+		
+		return retorno;
+	}	
 	
 	public boolean altaGrupo(Grupo gr) {
 		try {
@@ -199,6 +212,22 @@ public class ManagerT implements TareaRemote {
 		while (iter.hasNext()) {
 			realizaIt = (Realiza) iter.next();
 			if (realizaIt.getFechaInicio() == null) {
+				r = realizaIt;
+
+			}
+
+		}
+		return r;
+	}
+	//el realiza de tarea con fecha de fin null 
+	public Realiza realizaDeTareaFechaFin(Tarea t) {
+		List<Realiza> colRealiza = t.getListRealiza();
+		Realiza r = null;
+		Realiza realizaIt = null;
+		Iterator iter = colRealiza.iterator();
+		while (iter.hasNext()) {
+			realizaIt = (Realiza) iter.next();
+			if (realizaIt.getFechaFin() == null) {
 				r = realizaIt;
 
 			}
