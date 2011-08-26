@@ -90,6 +90,18 @@ public class FacadeMain implements FacadeRemote {
 		
 		return retorno;
 	}
+	public boolean finalizarTarea(Tarea tar, Usuario usu){	
+		
+		boolean retorno =false;
+		
+		if ((usu instanceof Encargado)||(usu instanceof Tecnico)) {
+			if(statelessMTar.finalizarTarea(tar, usu)){
+				retorno = true;
+			}			
+		}	
+		
+		return retorno;
+	}
 
 	@Override
 	public boolean derivarTarea(Tarea tar, Grupo gr) {
