@@ -131,7 +131,8 @@ public class ManagerT implements TareaRemote {
 		Realiza r = realizaDeTarea(t);
 		Estado estado = encontrarEstado(3);	
 		
-		r.setFechaInicio(Calendar.getInstance());		
+		r.setFechaInicio(Calendar.getInstance());
+		
 		r=em.merge(r);	
 		
 		if (avanzarTareaEstado(t, estado)){
@@ -158,6 +159,35 @@ public class ManagerT implements TareaRemote {
 		
 		return retorno;
 	}	
+	
+	public boolean derivarTarea(Tarea t, Usuario u, Grupo gr){//finalizamos el realiza y asignamos esa tarea al grupo, quedando en estado derivada para que el encargado asigne la tarea
+		boolean retorno = false;
+		t=em.merge(t);
+		Estado estado = encontrarEstado(4);	//#4 derivada	
+		
+		if (avanzarTareaEstado(t, estado)){			
+			Realiza r = realizaDeTareaFechaFin(t);
+			r.setFechaFin(Calendar.getInstance());//seteamos la fecha fin con la actual, cerrando ese realiza
+			r=em.merge(r);
+			gr=em.merge(gr);
+			gr=encontrarGrupo(gr.getId());
+			if(gr!=null){			
+				gr.asignaTarea(t);			
+				em.merge(gr);										
+				retorno=true;
+			}else{
+				retorno=false;
+				System.out.println("no existe el grupo");
+			}			
+			retorno = true;
+		}else{
+			retorno=false;
+			System.out.println("no se pudo avanzar estado");
+		}	
+		
+		return retorno;
+	}	
+	
 	
 	public boolean altaGrupo(Grupo gr) {
 		try {

@@ -61,7 +61,7 @@ public class FacadeMain implements FacadeRemote {
 	}
 	
 	@Override
-	public boolean asignarTareaGrupo(Tarea tar, Grupo gr) {
+	public boolean asignarTareaGrupo(Tarea tar, Grupo gr) {//no iría se le asigna el grupo al momento de crear/abrir la tarea
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -104,11 +104,16 @@ public class FacadeMain implements FacadeRemote {
 	}
 
 	@Override
-	public boolean derivarTarea(Tarea tar, Grupo gr) {
+	public boolean derivarTarea(Tarea tar, Grupo gr, Usuario usu) {
+		boolean retorno =false;
 		
+		if ((usu instanceof Encargado)||(usu instanceof Tecnico)) {
+			if(statelessMTar.derivarTarea(tar, usu, gr)){
+				retorno = true;
+			}			
+		}	
 		
-		
-		return false;
+		return retorno;
 	}
 	
 	

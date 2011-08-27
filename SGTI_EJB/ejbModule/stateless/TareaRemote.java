@@ -38,6 +38,7 @@ public interface TareaRemote {
 	public boolean avanzarTareaEstado(Tarea tar, Estado sigEst);
 	public boolean tomarTarea(Tarea t, Usuario u);
 	public boolean finalizarTarea(Tarea t, Usuario u);
+	public boolean derivarTarea(Tarea t, Usuario u, Grupo gr);
 	
 	
 }
