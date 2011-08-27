@@ -191,7 +191,7 @@ public static void main(String[] args) {
 //
 //
 			
-			//Encargado enc2=(Encargado)statelessMUsu.encontrarUsuario(40434685);
+			
 			//Grupo g = statelessMTar.encontrarGrupo(1);
 //			g.setDescripcion("Desarrollo");
 //			g.setEnc(enc2);
@@ -278,29 +278,46 @@ public static void main(String[] args) {
 //			}
 //			else
 //				System.out.println("ERROR AL ELIMINAR, PQ NO TIENE ESTADO =  ABIERTA");
-		
 			
 			
-//			if(statelessFacade.asignarTareaTecnico(tar, tec, enc2))
-//				System.out.println("TAREA ASIGNADA");
-//			else
-//				System.out.println("TAREA NO ASIGNADA");
+
+//---->>>>>> PRUEBA PARA VOLVER A ASIGNAR UNA TAREA QUE FUE DERIVADA RECIEN
 			
-			Tecnico tec=(Tecnico) statelessMUsu.encontrarUsuario(9999);
+			Encargado enc2=(Encargado)statelessMUsu.encontrarUsuario(40434685);
+			Tecnico t2 = new Tecnico();
+			t2.setCedula(222);
+			t2.setApellido("segundo");
+			t2.setNombre("tito");
+			t2.setUsuario("toti");
+			t2.setPwd("totione");
+			
+			statelessMUsu.agregarUsuario(t2);
 			
 			Tarea tar=statelessMTar.encontrarTarea(1);
 			System.out.println("TAREA id"+tar.getId());
+			
+			if(statelessFacade.asignarTareaTecnico(tar, t2, enc2))
+				System.out.println("TAREA ASIGNADA");
+			else
+				System.out.println("TAREA NO ASIGNADA");
+			
+			
 //			if(statelessMTar.tomarTarea(tar, tec))
 //				System.out.println("TAREA tomada, ya tiene fecha de inicio, comenzando a trabajar sobre la tarea y el estado pasa a En Proceso");
 //			else
 //				System.out.println("TAREA NO tomada");
 //			
-			if(statelessMTar.finalizarTarea(tar, tec))
-				System.out.println("TAREA FINALIZADA, ya tiene fecha de FIN EL REALIZA Y LA TAREA CON ESTADO FINALIZADA ");
-			else
-				System.out.println("TAREA NO FINALIZADA");
+//			if(statelessMTar.finalizarTarea(tar, tec))
+//				System.out.println("TAREA FINALIZADA, ya tiene fecha de FIN EL REALIZA Y LA TAREA CON ESTADO FINALIZADA ");
+//			else
+//				System.out.println("TAREA NO FINALIZADA");
 			
-			
+//			Grupo gr = statelessMTar.encontrarGrupo(2);
+//			if(statelessMTar.derivarTarea(tar, tec, gr))
+//				System.out.println("TAREA Derivada, tiene fecha de FIN EL REALIZA ");
+//			else
+//				System.out.println("TAREA NO Derivada");
+//			
 	}	
 	
 }
