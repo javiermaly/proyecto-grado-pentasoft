@@ -147,7 +147,7 @@ public class ManagerT implements TareaRemote {
 		boolean retorno = false;		
 		t=em.merge(t);
 		Realiza r = realizaDeTareaFechaFin(t);
-		Estado estado = encontrarEstado(6);		
+		Estado estado = encontrarEstado(6);		//finalizada
 		
 		r.setFechaFin(Calendar.getInstance());		
 		r=em.merge(r);	
@@ -160,7 +160,7 @@ public class ManagerT implements TareaRemote {
 		return retorno;
 	}	
 	
-	public boolean derivarTarea(Tarea t, Usuario u, Grupo gr){//finalizamos el realiza y asignamos esa tarea al grupo, quedando en estado derivada para que el encargado asigne la tarea
+	public boolean derivarTarea(Tarea t, Grupo gr){//finalizamos el realiza y asignamos esa tarea al grupo, quedando en estado derivada para que el encargado asigne la tarea
 		boolean retorno = false;
 		t=em.merge(t);
 		Estado estado = encontrarEstado(4);	//#4 derivada	
@@ -188,7 +188,36 @@ public class ManagerT implements TareaRemote {
 		return retorno;
 	}	
 	
+	public boolean reabrirTarea(Tarea t){//la tarea está con estado #6 finalizada pasarla a #5 Reabierta y queda reabierta al mismo grupo
+		boolean retorno = false;
+		t=em.merge(t);
+		Estado estado = encontrarEstado(5);	//#5 ReAbierta	
+		
+		if (avanzarTareaEstado(t, estado)){						
+			retorno = true;
+		}else{
+			retorno=false;
+			System.out.println("no se pudo avanzar estado");
+		}		
+		return retorno;
+	}	
 	
+	public boolean cerrarTarea(Tarea t){//cerrar la tarea, solo los adm pueden, poner estado #7 y fecha fin al tiene
+		boolean retorno = false;
+		t=em.merge(t);
+		Estado estado = encontrarEstado(7);	//#7 Cerrada	
+		
+		if (avanzarTareaEstado(t, estado)){						
+			retorno = true;
+		}else{
+			retorno=false;
+			System.out.println("no se pudo avanzar estado");
+		}		
+		return retorno;
+	}	
+	
+	
+	//GRUPOS
 	public boolean altaGrupo(Grupo gr) {
 		try {
 
