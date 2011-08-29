@@ -108,7 +108,33 @@ public class FacadeMain implements FacadeRemote {
 		boolean retorno =false;
 		
 		if ((usu instanceof Encargado)||(usu instanceof Tecnico)) {
-			if(statelessMTar.derivarTarea(tar, usu, gr)){
+			if(statelessMTar.derivarTarea(tar, gr)){
+				retorno = true;
+			}			
+		}	
+		
+		return retorno;
+	}
+	
+	@Override
+	public boolean reabrirTarea(Tarea tar, Usuario usu) {
+		boolean retorno =false;
+		
+		if ((usu instanceof Administrativo)||(usu instanceof Administrador)) {
+			if(statelessMTar.reabrirTarea(tar)){
+				retorno = true;
+			}			
+		}	
+		
+		return retorno;
+	}
+	
+	@Override
+	public boolean cerrarTarea(Tarea tar, Usuario usu) {
+		boolean retorno =false;
+		
+		if ((usu instanceof Administrativo)||(usu instanceof Administrador)) {
+			if(statelessMTar.reabrirTarea(tar)){
 				retorno = true;
 			}			
 		}	
@@ -117,8 +143,7 @@ public class FacadeMain implements FacadeRemote {
 	}
 	
 	
-	
-
+//CLIENTES
 	@Override
 	public boolean altaCliente(Cliente c) {
 		// TODO Auto-generated method stub

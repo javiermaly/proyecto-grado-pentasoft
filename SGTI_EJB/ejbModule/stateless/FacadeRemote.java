@@ -19,7 +19,8 @@ public interface FacadeRemote {
         public boolean finalizarTarea(Tarea tar, Usuario usu);//cuando el técnico o encargado finalizan la tarea
         public boolean asignarTareaTecnico(Tarea tar, Tecnico tec, Usuario usu);//Solo lo puede hacer el encargado y a los tecnicos de su grupo
         public boolean derivarTarea(Tarea tar, Grupo gr, Usuario usu); //solo encargado y administrador
-        
+        public boolean reabrirTarea(Tarea tar, Usuario usu);//solo administrativo y administrador ---> reabre al mismo grupo que la estaba trabajando
+        public boolean cerrarTarea(Tarea tar, Usuario usu);//solo los ADM
         
         //CLIENTES
         public boolean altaCliente(Cliente c);

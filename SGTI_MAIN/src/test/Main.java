@@ -112,8 +112,8 @@ public static void main(String[] args) {
 //			estado6.setDescripcion("Finalizada");
 //			Estado estado7=new Estado();
 //			estado7.setDescripcion("Cerrada");
-//			
-//			
+			
+			
 			//GUARDO LOS ESTADOS
 
 //			statelessMTar.agregarEstado(estado);
@@ -123,8 +123,8 @@ public static void main(String[] args) {
 //			statelessMTar.agregarEstado(estado5);
 //			statelessMTar.agregarEstado(estado6);
 //			statelessMTar.agregarEstado(estado7);
-//			
-//			
+////			
+////			
 //			estado=statelessMTar.encontrarEstado(1);
 //			estado2=statelessMTar.encontrarEstado(2);
 //			estado3=statelessMTar.encontrarEstado(3);
@@ -132,9 +132,9 @@ public static void main(String[] args) {
 //			estado5=statelessMTar.encontrarEstado(5);
 //			estado6=statelessMTar.encontrarEstado(6);
 //			estado7=statelessMTar.encontrarEstado(7);
-//			
-			//ASIGNO ESTADOS SIGUIENTES PERMITIDOS POR ESTADO
-//			
+////			
+//			//ASIGNO ESTADOS SIGUIENTES PERMITIDOS POR ESTADO
+////			
 //			estado.addEstadoSgte(statelessMTar.encontrarEstado(2));
 //			estado.addEstadoSgte(statelessMTar.encontrarEstado(7));
 //			
@@ -147,7 +147,7 @@ public static void main(String[] args) {
 //			estado4.addEstadoSgte(statelessMTar.encontrarEstado(2));
 //			
 //			estado5.addEstadoSgte(statelessMTar.encontrarEstado(2));
-//			estado2.addEstadoSgte(statelessMTar.encontrarEstado(7));
+//			estado5.addEstadoSgte(statelessMTar.encontrarEstado(7));
 //			
 //			estado6.addEstadoSgte(statelessMTar.encontrarEstado(7));
 //			estado6.addEstadoSgte(statelessMTar.encontrarEstado(5));
@@ -284,40 +284,51 @@ public static void main(String[] args) {
 //---->>>>>> PRUEBA PARA VOLVER A ASIGNAR UNA TAREA QUE FUE DERIVADA RECIEN
 			
 			Encargado enc2=(Encargado)statelessMUsu.encontrarUsuario(40434685);
-			Tecnico t2 = new Tecnico();
-			t2.setCedula(222);
-			t2.setApellido("segundo");
-			t2.setNombre("tito");
-			t2.setUsuario("toti");
-			t2.setPwd("totione");
-			
-			statelessMUsu.agregarUsuario(t2);
+			Tecnico t2 = (Tecnico)statelessMUsu.encontrarUsuario(222);
+//			t2.setCedula(222);
+//			t2.setApellido("segundo");
+//			t2.setNombre("tito");
+//			t2.setUsuario("toti");
+//			t2.setPwd("totione");
+//			
+//			statelessMUsu.agregarUsuario(t2);
+//			
+//			Tarea tar=statelessMTar.encontrarTarea(1);
+//			System.out.println("TAREA id"+tar.getId());
+//			
+//			if(statelessFacade.asignarTareaTecnico(tar, t2, enc2))
+//				System.out.println("TAREA ASIGNADA");
+//			else
+//				System.out.println("TAREA NO ASIGNADA");
 			
 			Tarea tar=statelessMTar.encontrarTarea(1);
-			System.out.println("TAREA id"+tar.getId());
-			
-			if(statelessFacade.asignarTareaTecnico(tar, t2, enc2))
-				System.out.println("TAREA ASIGNADA");
-			else
-				System.out.println("TAREA NO ASIGNADA");
-			
-			
-//			if(statelessMTar.tomarTarea(tar, tec))
+//			if(statelessMTar.tomarTarea(tar, t2))
 //				System.out.println("TAREA tomada, ya tiene fecha de inicio, comenzando a trabajar sobre la tarea y el estado pasa a En Proceso");
 //			else
 //				System.out.println("TAREA NO tomada");
 //			
-//			if(statelessMTar.finalizarTarea(tar, tec))
+//			if(statelessMTar.finalizarTarea(tar, t2))
 //				System.out.println("TAREA FINALIZADA, ya tiene fecha de FIN EL REALIZA Y LA TAREA CON ESTADO FINALIZADA ");
 //			else
 //				System.out.println("TAREA NO FINALIZADA");
 			
-//			Grupo gr = statelessMTar.encontrarGrupo(2);
+		//	Grupo gr = statelessMTar.encontrarGrupo(2);
 //			if(statelessMTar.derivarTarea(tar, tec, gr))
 //				System.out.println("TAREA Derivada, tiene fecha de FIN EL REALIZA ");
 //			else
 //				System.out.println("TAREA NO Derivada");
 //			
+			
+//			if(statelessMTar.reabrirTarea(tar))
+//				System.out.println("TAREA RE-ABIERTA ");
+//			else
+//				System.out.println("TAREA NO RE-ABIERTA");
+			
+			if(statelessMTar.cerrarTarea(tar))
+				System.out.println("TAREA CERRADA");
+			else
+				System.out.println("TAREA NO CERRADA");
+			
 	}	
 	
 }
