@@ -19,6 +19,7 @@ public class FacadeMain implements FacadeRemote {
     
     Singleton singleton = new Singleton();
     TareaRemote statelessMTar = singleton.conectarMT();
+    UsuarioRemote statelessMUsu = singleton.conectarMU();
 
 	
     
@@ -134,7 +135,7 @@ public class FacadeMain implements FacadeRemote {
 		boolean retorno =false;
 		
 		if ((usu instanceof Administrativo)||(usu instanceof Administrador)) {
-			if(statelessMTar.reabrirTarea(tar)){
+			if(statelessMTar.cerrarTarea(tar)){
 				retorno = true;
 			}			
 		}	
@@ -223,9 +224,15 @@ public class FacadeMain implements FacadeRemote {
 	}
 
 	@Override
-	public Usuario login(String usu, String pwd) {
-		// TODO Auto-generated method stub
-		return null;
+	public Usuario login(long cedula, String pwd) {
+		Usuario u = statelessMUsu.login(cedula, pwd);
+		if(!(u==null)){
+			return u;
+		}
+		else{
+			return null;
+		}
+		
 	}
 
 	

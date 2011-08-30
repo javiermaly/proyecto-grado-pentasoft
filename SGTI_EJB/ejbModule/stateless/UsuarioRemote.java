@@ -14,5 +14,5 @@ public interface UsuarioRemote  {
 	public List<Usuario> listarUsuarios();	
 	public Usuario encontrarUsuario(long ced);
 	public boolean actualizarUsuario(Usuario u);
-	
+	public Usuario login(long ced, String pwd);
 }

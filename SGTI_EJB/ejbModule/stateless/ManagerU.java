@@ -69,5 +69,17 @@ public class ManagerU implements UsuarioRemote{
                 }
         }
         
+        public Usuario login(long cedula, String pwd){
+        	Usuario u = em.find(Usuario.class, cedula);
+        	if (u.getPwd().equals(pwd)){
+        		return u;
+        	}
+        	else{
+        		return null;
+        	}
+        	
+        	
+        }
+        
                 
 }
