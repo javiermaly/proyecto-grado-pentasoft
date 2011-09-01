@@ -33,7 +33,7 @@ public class ManagerU implements UsuarioRemote{
                 }         
         }
         
-        public boolean eliminarUsuario(int ced){
+        public boolean eliminarUsuario(String ced){
                 Usuario u;
                 u = encontrarUsuario(ced);              
                 if (u!=null){                   
@@ -54,7 +54,7 @@ public class ManagerU implements UsuarioRemote{
                 return todos;
         }
         
-        public Usuario encontrarUsuario(long ced){
+        public Usuario encontrarUsuario(String ced){
                 Usuario u = em.find(Usuario.class, ced);
                 return u;
         }

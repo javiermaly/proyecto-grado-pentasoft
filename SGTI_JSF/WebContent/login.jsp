@@ -15,30 +15,30 @@
 </head>
 
 <body>
-
-	<form id="login-form" action="#" method="post">
+<f:view>
+	<h:form>
 		<fieldset>
 		
 			<legend>Log in</legend>
 			
-			<label for="login">Email</label>
-			<input type="text" id="login" name="login"/>
+			<label for="login">Cedula</label>
+			<h:inputText id="cedula" value="#{Usuario.cedula}" required="true"></h:inputText>
 			<div class="clear"></div>
 			
 			<label for="password">Password</label>
-			<input type="password" id="password" name="password"/>
+			<h:inputText  id="pwd" value="#{Usuario.pwd}" required="true"></h:inputText>
 			<div class="clear"></div>
 			
 			<label for="remember_me" style="padding: 0;">Remember me?</label>
 			<input type="checkbox" id="remember_me" style="position: relative; top: 3px; margin: 0; " name="remember_me"/>
 			<div class="clear"></div>
 			
-			<br />
+			<br/>
+			<h:commandButton style="margin: -20px 0 0 287px;" value="Aceptar" action="#{Login.login}"></h:commandButton>
 			
-			<input type="submit" style="margin: -20px 0 0 287px;" class="button" name="commit" value="Log in"/>	
 		</fieldset>
-	</form>
-	
+	</h:form>
+	</f:view>
 </body>
 
 </html>

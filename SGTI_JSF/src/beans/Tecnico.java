@@ -1,9 +1,6 @@
 package beans;
 
-import javax.persistence.Entity;
 
-
-@Entity
 public class Tecnico extends Usuario {
 
 	/**
@@ -18,7 +15,7 @@ public class Tecnico extends Usuario {
 	public Tecnico(){
 		
 	}
-	public Tecnico(String cedula, String ape,String nom,String celular, String direccion ){
+	public Tecnico(long cedula, String ape,String nom,String celular, String direccion ){
 		this.setCedula(cedula);
 		this.setApellido(ape);
 		this.setCelular(celular);
