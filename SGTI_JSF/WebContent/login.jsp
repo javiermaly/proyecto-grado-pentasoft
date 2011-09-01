@@ -22,11 +22,11 @@
 			<legend>Log in</legend>
 			
 			<label for="login">Cedula</label>
-			<h:inputText id="cedula" value="#{Usuario.cedula}" required="true"></h:inputText>
+			<h:inputText id="cedula" value="#{Login.cedula}" required="true"></h:inputText>
 			<div class="clear"></div>
 			
 			<label for="password">Password</label>
-			<h:inputText  id="pwd" value="#{Usuario.pwd}" required="true"></h:inputText>
+			<h:inputText  id="pwd" value="#{Login.pwd}" required="true"></h:inputText>
 			<div class="clear"></div>
 			
 			<label for="remember_me" style="padding: 0;">Remember me?</label>

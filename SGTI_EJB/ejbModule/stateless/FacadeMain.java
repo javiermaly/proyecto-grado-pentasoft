@@ -6,18 +6,12 @@ import javax.ejb.Stateless;
 
 import singleton.Singleton;
 
-import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
-
 import beans.*;
 
 @Stateless
 public class FacadeMain implements FacadeRemote {
-	//TareaRemote statelessMTar = null;
-	//ManagerT mt = new ManagerT();
-    ManagerU mu=new ManagerU();
-    ManagerC mc=new ManagerC();
-    
-    
+	
+
     Singleton singleton = new Singleton();
     TareaRemote statelessMTar = singleton.conectarMT();
     UsuarioRemote statelessMUsu = singleton.conectarMU();
@@ -273,9 +267,12 @@ public class FacadeMain implements FacadeRemote {
 	public Usuario login(long cedula, String pwd) {
 		Usuario u = statelessMUsu.login(cedula, pwd);
 		if(!(u==null)){
+			System.out.println("tengo usuario");
 			return u;
+			
 		}
 		else{
+			System.out.println("no tengo usuario");
 			return null;
 		}
 		
