@@ -10,7 +10,7 @@ import beans.Usuario;
 public interface UsuarioRemote  {
 
 	public boolean agregarUsuario(Usuario u);	
-	public boolean eliminarUsuario(int ced);	
+	public boolean eliminarUsuario(long ced);	
 	public List<Usuario> listarUsuarios();	
 	public Usuario encontrarUsuario(long ced);
 	public boolean actualizarUsuario(Usuario u);

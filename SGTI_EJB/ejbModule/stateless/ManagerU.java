@@ -33,7 +33,7 @@ public class ManagerU implements UsuarioRemote{
                 }         
         }
         
-        public boolean eliminarUsuario(int ced){
+        public boolean eliminarUsuario(long ced){
                 Usuario u;
                 u = encontrarUsuario(ced);              
                 if (u!=null){                   
@@ -72,9 +72,11 @@ public class ManagerU implements UsuarioRemote{
         public Usuario login(long cedula, String pwd){
         	Usuario u = em.find(Usuario.class, cedula);
         	if (u.getPwd().equals(pwd)){
+        		System.out.println("usuario encontrado");
         		return u;
         	}
         	else{
+        		System.out.println("no valido");
         		return null;
         	}
         	

@@ -20,8 +20,12 @@ public class ManagerC implements ClienteRemote {
         public boolean agregarCliente(Cliente c){               
                         
                 try {
+                	if(encontrarCliente(c.getId())!=null){
                         em.persist(c);  
                         return true;
+                	}
+                	else 
+                		return false;
                         
                 } catch (Exception e) {
                         e.printStackTrace();
@@ -59,7 +63,7 @@ public class ManagerC implements ClienteRemote {
         }
         
         public Cliente actualizarCliente(Cliente u){
-                u = em.merge(u);
+        		u = em.merge(u);
                 return u;       
         }
         

@@ -6,21 +6,16 @@ import javax.ejb.Stateless;
 
 import singleton.Singleton;
 
-import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
-
 import beans.*;
 
 @Stateless
 public class FacadeMain implements FacadeRemote {
-	//TareaRemote statelessMTar = null;
-	//ManagerT mt = new ManagerT();
-    ManagerU mu=new ManagerU();
-    ManagerC mc=new ManagerC();
-    
+	
+
     Singleton singleton = new Singleton();
     TareaRemote statelessMTar = singleton.conectarMT();
     UsuarioRemote statelessMUsu = singleton.conectarMU();
-
+    ClienteRemote statelessMCli = singleton.conectarMC(); 
 	
     
 	public boolean abrirTarea(Tarea t, Tipo tipo, Tiene tiene, Grupo g) {// la que realiza el administrativo
@@ -147,89 +142,137 @@ public class FacadeMain implements FacadeRemote {
 //CLIENTES
 	@Override
 	public boolean altaCliente(Cliente c) {
-		// TODO Auto-generated method stub
-		return false;
+		return statelessMCli.agregarCliente(c);
+		
 	}
 
 	@Override
-	public boolean modificarCliente(Cliente c) {
-		// TODO Auto-generated method stub
-		return false;
+	public Cliente modificarCliente(Cliente c) {
+		return statelessMCli.actualizarCliente(c);
 	}
 
 	@Override
 	public boolean bajaCliente(Cliente c) {
-		// TODO Auto-generated method stub
-		return false;
+		return statelessMCli.eliminarCliente(c.getId());
 	}
 
 	@Override
 	public boolean altaGrupo(Grupo g) {
-		// TODO Auto-generated method stub
-		return false;
+		return statelessMTar.altaGrupo(g);
+		
 	}
 
 	@Override
-	public boolean modificarGrupo(Grupo g) {
-		// TODO Auto-generated method stub
-		return false;
+	public Grupo modificarGrupo(Grupo g) {
+		return statelessMTar.actualizarGrupo(g);
+		
 	}
 
 	@Override
 	public boolean bajaGrupo(Grupo g) {
-		// TODO Auto-generated method stub
 		return false;
+		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public boolean altaAdministrador(Administrador admin) {
-		// TODO Auto-generated method stub
-		return false;
+		if(statelessMUsu.encontrarUsuario(admin.getCedula()) != null){
+			return false;
+		}
+		else
+		{
+			return statelessMUsu.agregarUsuario(admin);
+		}
+		
+		
 	}
 
 	@Override
 	public boolean altaAdministrativo(Administrativo ad) {
-		// TODO Auto-generated method stub
-		return false;
+		if(statelessMUsu.encontrarUsuario(ad.getCedula()) != null){
+			return false;
+				
+		}
+		else
+		{
+			return statelessMUsu.agregarUsuario(ad);
+		}
 	}
 
 	@Override
 	public boolean altaEncargado(Encargado enc) {
-		// TODO Auto-generated method stub
-		return false;
+		if(statelessMUsu.encontrarUsuario(enc.getCedula()) != null){
+			return false;
+				
+		}
+		else
+		{
+			return statelessMUsu.agregarUsuario(enc);
+		}
 	}
 
 	@Override
 	public boolean altaTecnico(Tecnico tec) {
-		// TODO Auto-generated method stub
-		return false;
+		if(statelessMUsu.encontrarUsuario(tec.getCedula()) != null){
+			return false;
+				
+		}
+		else
+		{
+			return statelessMUsu.agregarUsuario(tec);
+		}
 	}
 
 	@Override
 	public boolean modifUsuario(Usuario usu) {
-		// TODO Auto-generated method stub
-		return false;
+		if(statelessMUsu.encontrarUsuario(usu.getCedula()) != null){
+			return statelessMUsu.actualizarUsuario(usu);
+				
+		}
+		else
+		{
+			return false;
+		
+		}
 	}
 
 	@Override
 	public boolean bajaUsu(Usuario usu) {
-		// TODO Auto-generated method stub
-		return false;
+		if(statelessMUsu.encontrarUsuario(usu.getCedula()) != null){
+			return statelessMUsu.eliminarUsuario(usu.getCedula());
+				
+		}
+		else
+		{
+			return false;
+		
+		}
 	}
 
 	@Override
 	public boolean inhabilitarUsuario(Usuario usu) {
-		// TODO Auto-generated method stub
-		return false;
+		if(statelessMUsu.encontrarUsuario(usu.getCedula()) != null){
+			usu.setHabilitado(false);
+			return statelessMUsu.actualizarUsuario(usu);
+		}
+		else
+		{
+			return false;
+		
+		}
+		
 	}
 
 	@Override
 	public Usuario login(long cedula, String pwd) {
 		Usuario u = statelessMUsu.login(cedula, pwd);
 		if(!(u==null)){
+			System.out.println("tengo usuario");
 			return u;
+			
 		}
 		else{
+			System.out.println("no tengo usuario");
 			return null;
 		}
 		
@@ -238,9 +281,8 @@ public class FacadeMain implements FacadeRemote {
 	
 
 	@Override
-	public List<Tarea> listadoTareasPorUsuario() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Tarea> listadoTareasPorUsuario(Usuario u) {
+		return statelessMTar.tareasPorUsuario(u);
 	}
 
 //	@Override

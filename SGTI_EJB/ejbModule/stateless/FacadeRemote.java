@@ -24,12 +24,12 @@ public interface FacadeRemote {
         
         //CLIENTES
         public boolean altaCliente(Cliente c);
-        public boolean modificarCliente(Cliente c);
+        public Cliente modificarCliente(Cliente c);
         public boolean bajaCliente(Cliente c); //Solo si el cliente no tiene tareas asignadas
         
         //GRUPO
         public boolean altaGrupo(Grupo g);
-        public boolean modificarGrupo(Grupo g);
+        public Grupo modificarGrupo(Grupo g);
         public boolean bajaGrupo(Grupo g);//solo si el grupo no tiene personas o tareas asignadas
         
         //USUARIOS
@@ -46,7 +46,7 @@ public interface FacadeRemote {
         //LISTADOS
         //listado de tareas asignadas por usuario.
         //listado de tareas en proceso por usuario.        
-        public List<Tarea> listadoTareasPorUsuario();//Ordenadas por PRIORIDAD, si hay mas de una con la misma prioridad se ordenan por id
+        public List<Tarea> listadoTareasPorUsuario(Usuario u);//Ordenadas por PRIORIDAD, si hay mas de una con la misma prioridad se ordenan por id
        // public boolean avanzarTareaEstado(Tarea tar, Estado est);
         public List<Tarea> listadoTareasPendientesPorGrupo(Encargado enc, Grupo gr);//Tareas sin asignar por grupo y encargado, ordenadas por prioridad, si hay mas de una con la misma prioridad se ordenan por id
         
