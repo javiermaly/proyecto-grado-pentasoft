@@ -311,4 +311,7 @@ public class FacadeMain implements FacadeRemote {
 		return null;
 	}
 
+	public Usuario encontrarUsuario(long ced){
+		return statelessMUsu.encontrarUsuario(ced);
+	}
 }
