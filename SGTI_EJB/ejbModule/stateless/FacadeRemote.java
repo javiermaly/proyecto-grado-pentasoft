@@ -41,7 +41,7 @@ public interface FacadeRemote {
         public boolean bajaUsu(Usuario usu); //Solo si no trabajo sobre alguna tarea
         public boolean inhabilitarUsuario(Usuario usu);
         public Usuario login(long cedula, String pwd);//si existe el usr y si esta habilitado
-       
+        public Usuario encontrarUsuario(long ced);
        
         //LISTADOS
         //listado de tareas asignadas por usuario.

@@ -6,20 +6,25 @@
 <managed-bean>
 		<managed-bean-name>LoginBean</managed-bean-name>
 		<managed-bean-class>negocio.LoginBean</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>request</managed-bean-scope>
 		<managed-property>
 			<property-name>usuSession</property-name>
 			<value>#{UsuarioBean}</value>
 		</managed-property>
 		
 </managed-bean>
+<managed-bean>
+		<managed-bean-name>UsuarioBean</managed-bean-name>
+		<managed-bean-class>negocio.UsuarioBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+</managed-bean>
 
 
 <navigation-rule>
 		<from-view-id>/login.jsp</from-view-id>
 		<navigation-case>
-			<from-outcome>personaLogueada</from-outcome>
-			<to-view-id>/exito.jsp</to-view-id>
+			<from-outcome>usuarioLogueado</from-outcome>
+			<to-view-id>/loginOK.jsp</to-view-id>
 		</navigation-case>
 </navigation-rule>
 
@@ -31,19 +36,6 @@
 		</navigation-case>
 </navigation-rule>
 
-<navigation-rule>
-		<from-view-id>/login.jsp</from-view-id>
-		<navigation-case>
-			<from-outcome>personaLogueadaAdministrador</from-outcome>
-			<to-view-id>/exitoAdministrador.jsp</to-view-id>
-		</navigation-case>
-</navigation-rule>
 
-<navigation-rule>
-		<from-view-id>/login.jsp</from-view-id>
-		<navigation-case>
-			<from-outcome>personaLogueadaEncargado</from-outcome>
-			<to-view-id>/exitoEncargado.jsp</to-view-id>
-		</navigation-case>
-</navigation-rule>
+
 </faces-config>

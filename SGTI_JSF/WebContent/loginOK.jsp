@@ -12,12 +12,19 @@
 <body>
 <f:view>
 	<h:form>	
-		<h:panelGrid columns="1">
+		
+		<h:panelGrid columns="1" rendered="#{LoginBean.perfil==1}">
 			<h:outputText value="Logueado Correctamente como ADMINISTRADOR!!!"></h:outputText>
-			<h:commandLink action="VolverIngreso">
-				<%-- En vez de commandButton puede hacerse un enlace 'clásico' con<h:outputText value="Volver"/> --%> 
-				<h:commandButton id="submit" value="Volver" />
-			</h:commandLink>
+		</h:panelGrid>
+		
+		<h:panelGrid columns="1" rendered="#{LoginBean.perfil==2}">
+			<h:outputText value="Logueado Correctamente como ADMINISTRATIVO!!!"></h:outputText>
+		</h:panelGrid>
+		<h:panelGrid columns="1" rendered="#{LoginBean.perfil==3}">
+			<h:outputText value="Logueado Correctamente como ENCARGADO!!!"></h:outputText>
+		</h:panelGrid>
+		<h:panelGrid columns="1" rendered="#{LoginBean.perfil==4}">
+			<h:outputText value="Logueado Correctamente como TECNICO!!!"></h:outputText>
 		</h:panelGrid>
 		
 	</h:form>
