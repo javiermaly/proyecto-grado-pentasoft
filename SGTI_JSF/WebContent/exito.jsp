@@ -13,7 +13,7 @@
 <f:view>
 	<h:form>	
 		<h:panelGrid columns="1">
-			<h:outputText value="Persona ingresada o eliminada con la cedula: #{PersonaBean.cedula}"></h:outputText>
+			<h:outputText value="Logueado Correctamente!!!"></h:outputText>
 			<h:commandLink action="VolverIngreso">
 				<%-- En vez de commandButton puede hacerse un enlace 'clásico' con<h:outputText value="Volver"/> --%> 
 				<h:commandButton id="submit" value="Volver" />

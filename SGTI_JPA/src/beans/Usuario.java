@@ -17,7 +17,7 @@ public class Usuario implements Serializable {
 
 	   
 	@Id
-	private String cedula;
+	private long cedula;
 	private String nombre;
 	private String apellido;
 	private String usuario;
@@ -31,11 +31,11 @@ public class Usuario implements Serializable {
 	public Usuario() {
 		super();
 	}   
-	public String getCedula() {
+	public long getCedula() {
 		return this.cedula;
 	}
 
-	public void setCedula(String cedula) {
+	public void setCedula(long cedula) {
 		this.cedula = cedula;
 	}   
 	public String getNombre() {
