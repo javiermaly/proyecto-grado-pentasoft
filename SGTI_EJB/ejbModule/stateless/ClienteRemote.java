@@ -10,9 +10,9 @@ import beans.Cliente;
 public interface ClienteRemote {
 	
 	public boolean agregarCliente(Cliente c);	
-	public boolean eliminarCliente(int ced);	
+	public boolean eliminarCliente(long cedRut);	
 	public List<Cliente> listarClientes();	
-	public Cliente encontrarCliente(int ced);	
+	public Cliente encontrarCliente(long cedRut);	
 	public Cliente actualizarCliente(Cliente u);
 		
 }

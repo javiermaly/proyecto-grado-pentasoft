@@ -33,9 +33,9 @@ public class ManagerC implements ClienteRemote {
                 }
         }
         
-        public boolean eliminarCliente(int ced){
+        public boolean eliminarCliente(long cedRut){
                 Cliente c;
-                c = encontrarCliente(ced);              
+                c = encontrarCliente(cedRut);              
                 if (c!=null){   
                         try{
                                 em.remove(c);
@@ -57,8 +57,8 @@ public class ManagerC implements ClienteRemote {
                 return listaClientes;
         }
                 
-        public Cliente encontrarCliente(int ced){
-                Cliente p = em.find(Cliente.class, ced);
+        public Cliente encontrarCliente(long cedRut){
+                Cliente p = em.find(Cliente.class, cedRut);
                 return p;
         }
         

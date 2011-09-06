@@ -20,8 +20,7 @@ public class Cliente implements Serializable {
 	private int id;
 	private String empresa;
 	private String nombre_RazonSocial;
-	private long cedula;
-	private long rut;
+	private long cedRut;
 	private String telefono;
 	private String direccion;
 	private @Temporal(TemporalType.DATE)Calendar fechaFinGarantia;
@@ -37,27 +36,25 @@ public class Cliente implements Serializable {
 	
 	
 	public Cliente(int id, String empresa, String nombre_RazonSocial,
-			long cedula, long rut, String telefono, String direccion,
+			long cedRut, String telefono, String direccion,
 			Calendar fechaFinGarantia) {
 		super();
 		this.id = id;
 		this.empresa = empresa;
 		this.nombre_RazonSocial = nombre_RazonSocial;
-		this.cedula = cedula;
-		this.rut = rut;
+		this.cedRut = cedRut;
 		this.telefono = telefono;
 		this.direccion = direccion;
 		this.fechaFinGarantia = fechaFinGarantia;
 	}
 	
 	public Cliente(int id, String empresa, String nombre_RazonSocial,
-			long cedula, long rut, String telefono, String direccion) {
+			long cedRut, String telefono, String direccion) {
 		super();
 		this.id = id;
 		this.empresa = empresa;
 		this.nombre_RazonSocial = nombre_RazonSocial;
-		this.cedula = cedula;
-		this.rut = rut;
+		this.cedRut = cedRut;
 		this.telefono = telefono;
 		this.direccion = direccion;
 		
@@ -89,22 +86,14 @@ public class Cliente implements Serializable {
 		this.nombre_RazonSocial = nombre_RazonSocial;
 	}
 
-	public long getCedula() {
-		return cedula;
+	public long getCedRut() {
+		return cedRut;
 	}
 
-	public void setCedula(long cedula) {
-		this.cedula = cedula;
+	public void setCedRut(long cedRut) {
+		this.cedRut = cedRut;
 	}
-
-	public long getRut() {
-		return rut;
-	}
-
-	public void setRut(long rut) {
-		this.rut = rut;
-	}
-
+	
 	public String getTelefono() {
 		return telefono;
 	}
