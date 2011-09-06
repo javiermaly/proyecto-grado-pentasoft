@@ -23,6 +23,7 @@ public interface FacadeRemote {
         public boolean cerrarTarea(Tarea tar, Usuario usu);//solo los ADM
         
         //CLIENTES
+        public Cliente buscarCliente(long cedRut);
         public boolean altaCliente(Cliente c);
         public Cliente modificarCliente(Cliente c);
         public boolean bajaCliente(Cliente c); //Solo si el cliente no tiene tareas asignadas

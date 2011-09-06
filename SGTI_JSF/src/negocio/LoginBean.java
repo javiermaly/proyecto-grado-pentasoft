@@ -1,6 +1,6 @@
 package negocio;
 
-import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
+
 
 import beans.Administrador;
 import beans.Administrativo;
@@ -13,13 +13,14 @@ import conexion.ConexionEJB;
 
 
 public class LoginBean {
-	private UsuarioBean usuSession;
+	UsuarioBean usuSession;
 	private long cedula;
 	private String pwd;
-	private int perfil;
+	//private int perfil;
 	
 	ConexionEJB con = new ConexionEJB();	
 	FacadeRemote statelessFacade= con.conectar();
+	
 	
 	
 	
@@ -44,34 +45,39 @@ public class LoginBean {
 		this.usuSession = usuSession;
 	}
 	
-	public int getPerfil() {
-		return perfil;
-	}
-	public void setPerfil(int perfil) {
-		this.perfil = perfil;
-	}
+//	public int getPerfil() {
+//		return perfil;
+//	}
+//	public void setPerfil(int perfil) {
+//		this.perfil = perfil;
+//	}
 	public String login(){
 		
 		if(!((statelessFacade.login(cedula, pwd))==null)){
 			Usuario u = statelessFacade.encontrarUsuario(cedula);
-			usuSession.setUsuarioSession(u);
+			usuSession.setUsuarioSession(u);//colgar usuario de la session
 			System.out.println(usuSession.getUsuarioSession().getApellido());
 			System.out.println("metodo login");
 						
 			if(usuSession.getUsuarioSession() instanceof Administrador){
 				System.out.println("es administrador");
-				perfil=1;
+				usuSession.setPerfil(1);
+				//perfil=1;
+				
 				
 			}else if(usuSession.getUsuarioSession() instanceof Administrativo){
 				System.out.println("es administrativor");
-				perfil=2;
+				usuSession.setPerfil(2);
+				//perfil=2;
 				
 			}else if(usuSession.getUsuarioSession() instanceof Encargado){
-				perfil=3;
+				usuSession.setPerfil(3);
+				//perfil=3;
 				System.out.println("es encargado");
 				
 			}else if(usuSession.getUsuarioSession() instanceof Tecnico){
-				perfil=4;
+				usuSession.setPerfil(4);
+				//perfil=4;
 				System.out.println("tecnico");
 				
 			}

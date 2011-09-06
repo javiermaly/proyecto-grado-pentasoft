@@ -9,17 +9,17 @@
 <head>
 <title></title>
 	<script>
-	function cambiarClase(obj,clase){
-		document.getElementById(obj).className=clase;
-	}
+		function cambiarClase(obj,clase){
+			document.getElementById(obj).className=clase;
+		}
 	</script>
-	<style type="text/css" ></style>
+<!--	<style type="text/css">@import url("estilo.css");</style> -->
 	
-	<link rel="stylesheet" type="text/css" href="estilo.css" media="screen" />
+ 	<link rel="stylesheet" type="text/css" href="estilo.css" media="screen" /> 
 
 <f:subview id="header">
 
-	<h:form rendered="#{LoginBean.perfil==1}">	
+	<h:form rendered="#{UsuarioBean.perfil==1}">	
 		<h1>ADMINISTRADOR</h1>
 			<div style="width: 150px">
 				<ul class="menu">
@@ -52,7 +52,7 @@
 			</div>
 				
 	</h:form>
-	<h:form rendered="#{LoginBean.perfil==2}">	
+	<h:form rendered="#{UsuarioBean.perfil==2}">	
 		<h1>ADMINISTRATIVO</h1>			
 				<table border="1">					
 					<tr>
@@ -69,7 +69,7 @@
 					</tr>					
 				</table>		
 	</h:form>
-	<h:form rendered="#{LoginBean.perfil==3}">	
+	<h:form rendered="#{UsuarioBean.perfil==3}">	
 		<h1>ENCARGADO</h1>			
 				<table border="1">
 					<tr>
@@ -89,7 +89,7 @@
 					</tr>				
 				</table>		
 	</h:form>
-	<h:form rendered="#{LoginBean.perfil==4}">	
+	<h:form rendered="#{UsuarioBean.perfil==4}">	
 		<h1>TECNICO</h1>			
 				<table border="1">
 					<tr>

@@ -140,6 +140,13 @@ public class FacadeMain implements FacadeRemote {
 	
 	
 //CLIENTES
+	
+	public Cliente buscarCliente(long cedRut){
+		
+		return statelessMCli.encontrarCliente(cedRut);
+	}
+	
+	
 	@Override
 	public boolean altaCliente(Cliente c) {
 		return statelessMCli.agregarCliente(c);
@@ -156,6 +163,9 @@ public class FacadeMain implements FacadeRemote {
 		return statelessMCli.eliminarCliente(c.getId());
 	}
 
+	
+	
+//GRUPOS
 	@Override
 	public boolean altaGrupo(Grupo g) {
 		return statelessMTar.altaGrupo(g);
