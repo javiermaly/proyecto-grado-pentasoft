@@ -17,8 +17,6 @@ public class Cliente implements Serializable {
 
 	@Id
 	private long cedRut;
-//	@GeneratedValue(strategy=GenerationType.IDENTITY)
-//	private int id;
 	private String empresa;
 	private String nombre_RazonSocial;
 	private String telefono;

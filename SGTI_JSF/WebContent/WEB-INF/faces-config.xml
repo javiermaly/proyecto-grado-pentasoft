@@ -52,19 +52,27 @@
 </navigation-rule>
 
 <navigation-rule>
-		<from-view-id>/buscarCliente.jsp</from-view-id>
+		<from-view-id>/abrirTarea.jsp</from-view-id>
 		<navigation-case>
 			<from-outcome>clienteEcontradoAbrirTarea</from-outcome>
 			<to-view-id>/abrirTarea.jsp</to-view-id>
 		</navigation-case>
-</navigation-rule>
-<navigation-rule>
-		<from-view-id>/buscarCliente.jsp</from-view-id>
 		<navigation-case>
 			<from-outcome>clienteNoEcontrado</from-outcome>
 			<to-view-id>/error.jsp</to-view-id>
 		</navigation-case>
 </navigation-rule>
 
+<navigation-rule>
+		<from-view-id>/buscarCliente.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>clienteEcontrado</from-outcome>
+			<to-view-id>/buscarCliente.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>clienteNoEcontrado</from-outcome>
+			<to-view-id>/error.jsp</to-view-id>
+		</navigation-case>
+</navigation-rule>
 
 </faces-config>
