@@ -4,12 +4,11 @@
 
 <h:form>
 	<h1>Buscar Cliente</h1>			
-		<table border="1">
+		<table>
 			<tr>
 				<td><h:outputText> Cedula o RUT del Cliente </h:outputText></td>
 				<td><h:inputText id="cedrut" value="#{ClienteBean.cedRut}" required="true"></h:inputText></td>
-			</tr>
-			<tr><h:commandButton style="margin: -20px 0 0 287px;" value="Aceptar" action="#{ClienteBean.buscarClienteAbrirTarea}"></h:commandButton>
+				<td><h:commandButton  value="Aceptar" action="#{ClienteBean.buscarClienteAbrirTarea}"></h:commandButton></td>
 			</tr>
 		</table>
 </h:form>
