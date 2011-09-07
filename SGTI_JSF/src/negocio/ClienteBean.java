@@ -12,6 +12,22 @@ public class ClienteBean {
 	ConexionEJB con = new ConexionEJB();	
 	FacadeRemote statelessFacade= con.conectar();
 	
+		
+	public long getCedRut() {
+		return cedRut;
+	}
+	public void setCedRut(long cedRut) {
+		this.cedRut = cedRut;
+	}
+	public ClienteSession getCliSession() {
+		return cliSession;
+	}
+	public void setCliSession(ClienteSession cliSession) {
+		this.cliSession = cliSession;
+	}
+
+
+
 	public String buscarClienteAbrirTarea(){
 		
 		if(!((statelessFacade.buscarCliente(cedRut))==null)){
@@ -20,9 +36,9 @@ public class ClienteBean {
 			System.out.println(cliSession.getClienteSession().getNombre_RazonSocial());
 			System.out.println("cliente encontrado y puesto en la session");
 		
-			return "cliente econtradoAbrirTarea";
+			return "clienteEcontradoAbrirTarea";
 		}else{
-			return "cliente NoEncontrado";
+			return "clienteNoEncontrado";
 		}	
 	}
 	

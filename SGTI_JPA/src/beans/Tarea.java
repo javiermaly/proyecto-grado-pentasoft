@@ -39,6 +39,7 @@ public class Tarea implements Serializable {
 	private Tipo tipo;	
 	@OneToMany(mappedBy="tarea")
 	private List<Realiza> listRealiza=new ArrayList<Realiza>();	
+	
 	@ManyToOne
 	private Cliente cliente;	
 	
