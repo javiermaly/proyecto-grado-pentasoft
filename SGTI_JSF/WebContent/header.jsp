@@ -8,66 +8,99 @@
 <html>
 <head>
 <title></title>
-	<script>
-		function cambiarClase(obj,clase){
-			document.getElementById(obj).className=clase;
-		}
-	</script>
-<!--	<style type="text/css">@import url("estilo.css");</style> -->
+
+	<style type="text/css" ></style>
 	
- 	<link rel="stylesheet" type="text/css" href="estilo.css" media="screen" /> 
+	<link rel="stylesheet" type="text/css" href="estilo.css" media="screen" />
 
 <f:subview id="header">
 
 	<h:form rendered="#{UsuarioBean.perfil==1}">	
 		<h1>ADMINISTRADOR</h1>
-			<div style="width: 150px">
-				<ul class="menu">
-					<li onMouseOver="cambiarClase('submenu1','mostrar');"
-						onMouseOut="cambiarClase('submenu1','');"><h:outputLink ><f:verbatim> TAREAS</f:verbatim></h:outputLink> 
-						<ul id="submenu1">
-							<li><h:outputLink value="error.jsp"><f:verbatim> Abrir Tarea</f:verbatim></h:outputLink> 
-							</li>
-							<li><h:outputLink value="error.jsp"><f:verbatim> Cerrar Tarea</f:verbatim></h:outputLink> 
-							</li>
-						</ul></li>
-					<li><a href="#">Item 2</a>
-					</li>
-					<li onMouseOver="cambiarClase('submenu3','mostrar');"
-						onMouseOut="cambiarClase('submenu3','');"><a href="#">Item
-							3</a>
-						<ul id='submenu3'>
-							<li><a href="#">Item 3.1</a>
-							</li>
-							<li><a href="#">Item 3.2</a>
-							</li>
-							<li><a href="#">Item 3.3</a>
-							</li>
-							<li><a href="#">Item 3.4</a>
-							</li>
-						</ul></li>
-					<li><a href="#">Item 4</a>
-					</li>
-				</ul>
-			</div>
-				
+			<div id="menu">
+            <ul id="nav">
+ 
+            <li><span>Clientes</span>
+                <ul>
+                    <li><a href="#">Buscar Cliente</a></li>
+                    <li><a href="#">Alta Cliente</a></li>
+                    <li><a href="#">Baja Cliente</a></li>
+                    <li><a href="#">Modificación Cliente</a></li>
+                    <li><a href="#">Listado de Clientes</a></li>
+               </ul>
+            </li>
+ 
+            <li><span>Usuarios</span>
+                <ul>
+                    <li><a href="#">Buscar Usuario </a></li>
+                    <li><a href="#">Alta Usuario</a></li>
+                    <li><a href="#">Baja Usuario</a></li>
+                    <li><a href="#">Modificación Usuario</a></li>
+                    <li><a href="#">Habilitación Usuario</a></li>
+                    <li><a href="#">Listado de Usuarios</a></li>
+               </ul>
+            </li>            
+            <li><span>Grupos</span>
+ 
+                <ul>
+                  <li><a href="#">Buscar Grupo</a></li>
+                  <li><a href="#">Alta Grupo</a></li>
+                  <li><a href="#">Baja Grupo</a></li>
+                  <li><a href="#">Modificación Grupo</a></li>
+                  <li><a href="#">Listado de Grupos</a></li>
+               </ul>
+            </li>
+             <li><span>Listados</span>
+ 
+                <ul>
+                  <li><a href="#">listado</a></li>
+            
+               </ul>
+            </li>
+        </ul>
+ 
+    </div>
 	</h:form>
 	<h:form rendered="#{UsuarioBean.perfil==2}">	
-		<h1>ADMINISTRATIVO</h1>			
-				<table border="1">					
-					<tr>
-						<th><h:commandLink onfocus="sarasaaa">Abrir Tarea</h:commandLink></th>
-					</tr>
-					<tr>
-						<th>Cerrar Tareas</th>
-					</tr>
-					<tr>
-						<th>Buscar Cliente</th>
-					</tr>
-					<tr>
-						<th>Buscar Técnico</th>
-					</tr>					
-				</table>		
+	<h1>ADMINISTRADOR</h1>
+			<div id="menu">
+            <ul id="nav">
+ 
+            <li><span>Clientes</span>
+                <ul>
+                    <li><a href="buscarCliente.jsp">Buscar Cliente</a></li>
+                    <li><a href="#">Alta Cliente</a></li>
+                    <li><a href="#">Baja Cliente</a></li>
+                    <li><a href="#">Modificación Cliente</a></li>
+                    <li><a href="#">Listado de Clientes</a></li>
+               </ul>
+            </li>
+ 
+            <li><span>Usuarios</span>
+                <ul>
+                    <li><a href="#">Buscar Usuario </a></li>
+                </ul>
+            </li>            
+            <li><span>Tareas</span>
+ 
+                <ul>
+                  <li><a href="#">Buscar Tarea</a></li>
+                  <li><a href="#">Abrir Tarea</a></li>
+                  <li><a href="#">Modificar Tarea</a></li>
+                  <li><a href="#">Reabrir Tarea</a></li>
+                  <li><a href="#">Cerrar Tarea</a></li>
+               </ul>
+            </li>
+             <li><span>Listados</span>
+ 
+                <ul>
+                  <li><a href="#">listado</a></li>
+            
+               </ul>
+            </li>
+        </ul>
+ 
+    </div>	
 	</h:form>
 	<h:form rendered="#{UsuarioBean.perfil==3}">	
 		<h1>ENCARGADO</h1>			
