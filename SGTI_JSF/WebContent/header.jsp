@@ -62,13 +62,13 @@
     </div>
 	</h:form>
 	<h:form rendered="#{UsuarioBean.perfil==2}">	
-	<h1>ADMINISTRADOR</h1>
+	<h1>ADMINISTRATIVO</h1>
 			<div id="menu">
             <ul id="nav">
  
             <li><span>Clientes</span>
                 <ul>
-                    <li><a href="buscarCliente.jsp">Buscar Cliente</a></li>
+                    <li><a href="buscarCliente.jsf">Buscar Cliente</a></li>
                     <li><a href="#">Alta Cliente</a></li>
                     <li><a href="#">Baja Cliente</a></li>
                     <li><a href="#">Modificación Cliente</a></li>
@@ -85,7 +85,7 @@
  
                 <ul>
                   <li><a href="#">Buscar Tarea</a></li>
-                  <li><a href="#">Abrir Tarea</a></li>
+                  <li><a href="abrirTarea.jsf">Abrir Tarea</a></li>
                   <li><a href="#">Modificar Tarea</a></li>
                   <li><a href="#">Reabrir Tarea</a></li>
                   <li><a href="#">Cerrar Tarea</a></li>
