@@ -11,16 +11,16 @@ import javax.persistence.*;
 		@NamedQuery(name="todosClientes", query="select c from Cliente c"),
 		
 	})
+	
 @Entity
-
 public class Cliente implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private long cedRut;
+//	@GeneratedValue(strategy=GenerationType.IDENTITY)
+//	private int id;
 	private String empresa;
 	private String nombre_RazonSocial;
-	private long cedRut;
 	private String telefono;
 	private String direccion;
 	private @Temporal(TemporalType.DATE)Calendar fechaFinGarantia;
@@ -39,7 +39,7 @@ public class Cliente implements Serializable {
 			long cedRut, String telefono, String direccion,
 			Calendar fechaFinGarantia) {
 		super();
-		this.id = id;
+		
 		this.empresa = empresa;
 		this.nombre_RazonSocial = nombre_RazonSocial;
 		this.cedRut = cedRut;
@@ -51,7 +51,7 @@ public class Cliente implements Serializable {
 	public Cliente(int id, String empresa, String nombre_RazonSocial,
 			long cedRut, String telefono, String direccion) {
 		super();
-		this.id = id;
+		
 		this.empresa = empresa;
 		this.nombre_RazonSocial = nombre_RazonSocial;
 		this.cedRut = cedRut;
@@ -62,14 +62,7 @@ public class Cliente implements Serializable {
 
 
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
+	
 	public String getEmpresa() {
 		return empresa;
 	}

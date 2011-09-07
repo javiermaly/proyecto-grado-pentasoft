@@ -14,11 +14,26 @@
 		
 </managed-bean>
 <managed-bean>
+		<managed-bean-name>ClienteBean</managed-bean-name>
+		<managed-bean-class>negocio.ClienteBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>cliSession</property-name>
+			<value>#{ClienteSession}</value>
+		</managed-property>
+		
+</managed-bean>
+
+<managed-bean>
 		<managed-bean-name>UsuarioBean</managed-bean-name>
 		<managed-bean-class>negocio.UsuarioBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 </managed-bean>
-
+<managed-bean>
+		<managed-bean-name>ClienteSession</managed-bean-name>
+		<managed-bean-class>negocio.ClienteSession</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+</managed-bean>
 
 <navigation-rule>
 		<from-view-id>/login.jsp</from-view-id>
@@ -36,6 +51,20 @@
 		</navigation-case>
 </navigation-rule>
 
+<navigation-rule>
+		<from-view-id>/buscarCliente.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>clienteEcontradoAbrirTarea</from-outcome>
+			<to-view-id>/abrirTarea.jsp</to-view-id>
+		</navigation-case>
+</navigation-rule>
+<navigation-rule>
+		<from-view-id>/buscarCliente.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>clienteNoEcontrado</from-outcome>
+			<to-view-id>/error.jsp</to-view-id>
+		</navigation-case>
+</navigation-rule>
 
 
 </faces-config>
