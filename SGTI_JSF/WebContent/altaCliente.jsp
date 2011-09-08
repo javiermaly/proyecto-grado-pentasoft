@@ -5,6 +5,8 @@
 	<f:subview id="header">
 		<%@include file="header.jsp"%>
 	</f:subview>
+	
+	
 	<h:form>
 		<h1>Alta de Cliente</h1>
 		<table>
@@ -23,11 +25,10 @@
 	<h:form rendered="#{ClienteBean.nombreRazSocial == null }">
 		<table border="1">
 			<tr>
-			<td><h:inputText id="cedrut" value="#{ClienteBean.cedRut}"
-						required="true"></h:inputText>
-				</td>
+			<h:inputText id="cedrut" required="true" value="#{ClienteBean.cedRut}"></h:inputText>
+			
 				<th>Nombre Completo / Razón Social:</th>
-				<td><h:inputText
+				<td><h:inputText 
 						value="#{ClienteBean.nombreRazSocial}"></h:inputText>
 				</td>
 			</tr>
@@ -54,7 +55,7 @@
 		</table>
 	</h:form>
 	<h:form rendered="#{ClienteBean.nombreRazSocial != null }">
-		<f:verbatim>EL CLIENTE YA EXISTE</f:verbatim>
+		<f:verbatim>CLIENTE DADO DE ALTA</f:verbatim>
 	</h:form>
 
 </f:view>

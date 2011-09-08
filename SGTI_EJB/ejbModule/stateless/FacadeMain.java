@@ -142,7 +142,7 @@ public class FacadeMain implements FacadeRemote {
 //CLIENTES
 	
 	public Cliente buscarCliente(long cedRut){
-		
+		System.out.println("EJB facade buscarClienre: "+cedRut);
 		return statelessMCli.encontrarCliente(cedRut);
 	}
 	
