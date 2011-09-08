@@ -103,7 +103,7 @@ public class TareaBean {
 		t.setTipo(tip);
 		t.agregarTiene(tiene);
 		
-		g.asignaTarea(t);	
+		
 		
 		if(statelessFacade.abrirTarea(t, tiene, g)){		
 			System.out.println("TAREA DADA DE ALTA");

@@ -34,9 +34,9 @@ public class ManagerT implements TareaRemote {
 			em.persist(tiene);
 			em.persist(t);
 			//em.persist(gr);
-//			gr=em.merge(gr);
-//			gr=encontrarGrupo(gr.getId());			
-//			gr.asignaTarea(t);			
+			gr=em.merge(gr);
+			gr=encontrarGrupo(gr.getId());			
+			gr.asignaTarea(t);			
 			em.merge(gr);
 			
 			return true;
