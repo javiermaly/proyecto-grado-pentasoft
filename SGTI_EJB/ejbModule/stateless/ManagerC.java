@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import beans.Cliente;
+import beans.Tipo;
 
 
 
@@ -20,7 +21,7 @@ public class ManagerC implements ClienteRemote {
         public boolean agregarCliente(Cliente c){               
                         
                 try {
-                	if(encontrarCliente(c.getId())!=null){
+                	if(encontrarCliente(c.getCedRut())!=null){
                         em.persist(c);  
                         return true;
                 	}
@@ -66,5 +67,7 @@ public class ManagerC implements ClienteRemote {
         		u = em.merge(u);
                 return u;       
         }
+        
+   
         
 }

@@ -19,18 +19,38 @@
 		<h1>Abrir Tarea</h1>			
 				<table border="1">
 					<tr>
+						<th>Cliente: </th><td><h:outputText value="#{ClienteSession.clienteSession.nombre_RazonSocial}" ></h:outputText></td>
+					</tr>
+					<tr>
+						<th>Prioridad: </th>
+						<td><h:selectOneRadio value="#{TareaBean.prioridad}">
+							<f:selectItem itemValue="1" itemLabel="Alta"/>
+							<f:selectItem itemValue="2" itemLabel="Media"/>
+							<f:selectItem itemValue="3" itemLabel="Baja"/>
+							</h:selectOneRadio>
+						</td>
+					</tr>					
+					<tr>
 						<th>Lugar: </th>
 						<td><h:selectOneRadio value="#{TareaBean.esExterna}">
-							<f:selectItem itemValue="si" itemLabel="Interna"/>
-							<f:selectItem itemValue="no" itemLabel="Externa"/>
+							<f:selectItem itemValue="false" itemLabel="Interna"/>
+							<f:selectItem itemValue="true" itemLabel="Externa"/>
 							</h:selectOneRadio>
 						</td>
 					</tr>
 					<tr>
 						<th>Tipo: </th>
 						<td><h:selectOneMenu value="#{TareaBean.tipo}">
-							<f:selectItem itemValue="desarrollo" itemLabel="Desarrollo"/>
-							<f:selectItem itemValue="soporte tecnico" itemLabel="Soporte Técnico"/>
+							<f:selectItem itemValue="2" itemLabel="Desarrollo"/>
+							<f:selectItem itemValue="1" itemLabel="Soporte Técnico"/>
+							</h:selectOneMenu>						
+						</td>
+					</tr>
+					<tr>
+						<th>Grupo Asingado: </th>
+						<td><h:selectOneMenu value="#{TareaBean.grupoId}">
+							<f:selectItem itemValue="1" itemLabel="soporte calle"/>
+							<f:selectItem itemValue="2" itemLabel="soporte redes"/>
 							</h:selectOneMenu>						
 						</td>
 					</tr>
@@ -45,10 +65,8 @@
 						</td>
 					</tr>					
 					<tr>
-						<th>Cliente</th><td><h:outputText value="#{ClienteSession.clienteSession.nombre_RazonSocial}" ></h:outputText></td>
-					</tr>
-					<tr>
-						<th>Fecha Comprometida(año/mes/dia)</th><td><h:inputText value="#{TareaBean.fechaComprometida}"></h:inputText> </td>
+						<th>Fecha Comprometida(año/mes/dia)</th><td><h:inputText value="#{TareaBean.fechaComprometida}"><f:convertDateTime pattern="yyyy/MM/dd"/>
+						</h:inputText> </td>
 					</tr>
 					<tr>
 						<td><h:commandButton value="Aceptar" action="#{TareaBean.abrirTarea}"></h:commandButton></td>

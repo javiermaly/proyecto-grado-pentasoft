@@ -16,7 +16,7 @@ import beans.Usuario;
 
 @Remote
 public interface TareaRemote {
-	public boolean agregarTarea(Tarea t, Tipo tipo, Tiene tiene, Grupo g);
+	public boolean agregarTarea(Tarea t, Tiene tiene, Grupo g);
 	public List<Tarea> traerTodasTareas( );
 	public Tarea encontrarTarea(int id);
 	public List<Tarea> tareasPorUsuario(Usuario u);
@@ -42,5 +42,8 @@ public interface TareaRemote {
 	public boolean reabrirTarea(Tarea t);
 	public boolean cerrarTarea(Tarea t);
 	
+    //buscar el tipo de tarea
+    public Tipo encontrarTipo(int id);       
+
 	
 }

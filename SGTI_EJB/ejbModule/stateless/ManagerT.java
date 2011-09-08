@@ -27,16 +27,16 @@ public class ManagerT implements TareaRemote {
 	
 	
 		
-	public boolean agregarTarea(Tarea t, Tipo tipo, Tiene tiene, Grupo gr ) {
+	public boolean agregarTarea(Tarea t, Tiene tiene, Grupo gr ) {
 		try {
 			
-			em.persist(tipo);
+			//em.persist(tipo);
 			em.persist(tiene);
 			em.persist(t);
 			//em.persist(gr);
-			gr=em.merge(gr);
-			gr=encontrarGrupo(gr.getId());			
-			gr.asignaTarea(t);			
+//			gr=em.merge(gr);
+//			gr=encontrarGrupo(gr.getId());			
+//			gr.asignaTarea(t);			
 			em.merge(gr);
 			
 			return true;
@@ -424,7 +424,11 @@ public class ManagerT implements TareaRemote {
 		return retorno;
 	}
 	
-	
+    //buscar el tipo de tarea
+    public Tipo encontrarTipo(int id){
+        Tipo t = em.find(Tipo.class, id);
+        return t;
+    }
 	
 	
 	
