@@ -22,13 +22,16 @@ public class ManagerC implements ClienteRemote {
                         
                 try {
                 	System.out.println("agregar cliente");
+                	System.out.println("EJB: doc del cliente: "+c.getCedRut());
                 	if(encontrarCliente(c.getCedRut())==null){
+                		System.out.println("EJB: no ta el cliente");
                         em.persist(c);  
                         return true;
                 	}
-                	else 
+                	else {
+                		System.out.println("EJB: ta el cliente");
                 		return false;
-                        
+                	}
                 } catch (Exception e) {
                         e.printStackTrace();
                         return false;
@@ -60,6 +63,7 @@ public class ManagerC implements ClienteRemote {
         }
                 
         public Cliente encontrarCliente(long cedRut){
+        	System.out.println("EJB encontrarCliente: "+cedRut);
                 Cliente p = em.find(Cliente.class, cedRut);
                 return p;
         }

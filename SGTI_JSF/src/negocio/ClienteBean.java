@@ -86,20 +86,25 @@ public class ClienteBean {
 		
 			return "clienteEcontrado";
 		}else{
-			cliSession.setClienteSession(null);
+			//cliSession.setClienteSession(null);
+			
+			
 			System.out.println("cliente nulo!!");
 			return "clienteNoEncontrado";
 		}	
 	}
 	
 	public String altaCliente(){
-		
+		long ceduln=getCedRut();
+		System.out.println("veo si llega la cedula: "+getCedRut());
+		System.out.println("veo si llega la cedula: "+cedRut);
 		Cliente c= new Cliente();
-		c.setCedRut(getCedRut());
+		c.setCedRut(ceduln);
+		//c.setCedRut(getCedRut());
 		c.setDireccion(getDireccion());
 		c.setNombre_RazonSocial(getNombreRazSocial());
 		c.setTelefono(getTelefono());
-		System.out.println(c.getCedRut());
+		System.out.println("altacliente en clienteBean"+c.getCedRut());
 		System.out.println(c.getNombre_RazonSocial());
 		if(statelessFacade.altaCliente(c)){
 			return "altaClienteOK";
