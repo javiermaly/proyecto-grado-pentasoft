@@ -21,7 +21,8 @@ public class ManagerC implements ClienteRemote {
         public boolean agregarCliente(Cliente c){               
                         
                 try {
-                	if(encontrarCliente(c.getCedRut())!=null){
+                	System.out.println("agregar cliente");
+                	if(encontrarCliente(c.getCedRut())==null){
                         em.persist(c);  
                         return true;
                 	}
