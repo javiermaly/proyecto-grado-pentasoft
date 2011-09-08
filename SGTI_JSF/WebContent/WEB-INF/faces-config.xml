@@ -93,4 +93,21 @@
 		</navigation-case>
 </navigation-rule>
 
+<navigation-rule>
+		<from-view-id>/altaCliente.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>clienteEcontrado</from-outcome>
+			<to-view-id>/clienteNoEncontrado.jsp</to-view-id>
+		</navigation-case>
+			<navigation-case>
+			<from-outcome>clienteNoEcontrado</from-outcome>
+			<to-view-id>/altaClienteOK.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>falloAltaCliente</from-outcome>
+			<to-view-id>/error.jsp</to-view-id>
+		</navigation-case>
+</navigation-rule>
+
+
 </faces-config>

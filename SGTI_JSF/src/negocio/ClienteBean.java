@@ -1,5 +1,7 @@
 package negocio;
 
+import java.util.Calendar;
+
 import stateless.FacadeRemote;
 import conexion.ConexionEJB;
 import beans.Cliente;
@@ -7,6 +9,10 @@ import beans.Cliente;
 public class ClienteBean {
 
 	private long cedRut;
+	private String nombreRazSocial;
+	private String direccion;
+	private String telefono;
+	private Calendar fechaFinGarantia;
 	private ClienteSession cliSession;
 	
 	ConexionEJB con = new ConexionEJB();	
@@ -27,6 +33,32 @@ public class ClienteBean {
 	}
 
 
+	public String getNombreRazSocial() {
+		return nombreRazSocial;
+	}
+	public void setNombreRazSocial(String nombreRazSocial) {
+		this.nombreRazSocial = nombreRazSocial;
+	}
+	public String getDireccion() {
+		return direccion;
+	}
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+	public String getTelefono() {
+		return telefono;
+	}
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+	public Calendar getFechaFinGarantia() {
+		return fechaFinGarantia;
+	}
+	public void setFechaFinGarantia(Calendar fechaFinGarantia) {
+		this.fechaFinGarantia = fechaFinGarantia;
+	}
+	
+	
 	//buscador para el Abrir Tarea
 	public String buscarClienteAbrirTarea(){
 		Cliente c = new Cliente();
@@ -54,11 +86,26 @@ public class ClienteBean {
 		
 			return "clienteEcontrado";
 		}else{
+			cliSession.setClienteSession(null);
 			System.out.println("cliente nulo!!");
 			return "clienteNoEncontrado";
 		}	
 	}
 	
-	
+	public String altaCliente(){
+		
+		Cliente c= new Cliente();
+		c.setCedRut(getCedRut());
+		c.setDireccion(getDireccion());
+		c.setNombre_RazonSocial(getNombreRazSocial());
+		c.setTelefono(getTelefono());
+		System.out.println(c.getCedRut());
+		System.out.println(c.getNombre_RazonSocial());
+		if(statelessFacade.altaCliente(c)){
+			return "altaClienteOK";
+		}
+		else
+			return "falloAltaCliente";
+	}
 	
 }
