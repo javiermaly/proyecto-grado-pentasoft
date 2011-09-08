@@ -23,6 +23,16 @@
 		</managed-property>
 		
 </managed-bean>
+<managed-bean>
+		<managed-bean-name>TareaBean</managed-bean-name>
+		<managed-bean-class>negocio.TareaBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>cliSession</property-name>
+			<value>#{ClienteSession}</value>
+		</managed-property>
+		
+</managed-bean>
 
 <managed-bean>
 		<managed-bean-name>UsuarioBean</managed-bean-name>
@@ -59,6 +69,14 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>clienteNoEcontrado</from-outcome>
+			<to-view-id>/error.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>TareaAbierta</from-outcome>
+			<to-view-id>/loginOK.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>ErrorTareaAbierta</from-outcome>
 			<to-view-id>/error.jsp</to-view-id>
 		</navigation-case>
 </navigation-rule>

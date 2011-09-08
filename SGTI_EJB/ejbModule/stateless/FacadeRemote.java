@@ -9,7 +9,7 @@ import beans.*;
 @Remote
 public interface FacadeRemote {
         //TAREAS
-		public boolean abrirTarea(Tarea t, Tipo tipo, Tiene tiene, Grupo g);//queda dada de alta y asignada a un grupo con una prioridad determinada
+		public boolean abrirTarea(Tarea t, Tiene tiene, Grupo g);//queda dada de alta y asignada a un grupo con una prioridad determinada
         public boolean tomarTarea(Tarea t, Realiza r, Tipo ti);//cuando el tecnico trabaja sobre la tarea
         public Tarea buscarTarea(int id);
         public Tarea modificarTarea(Tarea t);
@@ -32,6 +32,7 @@ public interface FacadeRemote {
         public boolean altaGrupo(Grupo g);
         public Grupo modificarGrupo(Grupo g);
         public boolean bajaGrupo(Grupo g);//solo si el grupo no tiene personas o tareas asignadas
+        public Grupo buscarGrupo(int id);
         
         //USUARIOS
         public boolean altaAdministrador(Administrador admin);
@@ -44,6 +45,12 @@ public interface FacadeRemote {
         public Usuario login(long cedula, String pwd);//si existe el usr y si esta habilitado
         public Usuario encontrarUsuario(long ced);
        
+        //TIPO
+        public Tipo buscarTipo(int id);
+        
+        //ESTADOS
+        public Estado buscarEstado(int id);
+        
         //LISTADOS
         //listado de tareas asignadas por usuario.
         //listado de tareas en proceso por usuario.        

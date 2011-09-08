@@ -18,8 +18,8 @@ public class FacadeMain implements FacadeRemote {
     ClienteRemote statelessMCli = singleton.conectarMC(); 
 	
     
-	public boolean abrirTarea(Tarea t, Tipo tipo, Tiene tiene, Grupo g) {// la que realiza el administrativo
-		statelessMTar.agregarTarea(t, tipo, tiene, g);
+	public boolean abrirTarea(Tarea t, Tiene tiene, Grupo g) {// la que realiza el administrativo
+		statelessMTar.agregarTarea(t, tiene, g);
 		return true;
 	}
 
@@ -160,7 +160,7 @@ public class FacadeMain implements FacadeRemote {
 
 	@Override
 	public boolean bajaCliente(Cliente c) {
-		return statelessMCli.eliminarCliente(c.getId());
+		return statelessMCli.eliminarCliente(c.getCedRut());
 	}
 
 	
@@ -183,6 +183,10 @@ public class FacadeMain implements FacadeRemote {
 		return false;
 		// TODO Auto-generated method stub
 	}
+	public Grupo buscarGrupo(int id){
+		return statelessMTar.encontrarGrupo(id);
+	}
+	
 
 	@Override
 	public boolean altaAdministrador(Administrador admin) {
@@ -287,6 +291,19 @@ public class FacadeMain implements FacadeRemote {
 		}
 		
 	}
+	public Usuario encontrarUsuario(long ced){
+		return statelessMUsu.encontrarUsuario(ced);
+	}
+	
+	//tipo
+	public Tipo buscarTipo(int id){
+		return statelessMTar.encontrarTipo(id);
+	}
+	
+	//estado
+	public Estado buscarEstado(int id){
+		return statelessMTar.encontrarEstado(id);
+	}
 
 	
 
@@ -321,7 +338,5 @@ public class FacadeMain implements FacadeRemote {
 		return null;
 	}
 
-	public Usuario encontrarUsuario(long ced){
-		return statelessMUsu.encontrarUsuario(ced);
-	}
+	
 }
