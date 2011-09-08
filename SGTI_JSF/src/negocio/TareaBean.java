@@ -18,7 +18,7 @@ public class TareaBean {
 	private String descripcion;
 	private String observacion;
 	private int tipo;
-	private Calendar fechaComprometida;
+	private Date fechaComprometida;
 	private int prioridad;
 	private int grupoId;
 	
@@ -51,10 +51,10 @@ public class TareaBean {
 	public void setTipo(int tipo) {
 		this.tipo = tipo;
 	}
-	public Calendar getFechaComprometida() {
+	public Date getFechaComprometida() {
 		return fechaComprometida;
 	}
-	public void setFechaComprometida(Calendar fechaComprometida) {
+	public void setFechaComprometida(Date fechaComprometida) {
 		this.fechaComprometida = fechaComprometida;
 	}		
 	public int getPrioridad() {
@@ -90,14 +90,15 @@ public class TareaBean {
 		
 		tiene.setEstado(statelessFacade.buscarEstado(1));
 		tiene.setFechaInicio(Calendar.getInstance());
-		
+		Calendar cal=Calendar.getInstance();
+		cal.setTime(fechaComprometida);
 		g=statelessFacade.buscarGrupo(grupoId);
 		
 		t.setCliente(c);
 		t.setDescripcion(descripcion);
 		t.setEsExterna(esExterna);
 		t.setFechaApertura(Calendar.getInstance());
-		//t.setFechaComprometida(fechaComprometida);
+		t.setFechaComprometida(cal);
 		t.setObservacion(observacion);
 		t.setPrioridad(prioridad);
 		t.setTipo(tip);

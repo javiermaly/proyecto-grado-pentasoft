@@ -1,6 +1,7 @@
 package negocio;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import stateless.FacadeRemote;
 import conexion.ConexionEJB;
@@ -12,7 +13,7 @@ public class ClienteBean {
 	private String nombreRazSocial;
 	private String direccion;
 	private String telefono;
-	private Calendar fechaFinGarantia;
+	private Date fechaFinGarantia;
 	private ClienteSession cliSession;
 	
 	ConexionEJB con = new ConexionEJB();	
@@ -51,29 +52,29 @@ public class ClienteBean {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-	public Calendar getFechaFinGarantia() {
+	public Date getFechaFinGarantia() {
 		return fechaFinGarantia;
 	}
-	public void setFechaFinGarantia(Calendar fechaFinGarantia) {
+	public void setFechaFinGarantia(Date fechaFinGarantia) {
 		this.fechaFinGarantia = fechaFinGarantia;
 	}
 	
 	
-	//buscador para el Abrir Tarea
-	public String buscarClienteAbrirTarea(){
-		Cliente c = new Cliente();
-		c = statelessFacade.buscarCliente(cedRut);
-		if(c!=null){			
-			cliSession.setClienteSession(c);
-			System.out.println(cliSession.getClienteSession().getNombre_RazonSocial());
-			System.out.println("cliente encontrado y puesto en la session");
-		
-			return "clienteEcontradoAbrirTarea";
-		}else{
-			System.out.println("cliente nulo!!");
-			return "clienteNoEncontrado";
-		}	
-	}
+//	//buscador para el Abrir Tarea
+//	public String buscarClienteAbrirTarea(){
+//		Cliente c = new Cliente();
+//		c = statelessFacade.buscarCliente(cedRut);
+//		if(c!=null){			
+//			cliSession.setClienteSession(c);
+//			System.out.println(cliSession.getClienteSession().getNombre_RazonSocial());
+//			System.out.println("cliente encontrado y puesto en la session");
+//		
+//			return "clienteEcontradoAbrirTarea";
+//		}else{
+//			System.out.println("cliente nulo!!");
+//			return "clienteNoEncontrado";
+//		}	
+//	}
 	
 	//buscador para Clientes
 	public String buscarCliente(){
@@ -86,24 +87,33 @@ public class ClienteBean {
 		
 			return "clienteEcontrado";
 		}else{
-			//cliSession.setClienteSession(null);
-			
-			
+//			cliSession.clienteSession=null;
+//			Cliente c2=new Cliente();
+//			c2.setCedRut(cedRut);
+//			cliSession.setClienteSession(c);
+//			cliSession.clienteSession.setCedRut(cedRut);
+//			
+//			cliSession.setClienteSession(c2);
 			System.out.println("cliente nulo!!");
 			return "clienteNoEncontrado";
 		}	
 	}
 	
 	public String altaCliente(){
-		long ceduln=getCedRut();
+		//long ceduln=getCedRut();
 		System.out.println("veo si llega la cedula: "+getCedRut());
 		System.out.println("veo si llega la cedula: "+cedRut);
 		Cliente c= new Cliente();
-		c.setCedRut(ceduln);
-		//c.setCedRut(getCedRut());
+		//c=cliSession.getClienteSession();
+		c.setCedRut(getCedRut());
 		c.setDireccion(getDireccion());
 		c.setNombre_RazonSocial(getNombreRazSocial());
 		c.setTelefono(getTelefono());
+		if(!(fechaFinGarantia==null)){
+			Calendar cal=Calendar.getInstance();
+			cal.setTime(fechaFinGarantia);
+			c.setFechaFinGarantia(cal);
+		}
 		System.out.println("altacliente en clienteBean"+c.getCedRut());
 		System.out.println(c.getNombre_RazonSocial());
 		if(statelessFacade.altaCliente(c)){

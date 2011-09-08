@@ -64,7 +64,7 @@
 <navigation-rule>
 		<from-view-id>/abrirTarea.jsp</from-view-id>
 		<navigation-case>
-			<from-outcome>clienteEcontradoAbrirTarea</from-outcome>
+			<from-outcome>clienteEcontrado</from-outcome>
 			<to-view-id>/abrirTarea.jsp</to-view-id>
 		</navigation-case>
 		<navigation-case>
@@ -97,7 +97,7 @@
 		<from-view-id>/altaCliente.jsp</from-view-id>
 		<navigation-case>
 			<from-outcome>clienteEcontrado</from-outcome>
-			<to-view-id>/clienteNoEncontrado.jsp</to-view-id>
+			<to-view-id>/clienteExistente.jsp</to-view-id>
 		</navigation-case>
 			<navigation-case>
 			<from-outcome>clienteNoEcontrado</from-outcome>
