@@ -25,7 +25,7 @@
                     <li><a href="buscarCliente.jsf">Buscar Cliente</a></li>
                     <li><a href="altaCliente.jsf">Alta Cliente</a></li>
                     <li><a href="#">Baja Cliente</a></li>
-                    <li><a href="#">Modificación Cliente</a></li>
+                    <li><a href="modificarCliente.jsf">Modificación Cliente</a></li>
                     <li><a href="#">Listado de Clientes</a></li>
                </ul>
             </li>
@@ -71,7 +71,7 @@
                     <li><a href="buscarCliente.jsf">Buscar Cliente</a></li>
                     <li><a href="altaCliente.jsf">Alta Cliente</a></li>
                     <li><a href="#">Baja Cliente</a></li>
-                    <li><a href="#">Modificación Cliente</a></li>
+                    <li><a href="modificarCliente.jsf">Modificación Cliente</a></li>
                     <li><a href="#">Listado de Clientes</a></li>
                </ul>
             </li>
