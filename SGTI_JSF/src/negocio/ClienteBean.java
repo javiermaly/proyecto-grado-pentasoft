@@ -102,6 +102,7 @@ public class ClienteBean {
 			// cliSession.clienteSession.setCedRut(cedRut);
 			//
 			// cliSession.setClienteSession(c2);
+			cliSession.setClienteSession(null);
 			System.out.println("cliente nulo!!");
 			return "clienteNoEncontrado";
 		}
@@ -155,5 +156,13 @@ public class ClienteBean {
 		else 
 			return "clienteNoExiste";
 
+	}
+	public String bajaCliente(){
+		Cliente c=cliSession.getClienteSession();
+		if(statelessFacade.bajaCliente(c)){
+			return "bajaClienteOK";
+		}
+		else
+			return "errorBajaCliente";
 	}
 }
