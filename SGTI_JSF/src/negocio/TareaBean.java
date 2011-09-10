@@ -21,6 +21,7 @@ public class TareaBean {
 	private Date fechaComprometida;
 	private int prioridad;
 	private int grupoId;
+	private int evento=0;
 	
 	private ClienteSession cliSession;
 	
@@ -74,7 +75,14 @@ public class TareaBean {
 	}
 	public void setCliSession(ClienteSession cliSession) {
 		this.cliSession = cliSession;
+	}	
+	public int getEvento() {
+		return evento;
 	}
+	public void setEvento(int evento) {
+		this.evento = evento;
+	}
+	
 	//ABRIR/CREAR LA TAREA
 	public String abrirTarea(){
 		
@@ -90,15 +98,19 @@ public class TareaBean {
 		
 		tiene.setEstado(statelessFacade.buscarEstado(1));
 		tiene.setFechaInicio(Calendar.getInstance());
-		Calendar cal=Calendar.getInstance();
-		cal.setTime(fechaComprometida);
+		
+		if (fechaComprometida != null) { //comprueba si no ingresó una fecha
+			Calendar cal=Calendar.getInstance();
+			cal.setTime(fechaComprometida);
+			t.setFechaComprometida(cal);
+		}
+		
 		g=statelessFacade.buscarGrupo(grupoId);
 		
 		t.setCliente(c);
 		t.setDescripcion(descripcion);
 		t.setEsExterna(esExterna);
 		t.setFechaApertura(Calendar.getInstance());
-		t.setFechaComprometida(cal);
 		t.setObservacion(observacion);
 		t.setPrioridad(prioridad);
 		t.setTipo(tip);
@@ -108,9 +120,11 @@ public class TareaBean {
 		
 		if(statelessFacade.abrirTarea(t, tiene, g)){		
 			System.out.println("TAREA DADA DE ALTA");
+			evento=1;//exito
 			return "TareaAbierta";
 		}else{
 			System.out.println("ERROR AL DAR DE ALTA LA TAREA");
+			evento=2;
 			return "ErrorTareaAbierta";
 		}
 		

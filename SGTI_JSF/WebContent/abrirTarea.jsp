@@ -15,6 +15,27 @@
 			</tr>
 		</table>
 </h:form>
+	<h:form rendered="#{TareaBean.evento==1}">
+		<table border="1">
+			<tr>
+				<th bgcolor="green"> Tarea Abierta con exito!!!</th>
+			</tr>
+		</table>
+	</h:form>
+	<h:form rendered="#{TareaBean.evento==2}">
+		<table border="1">
+			<tr>
+				<th> Error al abrir la Tarea!!!</th>
+			</tr>
+		</table>
+	</h:form>
+	<h:form rendered="#{ClienteBean.evento==3}">
+		<table border="1">
+			<tr>
+				<th> Cliente no existe!!!</th>
+			</tr>
+		</table>
+	</h:form>
 <h:form>	
 		<h1>Abrir Tarea</h1>			
 				<table border="1">
@@ -65,7 +86,9 @@
 						</td>
 					</tr>					
 					<tr>
-						<th>Fecha Comprometida(año/mes/dia)</th><td><h:inputText value="#{TareaBean.fechaComprometida}"><f:convertDateTime pattern="yyyy/MM/dd"/>
+						<th>Fecha Comprometida(año/mes/dia)</th>
+						<td><h:inputText value="#{TareaBean.fechaComprometida}">
+							<f:convertDateTime pattern="yyyy/MM/dd"/>
 						</h:inputText> </td>
 					</tr>
 					<tr>

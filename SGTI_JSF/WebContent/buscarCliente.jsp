@@ -23,7 +23,7 @@
 		</table>
 	</h:form>
 
-	<h:form>
+	<h:form rendered="#{ClienteBean.evento==4}">
 		<table border="1">
 			<tr>
 				<th>Empresa: </th>
@@ -37,13 +37,22 @@
 				<th>Telefono</th>
 				<th><h:outputText value="#{ClienteSession.clienteSession.telefono}"></h:outputText></th>
 			</tr>
-<!-- 			<tr> -->
-<!-- 				<th>Fecha fin de Garantia</th> -->
-<%--  				<th><h:outputText value="#{ClienteSession.clienteSession.fechaFinGarantia}"><f:convertDateTime type="date"/></h:outputText></th>  --%>
-<!-- 			</tr> -->
+			<tr>
+				<th>Fecha fin de Garantia</th>
+ 				<th><h:outputText value="#{ClienteSession.clienteSession.fechaFinGarantia.time}">
+ 						<f:convertDateTime pattern="dd/MM/yyyy"/>
+ 					</h:outputText>
+ 				</th> 
+			</tr>
 		</table>
 	</h:form>
-
+	<h:form rendered="#{ClienteBean.evento==3}">
+		<table border="1">
+			<tr>
+				<th> Cliente no existe!!!</th>
+			</tr>
+		</table>
+	</h:form>
 
 </f:view>
 </body>
