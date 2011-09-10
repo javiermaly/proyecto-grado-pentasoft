@@ -10,6 +10,7 @@ import beans.Cliente;
 public class ClienteSession {
 
 	public Cliente clienteSession;
+	
 	public Date fechaGarant;
 
 

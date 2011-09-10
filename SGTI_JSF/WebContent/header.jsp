@@ -26,7 +26,7 @@
                     <li><a href="altaCliente.jsf">Alta Cliente</a></li>
                     <li><a href="bajaCliente.jsf">Baja Cliente</a></li>
                     <li><a href="modificarCliente.jsf">Modificación Cliente</a></li>
-                    <li><a href="#">Listado de Clientes</a></li>
+                    <li><a href="listadoClientes.jsf">Listado de Clientes</a></li>
                </ul>
             </li>
  
@@ -72,7 +72,7 @@
                     <li><a href="altaCliente.jsf">Alta Cliente</a></li>
                     <li><a href="bajaCliente.jsf">Baja Cliente</a></li>
                     <li><a href="modificarCliente.jsf">Modificación Cliente</a></li>
-                    <li><a href="#">Listado de Clientes</a></li>
+                    <li><a href="listadoClientes.jsf">Listado de Clientes</a></li>
                </ul>
             </li>
  

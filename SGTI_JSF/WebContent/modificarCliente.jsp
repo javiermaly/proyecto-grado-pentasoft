@@ -38,7 +38,7 @@
 				<th>Teléfono</th>
 				<th><h:inputText value="#{ClienteBean.telefono}"></h:inputText></th>
 			</tr>
-						<tr>
+			<tr>
 				<th>Fecha fin de Garantia</th>
 				<th><h:inputText value="#{ClienteBean.fechaFinGarantia}"><f:convertDateTime type="date"/></h:inputText></th> 
 			</tr> 

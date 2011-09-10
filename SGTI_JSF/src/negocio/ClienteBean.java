@@ -2,6 +2,7 @@ package negocio;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import stateless.FacadeRemote;
 import conexion.ConexionEJB;
@@ -15,6 +16,8 @@ public class ClienteBean {
 	private String telefono;
 	private Date fechaFinGarantia;
 	private ClienteSession cliSession;
+	private List<Cliente> listClientes;
+	List<ClienteSession> listClienteSession = null;
 
 	ConexionEJB con = new ConexionEJB();
 	FacadeRemote statelessFacade = con.conectar();
@@ -66,6 +69,7 @@ public class ClienteBean {
 	public void setFechaFinGarantia(Date fechaFinGarantia) {
 		this.fechaFinGarantia = fechaFinGarantia;
 	}
+	
 
 	// //buscador para el Abrir Tarea
 	// public String buscarClienteAbrirTarea(){
@@ -82,6 +86,22 @@ public class ClienteBean {
 	// return "clienteNoEncontrado";
 	// }
 	// }
+
+	public List<ClienteSession> getListClienteSession() {
+		return listClienteSession;
+	}
+
+	public void setListClienteSession(List<ClienteSession> listClienteSession) {
+		this.listClienteSession = listClienteSession;
+	}
+
+	public List<Cliente> getListClientes() {
+		return listClientes;
+	}
+
+	public void setListClientes(List<Cliente> listClientes) {
+		this.listClientes = listClientes;
+	}
 
 	// buscador para Clientes
 	public String buscarCliente() {
@@ -168,5 +188,19 @@ public class ClienteBean {
 		}
 		else
 			return "errorBajaCliente";
+	}
+	public String listadoClientes(){
+		System.out.println("listado");
+		
+		listClientes=statelessFacade.listadoClientes();
+			
+		
+		for (Cliente cliente : listClientes) {
+			System.out.println(cliente.getNombre_RazonSocial());
+			
+		}
+		
+		return "";
+		
 	}
 }

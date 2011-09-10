@@ -24,6 +24,10 @@ id="WebApp_ID" version="2.5">
 	<servlet-name>Faces Servlet</servlet-name>
 	<url-pattern>*.jsf</url-pattern>
 </servlet-mapping>
+<context-param>
+  <param-name>onload-config</param-name>
+  <param-value>/WEB-INF/onload-config.xml</param-value>
+</context-param>
 
 <welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
