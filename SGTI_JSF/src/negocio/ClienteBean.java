@@ -89,8 +89,12 @@ public class ClienteBean {
 		c = statelessFacade.buscarCliente(cedRut);
 		if (c != null) {
 			cliSession.setClienteSession(c);
-			System.out.println(cliSession.getClienteSession()
-					.getNombre_RazonSocial());
+			if(cliSession.getClienteSession().getFechaFinGarantia()!=null){
+				Calendar fechG= cliSession.getClienteSession().getFechaFinGarantia();//si tiene fechaGarantia cargada la pasamos a Date
+				Date fechaGarant = fechG.getTime();
+				cliSession.fechaGarant=fechaGarant;
+			}
+			System.out.println(cliSession.getClienteSession().getNombre_RazonSocial());
 			System.out.println("cliente encontrado y puesto en la session");
 
 			return "clienteEcontrado";
