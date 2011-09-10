@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE faces-config PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.1//EN" "http://java.sun.com/dtd/web-facesconfig_1_1.dtd">
+
+<faces-config>
+
+<managed-bean>
+		<managed-bean-name>LoginBean</managed-bean-name>
+		<managed-bean-class>negocio.LoginBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>usuSession</property-name>
+			<value>#{UsuarioBean}</value>
+		</managed-property>
+		
+</managed-bean>
+<managed-bean>
+		<managed-bean-name>ClienteBean</managed-bean-name>
+		<managed-bean-class>negocio.ClienteBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>cliSession</property-name>
+			<value>#{ClienteSession}</value>
+		</managed-property>
+		
+</managed-bean>
+<managed-bean>
+		<managed-bean-name>TareaBean</managed-bean-name>
+		<managed-bean-class>negocio.TareaBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>cliSession</property-name>
+			<value>#{ClienteSession}</value>
+		</managed-property>
+		
+</managed-bean>
+
+<managed-bean>
+		<managed-bean-name>UsuarioBean</managed-bean-name>
+		<managed-bean-class>negocio.UsuarioBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+</managed-bean>
+<managed-bean>
+		<managed-bean-name>ClienteSession</managed-bean-name>
+		<managed-bean-class>negocio.ClienteSession</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+</managed-bean>
+
+<navigation-rule>
+		<from-view-id>/login.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>usuarioLogueado</from-outcome>
+			<to-view-id>/loginOK.jsp</to-view-id>
+		</navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+		<from-view-id>/login.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>errorLogin</from-outcome>
+			<to-view-id>/error.jsp</to-view-id>
+		</navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+		<from-view-id>/abrirTarea.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>clienteEcontrado</from-outcome>
+			<to-view-id>/abrirTarea.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>clienteNoEcontrado</from-outcome>
+			<to-view-id>/error.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>TareaAbierta</from-outcome>
+			<to-view-id>/loginOK.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>ErrorTareaAbierta</from-outcome>
+			<to-view-id>/error.jsp</to-view-id>
+		</navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+		<from-view-id>/buscarCliente.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>clienteEcontrado</from-outcome>
+			<to-view-id>/buscarCliente.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>clienteNoEcontrado</from-outcome>
+			<to-view-id>/error.jsp</to-view-id>
+		</navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+		<from-view-id>/altaCliente.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>clienteEcontrado</from-outcome>
+			<to-view-id>/clienteExistente.jsp</to-view-id>
+		</navigation-case>
+			<navigation-case>
+			<from-outcome>clienteNoEcontrado</from-outcome>
+			<to-view-id>/altaClienteOK.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>falloAltaCliente</from-outcome>
+			<to-view-id>/error.jsp</to-view-id>
+		</navigation-case>
+</navigation-rule>
+
+</faces-config>
