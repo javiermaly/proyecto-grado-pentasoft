@@ -15,6 +15,8 @@ public class ClienteBean {
 	private String telefono;
 	private Date fechaFinGarantia;
 	private ClienteSession cliSession;
+	private boolean empresa;
+	private int evento=0;//1=exito 2=error 3=noexiste 4=encontrado
 
 	ConexionEJB con = new ConexionEJB();
 	FacadeRemote statelessFacade = con.conectar();
@@ -67,47 +69,46 @@ public class ClienteBean {
 		this.fechaFinGarantia = fechaFinGarantia;
 	}
 
-	// //buscador para el Abrir Tarea
-	// public String buscarClienteAbrirTarea(){
-	// Cliente c = new Cliente();
-	// c = statelessFacade.buscarCliente(cedRut);
-	// if(c!=null){
-	// cliSession.setClienteSession(c);
-	// System.out.println(cliSession.getClienteSession().getNombre_RazonSocial());
-	// System.out.println("cliente encontrado y puesto en la session");
-	//
-	// return "clienteEcontradoAbrirTarea";
-	// }else{
-	// System.out.println("cliente nulo!!");
-	// return "clienteNoEncontrado";
-	// }
-	// }
+	public int getEvento() {
+		return evento;
+	}
+
+	public void setEvento(int evento) {
+		this.evento = evento;
+	}	
+	
+	public boolean isEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(boolean empresa) {
+		this.empresa = empresa;
+	}
 
 	// buscador para Clientes
 	public String buscarCliente() {
 		Cliente c = new Cliente();
 		c = statelessFacade.buscarCliente(cedRut);
 		if (c != null) {
+			cliSession.setClienteSession(null);
 			cliSession.setClienteSession(c);
 			if(cliSession.getClienteSession().getFechaFinGarantia()!=null){
 				Calendar fechG= cliSession.getClienteSession().getFechaFinGarantia();//si tiene fechaGarantia cargada la pasamos a Date
 				Date fechaGarant = fechG.getTime();
 				cliSession.fechaGarant=fechaGarant;
+			}else {
+				
+				cliSession.fechaGarant=null;
 			}
 			System.out.println(cliSession.getClienteSession().getNombre_RazonSocial());
 			System.out.println("cliente encontrado y puesto en la session");
-
+			evento=4;//encontrado
 			return "clienteEcontrado";
 		} else {
-			// cliSession.clienteSession=null;
-			// Cliente c2=new Cliente();
-			// c2.setCedRut(cedRut);
-			// cliSession.setClienteSession(c);
-			// cliSession.clienteSession.setCedRut(cedRut);
-			//
-			// cliSession.setClienteSession(c2);
+			
 			cliSession.setClienteSession(null);
 			System.out.println("cliente nulo!!");
+			evento=3;//noexiste
 			return "clienteNoEncontrado";
 		}
 	}
@@ -122,6 +123,8 @@ public class ClienteBean {
 		c.setDireccion(getDireccion());
 		c.setNombre_RazonSocial(getNombreRazSocial());
 		c.setTelefono(getTelefono());
+		c.setEmpresa(empresa);
+	
 		if (!(fechaFinGarantia == null)) {
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(fechaFinGarantia);
@@ -130,8 +133,10 @@ public class ClienteBean {
 		System.out.println("altacliente en clienteBean" + c.getCedRut());
 		System.out.println(c.getNombre_RazonSocial());
 		if (statelessFacade.altaCliente(c)) {
+			evento=1;
 			return "altaClienteOK";
 		} else
+			evento=2;
 			return "falloAltaCliente";
 	}
 
@@ -141,32 +146,39 @@ public class ClienteBean {
 		
 		if (!(c == null)) {
 			c.setCedRut(getCedRut());
-			c.setNombre_RazonSocial(getNombreRazSocial());
-			c.setTelefono(getTelefono());
+			c.setNombre_RazonSocial(cliSession.getClienteSession().getNombre_RazonSocial());
+			c.setTelefono(cliSession.getClienteSession().getTelefono());
 			//c.setDireccion(getDireccion());
-			if (!(fechaFinGarantia == null)) {
+			if (cliSession.getFechaGarant() != null){
 				Calendar cal = Calendar.getInstance();
-				cal.setTime(fechaFinGarantia);
+				cal.setTime(cliSession.getFechaGarant());
 				c.setFechaFinGarantia(cal);
 			}
 			cliSession.setClienteSession(c);
 			if(!((statelessFacade.modificarCliente(c))==null)){
+				evento=1;//exito
 				return "clienteModificado";
+				
 			}
 			else
+				evento=2;//error
 				return "errorModificarCliente";
+				
 
 		}
 		else 
+			evento=3;//noexiste
 			return "clienteNoExiste";
 
 	}
 	public String bajaCliente(){
 		Cliente c=cliSession.getClienteSession();
 		if(statelessFacade.bajaCliente(c)){
+			evento=1;
 			return "bajaClienteOK";
 		}
 		else
+			evento=2;
 			return "errorBajaCliente";
 	}
 }

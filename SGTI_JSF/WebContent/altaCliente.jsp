@@ -22,6 +22,14 @@
 	<h:form rendered="#{ClienteBean.nombreRazSocial == null }">
 		<table border="1">
 			<tr>
+				<th>Es empresa: </th>
+				<td><h:selectOneRadio value="#{ClienteBean.empresa}">
+					<f:selectItem itemValue="true" itemLabel="Si"/>
+					<f:selectItem itemValue="false" itemLabel="No"/>					
+					</h:selectOneRadio>
+				</td>
+			</tr>
+			<tr>
 				<th>Cédula / RUT</th>
 				<td>
 				<h:inputText id="cedrut" value="#{ClienteBean.cedRut}" ></h:inputText>
@@ -57,8 +65,26 @@
 			</tr>
 		</table>
 	</h:form>
-	<h:form rendered="#{ClienteBean.nombreRazSocial != null }">
-		<f:verbatim>CLIENTE DADO DE ALTA</f:verbatim>
+	<h:form rendered="#{ClienteBean.evento==1 }">
+		<table border="1">
+			<tr>
+				<th> Cliente ingresado con exito!!!</th>
+			</tr>
+		</table>
+	</h:form>
+	<h:form rendered="#{ClienteBean.evento==2}">
+		<table border="1">
+			<tr>
+				<th> Error al ingresarlo!!!</th>
+			</tr>
+		</table>
+	</h:form>
+	<h:form rendered="#{ClienteBean.evento==4}">
+		<table border="1">
+			<tr>
+				<th> Cliente ya existe!!!</th>
+			</tr>
+		</table>
 	</h:form>
 
 </f:view>
