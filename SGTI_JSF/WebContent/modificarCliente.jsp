@@ -23,7 +23,7 @@
 		</table>
 	</h:form>
 
-	<h:form>
+	<h:form rendered="#{ClienteBean.evento==4}">
 		<table border="1">
 			<tr>
 				<th>Cédula / RUT: </th>
@@ -31,25 +31,47 @@
 			</tr>
 			<tr>
 				<th>Nombre Completo / Razón Social:</th>
-				<td><h:inputText value="#{ClienteBean.nombreRazSocial}"></h:inputText>
+				<td><h:inputText value="#{ClienteSession.clienteSession.nombre_RazonSocial}"></h:inputText>
 				</td>
 			</tr>
 			<tr>
 				<th>Teléfono</th>
-				<th><h:inputText value="#{ClienteBean.telefono}"></h:inputText></th>
+				<td><h:inputText value="#{ClienteSession.clienteSession.telefono}"></h:inputText></td>
 			</tr>
-						<tr>
+				
+			<tr>
 				<th>Fecha fin de Garantia</th>
-				<th><h:inputText value="#{ClienteBean.fechaFinGarantia}"><f:convertDateTime type="date"/></h:inputText></th> 
+				<td><h:inputText rendered="#{ClienteSession.fechaGarant!=null}" value="#{ClienteSession.fechaGarant}">
+  					<f:convertDateTime pattern="yyyy/MM/dd"/>
+  					</h:inputText>
+  				</td> 
 			</tr> 
 			<tr>
-				<td><h:commandButton value="Aceptar"
-						action="#{ClienteBean.modificarCliente}"></h:commandButton></td>
+				<td><h:commandButton value="Aceptar"action="#{ClienteBean.modificarCliente}"></h:commandButton></td>
 			</tr>
 		</table>
 	</h:form>
-
-
+	<h:form rendered="#{ClienteBean.evento==1}">
+		<table border="1">
+			<tr>
+				<th> Cliente modificado con exito!!!</th>
+			</tr>
+		</table>
+	</h:form>
+	<h:form rendered="#{ClienteBean.evento==2}">
+		<table border="1">
+			<tr>
+				<th> Error al modificar!!!</th>
+			</tr>
+		</table>
+	</h:form>
+	<h:form rendered="#{ClienteBean.evento==3}">
+		<table border="1">
+			<tr>
+				<th> Cliente no existe!!!</th>
+			</tr>
+		</table>
+	</h:form>
 </f:view>
 </body>
 </html>
