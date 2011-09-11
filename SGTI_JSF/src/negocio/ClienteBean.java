@@ -6,7 +6,7 @@ import java.util.Date;
 import stateless.FacadeRemote;
 import conexion.ConexionEJB;
 import beans.Cliente;
-
+import java.util.List;
 public class ClienteBean {
 
 	private long cedRut;
@@ -15,6 +15,8 @@ public class ClienteBean {
 	private String telefono;
 	private Date fechaFinGarantia;
 	private ClienteSession cliSession;
+private List<Cliente> listClientes;
+List<ClienteSession> listClienteSession = null;
 	private boolean empresa;
 	private int evento=0;//1=exito 2=error 3=noexiste 4=encontrado
 
@@ -68,7 +70,22 @@ public class ClienteBean {
 	public void setFechaFinGarantia(Date fechaFinGarantia) {
 		this.fechaFinGarantia = fechaFinGarantia;
 	}
+public List<ClienteSession> getListClienteSession() {
+		return listClienteSession;
+	public void setListClienteSession(List<ClienteSession> listClienteSession) {
+	this.listClienteSession = listClienteSession;
 
+
+}
+
+
+
+	public List<Cliente> getListClientes() {
+		return listClientes;
+	}
+
+	public void setListClientes(List<Cliente> listClientes) {
+		this.listClientes = listClientes;
 	public int getEvento() {
 		return evento;
 	}
@@ -180,5 +197,19 @@ public class ClienteBean {
 		else
 			evento=2;
 			return "errorBajaCliente";
+	}
+	public String listadoClientes(){
+		System.out.println("listado");
+		
+		listClientes=statelessFacade.listadoClientes();
+			
+		
+		for (Cliente cliente : listClientes) {
+			System.out.println(cliente.getNombre_RazonSocial());
+			
+		}
+		
+		return "";
+		
 	}
 }
