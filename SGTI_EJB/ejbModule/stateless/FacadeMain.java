@@ -162,7 +162,9 @@ public class FacadeMain implements FacadeRemote {
 	public boolean bajaCliente(Cliente c) {
 		return statelessMCli.eliminarCliente(c.getCedRut());
 	}
-
+	 public List<Cliente> listadoClientes(){
+		 return statelessMCli.listarClientes();
+	 }
 	
 	
 //GRUPOS
