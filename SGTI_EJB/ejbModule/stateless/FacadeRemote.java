@@ -27,6 +27,7 @@ public interface FacadeRemote {
         public boolean altaCliente(Cliente c);
         public Cliente modificarCliente(Cliente c);
         public boolean bajaCliente(Cliente c); //Solo si el cliente no tiene tareas asignadas
+        public List<Cliente> listadoClientes();
         
         //GRUPO
         public boolean altaGrupo(Grupo g);
