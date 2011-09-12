@@ -12,10 +12,11 @@
 		<table>
 			<tr>
 				<td><h:outputText> Cedula o RUT del Cliente </h:outputText></td>
-				<td><h:inputText id="cedrut" value="#{ClienteBean.cedRut}"
-						required="true"></h:inputText></td>
-				<td><h:commandButton value="Aceptar"
-						action="#{ClienteBean.buscarCliente}"></h:commandButton></td>
+				<td><h:inputText id="cedrut" value="#{ClienteBean.cedRut}" required="true">
+					<f:converter converterId="javax.faces.Integer"/></h:inputText></td>
+					<h:message for="cedrut" style="color:red"></h:message>
+				<td><h:commandButton value="Aceptar" action="#{ClienteBean.buscarCliente}"></h:commandButton></td>
+				
 			</tr>
 		</table>
 	</h:form>
