@@ -45,6 +45,7 @@ public interface FacadeRemote {
         public boolean inhabilitarUsuario(Usuario usu);
         public Usuario login(long cedula, String pwd);//si existe el usr y si esta habilitado
         public Usuario encontrarUsuario(long ced);
+        public List<Usuario> listarUsuarios();
        
         //TIPO
         public Tipo buscarTipo(int id);

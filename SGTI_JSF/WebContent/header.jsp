@@ -32,12 +32,12 @@
  
             <li><span>Usuarios</span>
                 <ul>
-                    <li><a href="#">Buscar Usuario </a></li>
+                    <li><a href="buscarUsuario.jsf">Buscar Usuario </a></li>
                     <li><a href="#">Alta Usuario</a></li>
                     <li><a href="#">Baja Usuario</a></li>
                     <li><a href="#">Modificación Usuario</a></li>
                     <li><a href="#">Habilitación Usuario</a></li>
-                    <li><a href="#">Listado de Usuarios</a></li>
+                    <li><a href="listadoUsuarios.jsf">Listado de Usuarios</a></li>
                </ul>
             </li>            
             <li><span>Grupos</span>
@@ -78,7 +78,7 @@
  
             <li><span>Usuarios</span>
                 <ul>
-                    <li><a href="#">Buscar Usuario </a></li>
+                    <li><a href="buscarUsuario.jsf">Buscar Usuario </a></li>
                 </ul>
             </li>            
             <li><span>Tareas</span>
