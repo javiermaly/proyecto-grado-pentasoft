@@ -27,11 +27,11 @@
 		<table border="1">
 			<tr>
 				<th>Nombre: </th>
-				<th><h:outputText value="#{UsuariosBean.nombre}"></h:outputText></th>
+				<th><h:outputText value="#{usuRequest.nombre}"></h:outputText></th>
 			</tr>
 			<tr>
 				<th>Celular: </th>
-				<th><h:outputText value="#{UsuarioSession.celular}"></h:outputText></th>
+				<th><h:outputText value="#{usuRequest.celular}"></h:outputText></th>
 			</tr>
 			
 		</table>

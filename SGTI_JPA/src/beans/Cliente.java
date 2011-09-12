@@ -3,7 +3,6 @@ package beans;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
@@ -13,18 +12,18 @@ import javax.persistence.*;
 		
 	})
 	
-	
 @Entity
 public class Cliente implements Serializable {
 
 	@Id
 	private long cedRut;
+//	@GeneratedValue(strategy=GenerationType.IDENTITY)
+//	private int id;
 	private boolean empresa;
 	private String nombre_RazonSocial;
 	private String telefono;
 	private String direccion;
 	private @Temporal(TemporalType.DATE)Calendar fechaFinGarantia;
-
 		
 	@OneToMany(mappedBy="cliente")
 	private List<Tarea> tareas= new ArrayList<Tarea>();
@@ -64,15 +63,12 @@ public class Cliente implements Serializable {
 
 
 	
-	
-
-
 	public boolean getEmpresa() {
 		return empresa;
 	}
 
-	public void setEmpresa(boolean empresa) {
-		this.empresa = empresa;
+	public void setEmpresa(boolean empresa2) {
+		this.empresa = empresa2;
 	}
 
 	public String getNombre_RazonSocial() {
@@ -106,6 +102,15 @@ public class Cliente implements Serializable {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
+//
+//	public Calendar getFechaFinGarantía() {
+//		return fechaFinGarantia;
+//	}
+//
+//	public void setFechaFinGarantía(Calendar fechaFinGarantía) {
+//		this.fechaFinGarantia = fechaFinGarantia;
+//	}
+
 
 	public void setTareas(List<Tarea> tareas) {
 		this.tareas = tareas;

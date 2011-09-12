@@ -44,10 +44,10 @@
  
                 <ul>
                   <li><a href="#">Buscar Grupo</a></li>
-                  <li><a href="#">Alta Grupo</a></li>
+                  <li><a href="altaGrupo.jsf">Alta Grupo</a></li>
                   <li><a href="#">Baja Grupo</a></li>
                   <li><a href="#">Modificación Grupo</a></li>
-                  <li><a href="#">Listado de Grupos</a></li>
+                  <li><a href="listadoGrupos.jsf">Listado de Grupos</a></li>
                </ul>
             </li>
              <li><span>Listados</span>
