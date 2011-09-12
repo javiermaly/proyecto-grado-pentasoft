@@ -16,9 +16,9 @@
 				<td><h:inputText id="cedrut" value="#{ClienteBean.cedRut}" required="true">
 					<f:converter converterId="javax.faces.Integer"/></h:inputText>
 				</td>					
-				<td>
+				
 					<h:message for="cedrut" style="color:red"></h:message>
-				</td>
+			
 				<td><h:commandButton value="Aceptar"
 						action="#{ClienteBean.buscarCliente}"></h:commandButton>
 				</td>
