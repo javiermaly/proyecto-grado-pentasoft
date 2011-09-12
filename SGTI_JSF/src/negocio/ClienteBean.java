@@ -15,8 +15,8 @@ public class ClienteBean {
 	private String telefono;
 	private Date fechaFinGarantia;
 	private ClienteSession cliSession;
-private List<Cliente> listClientes;
-List<ClienteSession> listClienteSession = null;
+	private List<Cliente> listClientes;
+	List<ClienteSession> listClienteSession = null;
 	private boolean empresa;
 	private int evento=0;//1=exito 2=error 3=noexiste 4=encontrado
 
@@ -70,14 +70,14 @@ List<ClienteSession> listClienteSession = null;
 	public void setFechaFinGarantia(Date fechaFinGarantia) {
 		this.fechaFinGarantia = fechaFinGarantia;
 	}
-public List<ClienteSession> getListClienteSession() {
+	public List<ClienteSession> getListClienteSession() {
 		return listClienteSession;
-}
+	}
 	public void setListClienteSession(List<ClienteSession> listClienteSession) {
 	this.listClienteSession = listClienteSession;
 
 
-}
+	}
 
 
 
@@ -141,9 +141,9 @@ public List<ClienteSession> getListClienteSession() {
 		c.setCedRut(getCedRut());
 		c.setDireccion(getDireccion());
 		c.setNombre_RazonSocial(getNombreRazSocial());
-		c.setTelefono(getTelefono());
+		c.setTelefono(getTelefono());		
 		c.setEmpresa(empresa);
-	
+		
 		if (!(fechaFinGarantia == null)) {
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(fechaFinGarantia);
