@@ -340,5 +340,11 @@ public class FacadeMain implements FacadeRemote {
 		return null;
 	}
 
+	@Override
+	public List<Usuario> listarUsuarios() {
+		return statelessMUsu.listarUsuarios();
+		
+	}
+
 	
 }

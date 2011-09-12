@@ -40,6 +40,11 @@
 		<managed-bean-scope>session</managed-bean-scope>
 </managed-bean>
 <managed-bean>
+		<managed-bean-name>UsuariosBean</managed-bean-name>
+		<managed-bean-class>negocio.UsuariosBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+</managed-bean>
+<managed-bean>
 		<managed-bean-name>ClienteSession</managed-bean-name>
 		<managed-bean-class>negocio.ClienteSession</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>

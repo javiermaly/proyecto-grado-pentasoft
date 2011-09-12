@@ -72,6 +72,7 @@ List<ClienteSession> listClienteSession = null;
 	}
 public List<ClienteSession> getListClienteSession() {
 		return listClienteSession;
+}
 	public void setListClienteSession(List<ClienteSession> listClienteSession) {
 	this.listClienteSession = listClienteSession;
 
@@ -86,6 +87,7 @@ public List<ClienteSession> getListClienteSession() {
 
 	public void setListClientes(List<Cliente> listClientes) {
 		this.listClientes = listClientes;
+	}
 	public int getEvento() {
 		return evento;
 	}
