@@ -282,6 +282,7 @@ public class FacadeMain implements FacadeRemote {
 		System.out.println("facade listad encargados");
 		return statelessMUsu.listarEncargadosHabilitados();
 	}
+	
 
 	@Override
 	public Usuario login(long cedula, String pwd) {

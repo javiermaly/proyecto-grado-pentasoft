@@ -27,11 +27,15 @@
 		<table border="1">
 			<tr>
 				<th>Nombre: </th>
-				<th><h:outputText value="#{usuRequest.nombre}"></h:outputText></th>
+				<th><h:outputText value="#{UsuariosBean.nombre}"></h:outputText></th>
 			</tr>
 			<tr>
 				<th>Celular: </th>
-				<th><h:outputText value="#{usuRequest.celular}"></h:outputText></th>
+				<th><h:outputText value="#{UsuariosBean.celular}"></h:outputText></th>
+			</tr>
+			<tr>
+				<th>Perfil: </th>
+				<th><h:outputText value="#{UsuariosBean.perfil}"></h:outputText></th>
 			</tr>
 			
 		</table>

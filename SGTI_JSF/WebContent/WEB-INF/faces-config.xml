@@ -43,10 +43,21 @@
 		<managed-bean-scope>session</managed-bean-scope>
 </managed-bean>
 <managed-bean>
+		<managed-bean-name>UsuariosBean</managed-bean-name>
+		<managed-bean-class>negocio.UsuariosBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+</managed-bean>
+<managed-bean>
 		<managed-bean-name>ClienteSession</managed-bean-name>
 		<managed-bean-class>negocio.ClienteSession</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 </managed-bean>
+<managed-bean>
+		<managed-bean-name>GrupoBean</managed-bean-name>
+		<managed-bean-class>negocio.GrupoBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+</managed-bean>
+
 
 <navigation-rule>
 		<from-view-id>/login.jsp</from-view-id>
@@ -63,6 +74,19 @@
 			<to-view-id>/error.jsp</to-view-id>
 		</navigation-case>
 </navigation-rule>
+
+<navigation-rule>
+		<from-view-id>/buscarUsuario.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>usuarioEncontrado</from-outcome>
+			<to-view-id>/buscarUsuario.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>usuarioNoEncontrado</from-outcome>
+			<to-view-id>/buscarUsuario.jsp</to-view-id>
+		</navigation-case>
+</navigation-rule>
+
 
 <navigation-rule>
 		<from-view-id>/abrirTarea.jsp</from-view-id>

@@ -62,13 +62,14 @@ public class GrupoBean {
 		return "altaGrupoOK";
 	}
 	
-	public void listarGrupos(){
+	public String listarGrupos(){
 		System.out.println("listar grupos");
 		listGrupos=statelessFacade.listGrupos();
 		for (Grupo grupo : listGrupos) {
 			System.out.println(grupo.getDescripcion());
 			
 		}
+		return "";
 		
 	}
 	

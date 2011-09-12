@@ -9,7 +9,6 @@
 
 	<h:form id="listCliente">
 	
-	
 	<center>
             <h1>Listado de grupos</h1>
             <h:commandButton value="Listar grupos"

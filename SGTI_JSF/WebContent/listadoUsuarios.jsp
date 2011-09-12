@@ -62,18 +62,20 @@
   							<h:outputText value="#{usuario.celular}">
    						 </h:outputText>
   					</h:column>     
-  					<h:column>
-  						<f:facet name="header">
-  						<h:outputText value="Perfil"></h:outputText>
-  						</f:facet>  							  							
-  							<h:outputText value="#{usuario.perfil}">
-   						 </h:outputText>
-  					</h:column>      
+  					     
   					<h:column>
   						<f:facet name="header">
   						<h:outputText value="Habilitado"></h:outputText>
   						</f:facet>  							  							
   							<h:outputText value="#{usuario.habilitado}">
+   						 </h:outputText>
+  					</h:column>  
+  					
+  					<h:column>
+  						<f:facet name="header">
+  						<h:outputText value="Perfil"></h:outputText>
+  						</f:facet>  							  							
+  							<h:outputText value="#{UsuariosBean.perfil}">
    						 </h:outputText>
   					</h:column>       
   					

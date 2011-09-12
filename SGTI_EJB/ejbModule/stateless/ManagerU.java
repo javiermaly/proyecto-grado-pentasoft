@@ -84,8 +84,8 @@ public class ManagerU implements UsuarioRemote {
         }
 	
 	public List<Encargado> listarEncargadosHabilitados() {
-		List<Encargado> todos = em.createNamedQuery("todosEncargadosHabilitados")
-				.getResultList();
+		System.out.println("managerU listarEncargadoHabilitados");
+		List<Encargado> todos = em.createNamedQuery("todosEncargadosHabilitados").getResultList();
 		return todos;
 	}
 
