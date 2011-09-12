@@ -25,8 +25,9 @@ public class UsuariosBean {
 	private String celular;
 	private String perfil;
 	private boolean habilitado;
-	private List<Usuario> listUsuarios;
+	private List<UsuariosBean> listUsuarios;
 	int evento=0;
+	
 	ConexionEJB con = new ConexionEJB();
 	FacadeRemote statelessFacade = con.conectar();
 	
@@ -44,10 +45,10 @@ public class UsuariosBean {
 	public void setPerfil(String perfil) {
 		this.perfil = perfil;
 	}
-	public List<Usuario> getListUsuarios() {
+	public List<UsuariosBean> getListUsuarios() {
 		return listUsuarios;
 	}
-	public void setListUsuarios(List<Usuario> listUsuarios) {
+	public void setListUsuarios(List<UsuariosBean> listUsuarios) {
 		this.listUsuarios = listUsuarios;
 	}
 	
@@ -114,22 +115,32 @@ public class UsuariosBean {
 	
 	
 	public String listadoUsuarios(){
-		List<Usuario> listUsuariosPelados=statelessFacade.listarUsuarios();
-		System.out.println("listado usuarios");
-		for (Usuario usuario : listUsuariosPelados) {
-			
+		List <Usuario> listUsuariosPrevia=statelessFacade.listarUsuarios();
+		System.out.println("usuariosBean listado usuarios");
+		
+		for (Usuario usuario : listUsuariosPrevia) {
+			UsuariosBean ub= new UsuariosBean();
 			if(usuario instanceof Administrativo){
-				
-				
-				perfil="Administrativo";
+				ub.perfil="Administrativo";
 			}else if(usuario instanceof Administrador){
-				perfil="Administrador";
+				ub.perfil="Administrador";
 			}else if(usuario instanceof Encargado){
-				perfil="Encargado";
+				ub.perfil="Encargado";
 			}else if(usuario instanceof Tecnico){
-				perfil="Técnico";
+				ub.perfil="Técnico";
 			}
-			listUsuarios.add(usuario);
+			
+			ub.apellido=usuario.getApellido();
+			ub.cedula=usuario.getCedula();
+			ub.celular=usuario.getCelular();
+			ub.direccion=usuario.getDireccion();
+			ub.habilitado=usuario.isHabilitado();
+			ub.nombre=usuario.getNombre();
+			ub.telefono=usuario.getTelefono();
+			ub.usuario=usuario.getUsuario();
+			ub.perfil="tololo";
+			
+			listUsuarios.add(ub);
 			
 		}
 		
@@ -140,13 +151,29 @@ public class UsuariosBean {
 	// buscador para usuarios
 	public String buscarUsuario() {
 		Usuario u = new Usuario();
-		UsuarioBean ub= new UsuarioBean();
+		
 		u = statelessFacade.encontrarUsuario(cedula);
 		if (u != null) {
-			ub.setUsuarioSession(null);
-			ub.setUsuarioSession(u);
 			
-			System.out.println(ub.getUsuarioSession().getApellido());
+			this.nombre=u.getNombre();
+			this.celular=u.getCelular();
+			
+			if(u instanceof Administrativo){
+				System.out.println("es administrativo");
+				this.perfil="Administrativo";
+			}else if(u instanceof Administrador){
+				System.out.println("es administrador");
+				this.perfil="Administrador";
+			}else if(u instanceof Encargado){
+				this.perfil="Encargado";
+			}else if(u instanceof Tecnico){
+				this.perfil="Técnico";
+			}
+			else
+				this.perfil="basura";
+			
+			System.out.println(perfil);
+			
 			System.out.println("usuario encontrado y puesto en el request");
 			evento=4;//encontrado
 			return "usuarioEncontrado";
