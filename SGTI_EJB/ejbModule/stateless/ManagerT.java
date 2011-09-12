@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import beans.Cliente;
 import beans.Estado;
 import beans.Grupo;
 import beans.Realiza;
@@ -245,6 +246,14 @@ public class ManagerT implements TareaRemote {
 		Estado e = em.find(Estado.class, id);
 		return e;
 	}
+	
+	public List<Grupo> listadoGrupos(){
+		@SuppressWarnings(value="unchecked")//para que deje de mostrar advertencia List need unchecked convertion
+        List<Grupo> listGrupos = em.createNamedQuery("todosGrupos").getResultList();
+        return listGrupos;
+		
+	}
+	
 	// OBTIENE EL TIENE SIN FINALIZAR DE UNA TAREA
 	public Tiene tieneDeTarea(Tarea t) {
 		List<Tiene> colTiene = t.getColTiene();

@@ -27,12 +27,14 @@ public interface FacadeRemote {
         public boolean altaCliente(Cliente c);
         public Cliente modificarCliente(Cliente c);
         public boolean bajaCliente(Cliente c); //Solo si el cliente no tiene tareas asignadas
+        public List<Cliente> listadoClientes();
         
         //GRUPO
         public boolean altaGrupo(Grupo g);
         public Grupo modificarGrupo(Grupo g);
         public boolean bajaGrupo(Grupo g);//solo si el grupo no tiene personas o tareas asignadas
         public Grupo buscarGrupo(int id);
+        public List<Grupo> listGrupos();
         
         //USUARIOS
         public boolean altaAdministrador(Administrador admin);
@@ -44,6 +46,8 @@ public interface FacadeRemote {
         public boolean inhabilitarUsuario(Usuario usu);
         public Usuario login(long cedula, String pwd);//si existe el usr y si esta habilitado
         public Usuario encontrarUsuario(long ced);
+        public List<Usuario> listarUsuarios();
+        public List<Encargado> listarEncargadosHabilitados();
        
         //TIPO
         public Tipo buscarTipo(int id);
