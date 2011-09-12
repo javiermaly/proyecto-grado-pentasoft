@@ -278,6 +278,10 @@ public class FacadeMain implements FacadeRemote {
 		}
 		
 	}
+	public List<Encargado> listarEncargadosHabilitados(){
+		System.out.println("facade listad encargados");
+		return statelessMUsu.listarEncargadosHabilitados();
+	}
 
 	@Override
 	public Usuario login(long cedula, String pwd) {
@@ -344,6 +348,13 @@ public class FacadeMain implements FacadeRemote {
 	public List<Usuario> listarUsuarios() {
 		return statelessMUsu.listarUsuarios();
 		
+	}
+
+	@Override
+	public List<Grupo> listGrupos() {
+		System.out.println("facade : list grupos");
+		return statelessMTar.listadoGrupos();
+		 
 	}
 
 	

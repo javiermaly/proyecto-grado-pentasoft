@@ -34,6 +34,7 @@ public interface FacadeRemote {
         public Grupo modificarGrupo(Grupo g);
         public boolean bajaGrupo(Grupo g);//solo si el grupo no tiene personas o tareas asignadas
         public Grupo buscarGrupo(int id);
+        public List<Grupo> listGrupos();
         
         //USUARIOS
         public boolean altaAdministrador(Administrador admin);
@@ -46,6 +47,7 @@ public interface FacadeRemote {
         public Usuario login(long cedula, String pwd);//si existe el usr y si esta habilitado
         public Usuario encontrarUsuario(long ced);
         public List<Usuario> listarUsuarios();
+        public List<Encargado> listarEncargadosHabilitados();
        
         //TIPO
         public Tipo buscarTipo(int id);
