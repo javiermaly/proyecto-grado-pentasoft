@@ -13,8 +13,11 @@
 			<tr>
 				<td><h:outputText> Cedula o RUT del Cliente </h:outputText>
 				</td>
-				<td><h:inputText id="cedrut" value="#{ClienteBean.cedRut}"
-						required="true"></h:inputText>
+				<td><h:inputText id="cedrut" value="#{ClienteBean.cedRut}" required="true">
+					<f:converter converterId="javax.faces.Integer"/></h:inputText>
+				</td>					
+				<td>
+					<h:message for="cedrut" style="color:red"></h:message>
 				</td>
 				<td><h:commandButton value="Aceptar" action="#{ClienteBean.buscarCliente}"></h:commandButton>
 				</td>
@@ -25,12 +28,21 @@
 	<h:form rendered="#{ClienteBean.evento==4}">
 		<table border="1">
 			<tr>
-				<th>Empresa: </th>
-				<td><h:outputText value="#{ClienteSession.clienteSession.empresa}"></h:outputText></td>
-				</tr>
+				<th>Es empresa: </th>
+				<td><h:selectOneRadio value="#{ClienteSession.clienteSession.empresa}" readonly="true" disabled="true">
+					<f:selectItem itemValue="true" itemLabel="Si"/>
+					<f:selectItem itemValue="false" itemLabel="No"/>					
+					</h:selectOneRadio>
+				</td>
+			</tr>
 			<tr>
 				<th>Nombre o Razón Social: </th>
 				<td><h:outputText value="#{ClienteSession.clienteSession.nombre_RazonSocial}"></h:outputText></td>
+			</tr>
+			<tr>
+				<th>Dirección:</th>
+				<td><h:outputText value="#{ClienteSession.clienteSession.direccion}"></h:outputText>
+				</td>
 			</tr>
 			<tr>
 				<th>Telefono</th>
