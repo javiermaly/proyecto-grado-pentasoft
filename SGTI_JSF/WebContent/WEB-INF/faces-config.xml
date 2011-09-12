@@ -13,8 +13,7 @@
 		<managed-property>
 			<property-name>usuSession</property-name>
 			<value>#{UsuarioBean}</value>
-		</managed-property>
-		
+		</managed-property>		
 </managed-bean>
 <managed-bean>
 		<managed-bean-name>ClienteBean</managed-bean-name>
@@ -35,6 +34,11 @@
 			<value>#{ClienteSession}</value>
 		</managed-property>
 		
+</managed-bean>
+<managed-bean>
+		<managed-bean-name>GrupoBean</managed-bean-name>
+		<managed-bean-class>negocio.GrupoBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>			
 </managed-bean>
 
 <managed-bean>
