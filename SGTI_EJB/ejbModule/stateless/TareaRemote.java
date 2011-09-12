@@ -42,6 +42,8 @@ public interface TareaRemote {
 	public boolean reabrirTarea(Tarea t);
 	public boolean cerrarTarea(Tarea t);
 	
+	public List<Grupo> listadoGrupos();
+	
     //buscar el tipo de tarea
     public Tipo encontrarTipo(int id);       
 

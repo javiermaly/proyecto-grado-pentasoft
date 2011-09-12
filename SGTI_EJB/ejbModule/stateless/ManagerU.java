@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import beans.Encargado;
 import beans.Usuario;
 
 @Stateless
@@ -14,8 +15,6 @@ public class ManagerU implements UsuarioRemote {
 
 	@PersistenceContext(unitName = "SGTI_JPA")
 	private EntityManager em;
-
-	private List<Usuario> listaUsuarios;
 
 	public boolean agregarUsuario(Usuario u) {
 		try {
@@ -83,5 +82,11 @@ public class ManagerU implements UsuarioRemote {
         	
         	
         }
+	
+	public List<Encargado> listarEncargadosHabilitados() {
+		List<Encargado> todos = em.createNamedQuery("todosEncargadosHabilitados")
+				.getResultList();
+		return todos;
+	}
 
 }

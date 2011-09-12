@@ -12,6 +12,12 @@ import javax.persistence.*;
  * Entity implementation class for Entity: Grupo
  *
  */
+
+@NamedQueries(value = { 
+		@NamedQuery(name="todosGrupos", query="select g from Grupo g"),
+		
+	})
+	
 @Entity
 
 public class Grupo implements Serializable {
