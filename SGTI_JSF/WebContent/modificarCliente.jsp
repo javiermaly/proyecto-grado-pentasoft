@@ -13,8 +13,11 @@
 			<tr>
 				<td><h:outputText> Cedula o RUT del Cliente </h:outputText>
 				</td>
-				<td><h:inputText id="cedrut" value="#{ClienteBean.cedRut}"
-						required="true"></h:inputText>
+				<td><h:inputText id="cedrut" value="#{ClienteBean.cedRut}" required="true">
+					<f:converter converterId="javax.faces.Integer"/></h:inputText>
+				</td>					
+				<td>
+					<h:message for="cedrut" style="color:red"></h:message>
 				</td>
 				<td><h:commandButton value="Aceptar"
 						action="#{ClienteBean.buscarCliente}"></h:commandButton>
@@ -26,12 +29,25 @@
 	<h:form rendered="#{ClienteBean.evento==4}">
 		<table border="1">
 			<tr>
+				<th>Es empresa: </th>
+				<td><h:selectOneRadio value="#{ClienteSession.clienteSession.empresa}">
+					<f:selectItem itemValue="true" itemLabel="Si"/>
+					<f:selectItem itemValue="false" itemLabel="No"/>					
+					</h:selectOneRadio>
+				</td>
+			</tr>
+			<tr>
 				<th>Cédula / RUT: </th>
 				<th><h:inputText value="#{ClienteBean.cedRut}"></h:inputText></th>
 			</tr>
 			<tr>
 				<th>Nombre Completo / Razón Social:</th>
 				<td><h:inputText value="#{ClienteSession.clienteSession.nombre_RazonSocial}"></h:inputText>
+				</td>
+			</tr>
+			<tr>
+				<th>Dirección:</th>
+				<td><h:inputText value="#{ClienteSession.clienteSession.direccion}"></h:inputText>
 				</td>
 			</tr>
 			<tr>
