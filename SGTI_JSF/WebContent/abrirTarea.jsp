@@ -10,7 +10,10 @@
 		<table>
 			<tr>
 				<td><h:outputText> Cedula o RUT del Cliente </h:outputText></td>
-				<td><h:inputText id="cedrut" value="#{ClienteBean.cedRut}" required="true"></h:inputText></td>
+				<td><h:inputText id="cedrut" value="#{ClienteBean.cedRut}" required="true" maxlength="15"  >
+					<f:converter converterId="javax.faces.Integer"/></h:inputText>
+				</td>
+					<h:message for="cedrut" style="color:red"></h:message>
 				<td><h:commandButton  value="Aceptar" action="#{ClienteBean.buscarCliente}"></h:commandButton></td>
 			</tr>
 		</table>
@@ -87,9 +90,10 @@
 					</tr>					
 					<tr>
 						<th>Fecha Comprometida(año/mes/dia)</th>
-						<td><h:inputText value="#{TareaBean.fechaComprometida}">
+						<td><h:inputText id="fechaComprometida"  value="#{TareaBean.fechaComprometida}">
 							<f:convertDateTime pattern="yyyy/MM/dd"/>
 						</h:inputText> </td>
+						<h:message for="fechaComprometida" style="color:red"></h:message>
 					</tr>
 					<tr>
 						<td><h:commandButton value="Aceptar" action="#{TareaBean.abrirTarea}"></h:commandButton></td>

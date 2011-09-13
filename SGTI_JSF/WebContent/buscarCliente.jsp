@@ -15,7 +15,8 @@
 				</td>
 				<td>
 					<h:inputText id="cedrut" value="#{ClienteBean.cedRut}" required="true">
-					<f:converter converterId="javax.faces.Integer"/></h:inputText>
+					<f:validateLength minimum="8" maximum="15"></f:validateLength>
+					<f:converter converterId="javax.faces.Long"/></h:inputText></td>
 				</td>
 					<h:message for="cedrut" style="color:red"></h:message>
 				<td>
