@@ -14,7 +14,8 @@
 				<td><h:outputText> Cedula o RUT del Cliente </h:outputText>
 				</td>
 				<td><h:inputText id="cedrut" value="#{ClienteBean.cedRut}" required="true">
-					<f:converter converterId="javax.faces.Integer"/></h:inputText>
+					<f:validateLength minimum="8" maximum="15"></f:validateLength>
+					<f:converter converterId="javax.faces.Long"/></h:inputText>
 				</td>		
 				
 					<h:message for="cedrut" style="color:red"></h:message>
@@ -39,7 +40,8 @@
 			<tr>
 				<th>Cédula / RUT: </th>
 				<td><h:inputText id="cedrut" value="#{ClienteBean.cedRut}" required="true">
-					<f:converter converterId="javax.faces.Integer"/></h:inputText>
+					<f:validateLength minimum="8" maximum="15"></f:validateLength>
+					<f:converter converterId="javax.faces.Long"/></h:inputText>
 				</td><h:message for="cedrut" style="color:red"></h:message>
 			</tr>
 			<tr>
@@ -54,23 +56,23 @@
 			</tr>
 			<tr>
 				<th>Teléfono</th>
-					<td><h:inputText id="telefono" value="#{ClienteBean.telefono}">
-						<f:converter converterId="javax.faces.Integer"/>					
-						</h:inputText>											
-					</td>
-				<h:message for="telefono" style="color:red"></h:message>
-			</tr>				
+					<td><h:inputText id="telefono" value="#{ClienteSession.clienteSession.telefono}">
+							<f:converter converterId="javax.faces.Integer"/>							
+						</h:inputText>
+						<h:message for="telefono" style="color:red"></h:message>												
+					</td>		
+			</tr>							
 			<tr>
 				<th>Fecha fin de Garantia</th>
 				<td><h:inputText id="fchaGarantia" rendered="#{ClienteSession.fechaGarant!=null}" value="#{ClienteSession.fechaGarant}">
-  					<f:convertDateTime pattern="yyyy/MM/dd"/>
+  						<f:convertDateTime pattern="yyyy/MM/dd"/>
   					</h:inputText>
   					<h:message for="fchaGarantia" style="color:red"></h:message>
   				</td> 
 			</tr> 
 			<tr>
 				<td><h:commandButton value="Aceptar"action="#{ClienteBean.modificarCliente}"></h:commandButton></td>
-			</tr>
+			</tr>			
 		</table>
 	</h:form>
 	<h:form rendered="#{ClienteBean.evento==1}">
