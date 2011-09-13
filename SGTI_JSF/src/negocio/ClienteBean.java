@@ -124,8 +124,9 @@ public class ClienteBean {
 			evento=4;//encontrado
 			return "clienteEcontrado";
 		} else {
-			
-			cliSession.setClienteSession(null);
+			Cliente cli = new Cliente();
+			cli.setCedRut(cedRut);
+			cliSession.setClienteSession(cli);
 			System.out.println("cliente nulo!!");
 			evento=3;//noexiste
 			return "clienteNoEncontrado";
@@ -133,12 +134,11 @@ public class ClienteBean {
 	}
 
 	public String altaCliente() {
-		// long ceduln=getCedRut();
-		System.out.println("veo si llega la cedula: " + getCedRut());
-		System.out.println("veo si llega la cedula: " + cedRut);
+		long ceduln=cliSession.clienteSession.getCedRut();
+		System.out.println("veo si llega la cedula: " + ceduln);
 		Cliente c = new Cliente();
 		// c=cliSession.getClienteSession();
-		c.setCedRut(getCedRut());
+		c.setCedRut(ceduln);
 		c.setDireccion(getDireccion());
 		c.setNombre_RazonSocial(getNombreRazSocial());
 		c.setTelefono(getTelefono());		
@@ -149,7 +149,7 @@ public class ClienteBean {
 			cal.setTime(fechaFinGarantia);
 			c.setFechaFinGarantia(cal);
 		}
-		System.out.println("altacliente en clienteBean" + c.getCedRut());
+		System.out.println("altacliente en clienteBean" + ceduln);
 		System.out.println(c.getNombre_RazonSocial());
 		if (statelessFacade.altaCliente(c)) {
 			evento=1;

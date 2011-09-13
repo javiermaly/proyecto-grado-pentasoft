@@ -27,7 +27,7 @@ public class Grupo implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String descripcion;
-	@OneToOne
+	@OneToOne(fetch=FetchType.EAGER)
 	private Encargado enc;	
 	@OneToMany
 	private List<Tecnico> colTecnicos= new ArrayList<Tecnico>();

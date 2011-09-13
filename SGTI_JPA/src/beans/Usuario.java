@@ -27,6 +27,8 @@ public class Usuario implements Serializable {
 	private String celular;
 	private boolean habilitado;
 	private static final long serialVersionUID = 1L;
+	@Transient
+	private String perfil;
 
 	public Usuario() {
 		super();
@@ -93,5 +95,12 @@ public class Usuario implements Serializable {
 	public void setHabilitado(boolean habilitado) {
 		this.habilitado = habilitado;
 	}
+	public String getPerfil() {
+		return perfil;
+	}
+	public void setPerfil(String perfil) {
+		this.perfil = perfil;
+	}
+	
    
 }

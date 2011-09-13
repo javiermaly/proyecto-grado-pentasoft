@@ -12,9 +12,9 @@
 		<table>
 			<tr>
 				<td><h:outputText> Cedula o RUT del Cliente </h:outputText></td>
-				<td><h:inputText id="cedrut" value="#{ClienteBean.cedRut}" required="true">
+				<td><h:inputText id="cedRut" value="#{ClienteBean.cedRut}" required="true">
 					<f:converter converterId="javax.faces.Integer"/></h:inputText></td>
-					<h:message for="cedrut" style="color:red"></h:message>
+					<h:message for="cedRut" style="color:red"></h:message>
 				<td><h:commandButton value="Aceptar" action="#{ClienteBean.buscarCliente}"></h:commandButton></td>
 				
 			</tr>
@@ -32,10 +32,9 @@
 			</tr>
 			<tr>
 				<th>Cédula / RUT</th>
-				<td><h:inputText id="cedrut" value="#{ClienteBean.cedRut}" required="true">
-					<f:converter converterId="javax.faces.Integer"/></h:inputText>
+				<td><h:inputText value="#{ClienteBean.cliSession.clienteSession.cedRut}" required="true" readonly="true"></h:inputText>
 				</td>
-					<h:message for="cedrut" style="color:red"></h:message>
+					<h:message for="cedRut" style="color:red"></h:message>
 			</tr>
 
 			<tr>
@@ -51,7 +50,7 @@
 			<tr>
 				<th>Teléfono:</th>
 				<td><h:inputText id="telefono" value="#{ClienteBean.telefono}">
-					<f:converter converterId="javax.faces.Integer"/>					
+					<f:converter converterId="javax.faces.Integer"/>
 					</h:inputText>
 					<h:message for="telefono" style="color:red"></h:message>					
 				</td>			

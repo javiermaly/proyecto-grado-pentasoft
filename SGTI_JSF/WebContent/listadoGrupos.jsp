@@ -28,6 +28,12 @@
   						</f:facet>
   							<h:outputText value="#{grupo.descripcion}"></h:outputText>
   					</h:column>             
+  					<h:column>
+  						<f:facet name="header">
+  						<h:outputText value="Encargado"></h:outputText>
+  						</f:facet>
+  							<h:outputText value="#{grupo.enc.apellido}"></h:outputText>
+  					</h:column>             
   					
   					  
   					

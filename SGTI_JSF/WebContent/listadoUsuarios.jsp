@@ -7,16 +7,13 @@
 		<%@include file="header.jsp"%>
 </f:subview>
 
-	<h:form id="listUsuarios">
 	
+	<h:form id="listdado">
 	
 	<center>
             <h1>Listado de usuarios</h1>
-            <h:commandButton value="Listar Usuarios"
-						action="#{UsuariosBean.listadoUsuarios}"></h:commandButton>
-           
-                
-                <h:dataTable id="usuarios" value="#{UsuariosBean.listUsuarios}" var="usuario" border="1" >
+                                       
+                <h:dataTable value="#{UsuariosBean.listUsuarios}" var="usuario" border="1" >
   					<h:column>
   						<f:facet name="header" >
   							<h:outputText value="Cedula"></h:outputText>
@@ -75,7 +72,7 @@
   						<f:facet name="header">
   						<h:outputText value="Perfil"></h:outputText>
   						</f:facet>  							  							
-  							<h:outputText value="#{UsuariosBean.perfil}">
+  							<h:outputText value="#{usuario.perfil}">
    						 </h:outputText>
   					</h:column>       
   					
