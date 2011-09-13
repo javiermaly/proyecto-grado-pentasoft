@@ -12,8 +12,9 @@
 		<table>
 			<tr>
 				<td><h:outputText> Cedula o RUT del Cliente </h:outputText></td>
-				<td><h:inputText id="cedrut" value="#{ClienteBean.cedRut}" required="true">
-					<f:converter converterId="javax.faces.Integer"/></h:inputText></td>
+				<td><h:inputText id="cedrut" value="#{ClienteBean.cedRut}" required="true" >
+					<f:validateLength minimum="8" maximum="15"></f:validateLength>
+					<f:converter converterId="javax.faces.Long"/></h:inputText></td>
 					<h:message for="cedrut" style="color:red"></h:message>
 				<td><h:commandButton value="Aceptar" action="#{ClienteBean.buscarCliente}"></h:commandButton></td>
 				
@@ -33,7 +34,8 @@
 			<tr>
 				<th>Cédula / RUT</th>
 				<td><h:inputText id="cedrut" value="#{ClienteBean.cedRut}" required="true">
-					<f:converter converterId="javax.faces.Integer"/></h:inputText>
+					<f:validateLength minimum="8" maximum="15"></f:validateLength>
+					<f:converter converterId="javax.faces.Long"/></h:inputText>
 				</td>
 					<h:message for="cedrut" style="color:red"></h:message>
 			</tr>
@@ -45,7 +47,7 @@
 			</tr>
 			<tr>
 				<th>Dirección:</th>
-				<td><h:inputText value="#{ClienteBean.direccion}"></h:inputText>
+				<td><h:inputText value="#{ClienteBean.direccion}" size="30"></h:inputText>
 				</td>
 			</tr>
 			<tr>
