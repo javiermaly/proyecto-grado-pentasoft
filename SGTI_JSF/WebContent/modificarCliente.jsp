@@ -15,7 +15,7 @@
 				</td>
 				<td><h:inputText id="cedrut" value="#{ClienteBean.cedRut}" required="true">
 					<f:converter converterId="javax.faces.Integer"/></h:inputText>
-				</td>					
+				</td>		
 				
 					<h:message for="cedrut" style="color:red"></h:message>
 			
@@ -38,7 +38,9 @@
 			</tr>
 			<tr>
 				<th>Cédula / RUT: </th>
-				<th><h:inputText value="#{ClienteBean.cedRut}"></h:inputText></th>
+				<td><h:inputText id="cedrut" value="#{ClienteBean.cedRut}" required="true">
+					<f:converter converterId="javax.faces.Integer"/></h:inputText>
+				</td><h:message for="cedrut" style="color:red"></h:message>
 			</tr>
 			<tr>
 				<th>Nombre Completo / Razón Social:</th>
@@ -52,14 +54,18 @@
 			</tr>
 			<tr>
 				<th>Teléfono</th>
-				<td><h:inputText value="#{ClienteSession.clienteSession.telefono}"></h:inputText></td>
-			</tr>
-				
+					<td><h:inputText id="telefono" value="#{ClienteBean.telefono}">
+						<f:converter converterId="javax.faces.Integer"/>					
+						</h:inputText>											
+					</td>
+				<h:message for="telefono" style="color:red"></h:message>
+			</tr>				
 			<tr>
 				<th>Fecha fin de Garantia</th>
-				<td><h:inputText rendered="#{ClienteSession.fechaGarant!=null}" value="#{ClienteSession.fechaGarant}">
+				<td><h:inputText id="fchaGarantia" rendered="#{ClienteSession.fechaGarant!=null}" value="#{ClienteSession.fechaGarant}">
   					<f:convertDateTime pattern="yyyy/MM/dd"/>
   					</h:inputText>
+  					<h:message for="fchaGarantia" style="color:red"></h:message>
   				</td> 
 			</tr> 
 			<tr>
