@@ -32,9 +32,10 @@
 			</tr>
 			<tr>
 				<th>Cédula / RUT</th>
-				<td>
-				<h:inputText id="cedrut" value="#{ClienteBean.cedRut}" ></h:inputText>
+				<td><h:inputText id="cedrut" value="#{ClienteBean.cedRut}" required="true">
+					<f:converter converterId="javax.faces.Integer"/></h:inputText>
 				</td>
+					<h:message for="cedrut" style="color:red"></h:message>
 			</tr>
 
 			<tr>
@@ -49,19 +50,23 @@
 			</tr>
 			<tr>
 				<th>Teléfono:</th>
-				<td><h:inputText value="#{ClienteBean.telefono}"></h:inputText>
-				</td>
+				<td><h:inputText id="telefono" value="#{ClienteBean.telefono}">
+					<f:converter converterId="javax.faces.Integer"/>					
+					</h:inputText>
+					<h:message for="telefono" style="color:red"></h:message>					
+				</td>			
 			</tr>
 			<tr>
 				<th>Fecha de Fin de Garantía (año/mes/dia):</th>
 
-				<td><h:inputText value="#{ClienteBean.fechaFinGarantia}">
-						<f:convertDateTime pattern="yyyy/MM/dd" />
+				<td><h:inputText id="fchaGarantia" value="#{ClienteBean.fechaFinGarantia}">
+						<f:convertDateTime  pattern="yyyy/MM/dd" />
 					</h:inputText>
 				</td>
+					<h:message for="fchaGarantia" style="color:red"></h:message>
 			</tr>
 			<tr>
-				<td><h:commandButton value="Aceptar"
+				<td><h:commandButton value="Aceptar" 
 						action="#{ClienteBean.altaCliente}"></h:commandButton></td>
 			</tr>
 		</table>
