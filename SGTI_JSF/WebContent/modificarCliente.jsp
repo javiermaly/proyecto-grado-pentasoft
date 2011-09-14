@@ -39,7 +39,7 @@
 			</tr>
 			<tr>
 				<th>Cédula / RUT: </th>
-				<td><h:inputText id="cedrut" value="#{ClienteBean.cedRut}" required="true">
+				<td><h:inputText id="cedrut" value="#{ClienteBean.cliSession.clienteSession.cedRut}" readonly="true" required="true">
 					<f:validateLength minimum="8" maximum="15"></f:validateLength>
 					<f:converter converterId="javax.faces.Long"/></h:inputText>
 				</td><h:message for="cedrut" style="color:red"></h:message>
@@ -64,7 +64,7 @@
 			</tr>							
 			<tr>
 				<th>Fecha fin de Garantia</th>
-				<td><h:inputText id="fchaGarantia" rendered="#{ClienteSession.fechaGarant!=null}" value="#{ClienteSession.fechaGarant}">
+				<td><h:inputText id="fchaGarantia" value="#{ClienteSession.clienteSession.fechaFinGarantia}">
   						<f:convertDateTime pattern="yyyy/MM/dd"/>
   					</h:inputText>
   					<h:message for="fchaGarantia" style="color:red"></h:message>

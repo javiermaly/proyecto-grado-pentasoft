@@ -104,6 +104,27 @@ public class GrupoBean {
 		return "";
 		
 	}
+	public String buscarGrupo(){
+		System.out.println("id de grupo que me llega"+ id);
+		Grupo gr =  new Grupo();
+		gr=statelessFacade.buscarGrupo(id);
+		System.out.println("grupo encontrado: "+gr.getDescripcion());
+		
+		if(gr!=null){
+			this.descripcion=gr.getDescripcion();
+			this.encargadoCed=gr.getEnc().getApellido()+", "+gr.getEnc().getNombre();
+			evento=4;
+			System.out.println(encargadoCed);
+			return "grupoEncontrado";
+		}
+		else
+		{
+
+			System.out.println("grupo nulo!!");
+			evento = 3;// noexiste
+			return "grupoNoEncontrado";
+		}
+	}
 	
 	
 		

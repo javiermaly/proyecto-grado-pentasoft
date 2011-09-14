@@ -12,8 +12,6 @@ public class ClienteSession {
 	public Cliente clienteSession;
 	
 	public Date fechaGarant;
-
-
 	
 //	public ClienteSession() {
 //		Calendar fechG= clienteSession.getFechaFinGarantia();
