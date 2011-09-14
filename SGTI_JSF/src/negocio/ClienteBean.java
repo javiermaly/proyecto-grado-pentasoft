@@ -175,8 +175,8 @@ public List<ClienteSession> getListClienteSession() {
 			c.setTelefono(cliSession.getClienteSession().getTelefono());
 			c.setDireccion(cliSession.getClienteSession().getDireccion());
 	
-			if (cliSession.getClienteSession().getFechaFinGarantia()!= null){
-				System.out.println(cliSession.getFechaGarant());
+			if (cliSession.getFechaGarant()!= null){
+				
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(cliSession.getFechaGarant());
 				c.setFechaFinGarantia(cal);

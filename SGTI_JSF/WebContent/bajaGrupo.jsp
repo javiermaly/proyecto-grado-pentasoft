@@ -29,6 +29,7 @@
 	<h:form rendered="#{GrupoBean.evento==4}">
 		<table border="1">
 			<tr>
+				<th>Id: </th>
 				<td><h:inputText id="id" value="#{GrupoBean.id}"
 						required="true">
 						<f:validateLength minimum="1" maximum="4"></f:validateLength>
