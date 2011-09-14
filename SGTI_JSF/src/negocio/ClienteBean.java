@@ -166,18 +166,23 @@ public List<ClienteSession> getListClienteSession() {
 
 	public String modificarCliente() {
 		System.out.println("modificar cliente");
-		Cliente c = statelessFacade.buscarCliente(getCedRut());
-		
+		Long ceduln = cliSession.clienteSession.getCedRut();
+		System.out.println("veo si llega la cedula: "+ceduln);
+		Cliente c = statelessFacade.buscarCliente(ceduln);
 		if (!(c == null)) {
-			c.setCedRut(getCedRut());
+			c.setCedRut(ceduln);
 			c.setNombre_RazonSocial(cliSession.getClienteSession().getNombre_RazonSocial());
 			c.setTelefono(cliSession.getClienteSession().getTelefono());
-			//c.setDireccion(getDireccion());
-			if (cliSession.getFechaGarant() != null){
+			c.setDireccion(cliSession.getClienteSession().getDireccion());
+	
+			if (cliSession.getClienteSession().getFechaFinGarantia()!= null){
+				System.out.println(cliSession.getFechaGarant());
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(cliSession.getFechaGarant());
 				c.setFechaFinGarantia(cal);
+				System.out.println();
 			}
+			
 			cliSession.setClienteSession(c);
 			if(!((statelessFacade.modificarCliente(c))==null)){
 				evento=1;//exito
