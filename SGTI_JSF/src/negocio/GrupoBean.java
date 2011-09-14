@@ -94,18 +94,19 @@ public class GrupoBean {
 		return "altaGrupoFallo";
 	}
 	
-	public String listarGrupos(){
-		System.out.println("listar grupos");
-		listGrupos=statelessFacade.listGrupos();
-		for (Grupo grupo : listGrupos) {
-			System.out.println(grupo.getDescripcion());
-			
-		}
-		return "";
-		
-	}
+//	public String listarGrupos(){
+//		System.out.println("listar grupos");
+//		listGrupos=statelessFacade.listGrupos();
+//		for (Grupo grupo : listGrupos) {
+//			System.out.println(grupo.getDescripcion());
+//			
+//		}
+//		return "";
+//		
+//	}
 	public String buscarGrupo(){
 		System.out.println("id de grupo que me llega"+ id);
+		this.id=getId();
 		Grupo gr =  new Grupo();
 		gr=statelessFacade.buscarGrupo(id);
 		System.out.println("grupo encontrado: "+gr.getDescripcion());
@@ -135,10 +136,30 @@ public class GrupoBean {
 			
 		}
 		else {
-			System.out.println("grupo eliminado");
+			System.out.println("grupo no eliminado");
 			evento=4;
 			return "grupoNoEliminado";
 		}
+	}
+	public String modificarGrupo(){
+		System.out.println("modificar grupo, cedula del encargado que recibo: "+encargadoCed);
+		
+		Encargado encargado = (Encargado)statelessFacade.encontrarUsuario(Long.valueOf(encargadoCed));
+		
+		System.out.println(encargado.getApellido());
+		
+		System.out.println("id del grupo a modificar: "+id);
+		Grupo g = statelessFacade.buscarGrupo(id);
+		System.out.println("modifico el grupo: "+g.getDescripcion());
+		g.setDescripcion(getDescripcion());
+		g.setEnc(encargado);
+		
+		if(statelessFacade.modificarGrupo(g)!=null){
+			evento=1;
+			return "grupoModificado";
+		}
+		else
+			return "grupoNoModificado";
 	}
 	
 	

@@ -104,6 +104,19 @@
 </navigation-rule>
 
 <navigation-rule>
+		<from-view-id>/modificarGrupo.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>grupoModificado</from-outcome>
+			<to-view-id>/modificarGrupo.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>grupoNoModificado</from-outcome>
+			<to-view-id>/modificarGrupo.jsp</to-view-id>
+		</navigation-case>
+</navigation-rule>
+
+
+<navigation-rule>
 		<from-view-id>/buscarUsuario.jsp</from-view-id>
 		<navigation-case>
 			<from-outcome>usuarioEncontrado</from-outcome>

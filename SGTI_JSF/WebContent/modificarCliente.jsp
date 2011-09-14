@@ -64,7 +64,7 @@
 			</tr>							
 			<tr>
 				<th>Fecha fin de Garantia</th>
-				<td><h:inputText id="fchaGarantia" value="#{ClienteSession.clienteSession.fechaFinGarantia}">
+					<td><h:inputText id="fchaGarantia" rendered="#{ClienteSession.fechaGarant!=null}" value="#{ClienteSession.fechaGarant}">
   						<f:convertDateTime pattern="yyyy/MM/dd"/>
   					</h:inputText>
   					<h:message for="fchaGarantia" style="color:red"></h:message>

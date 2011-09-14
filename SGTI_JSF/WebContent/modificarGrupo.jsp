@@ -9,7 +9,7 @@
 
 
 	
-		<h:form>
+		<h:form id="formBuscarGrupo">
 		<h1>Modificar Grupo</h1>
 		<table>
 			<tr>
@@ -31,7 +31,12 @@
 	<h:form >
 	
 		<table border="1">
-		
+		<tr>
+				<th>Id Grupo</th>
+				<td>
+				<h:inputText id="id" value="#{GrupoBean.id}" ></h:inputText>
+				</td>
+			</tr>
 			<tr>
 				<th>Descripción</th>
 				<td>
@@ -42,12 +47,13 @@
 				<th>Encargado</th>
 				<td>
 					<h:selectOneMenu id="comboEncargadosHabilitados" value="#{GrupoBean.encargadoCed}"> 					 					
-						<f:selectItems value="#{GrupoBean.encargadosHabilitados}"/>						
+						<f:selectItems value="#{GrupoBean.encargadosHabilitados}"/>
+								
 					</h:selectOneMenu>					
 				</td>
 			</tr>
 			<tr>
-				<td><h:commandButton value="Aceptar" action="#{GrupoBean.altaGrupo}"></h:commandButton></td>
+				<td><h:commandButton value="Aceptar" action="#{GrupoBean.modificarGrupo}"></h:commandButton></td>
 			</tr>
 		</table>
 	</h:form>
