@@ -11,10 +11,7 @@
 	
 	
 	<center>
-            <h1>Listado de clientes</h1>
-            <h:commandButton value="Listar Clientes"
-						action="#{ClienteBean.listadoClientes}"></h:commandButton>
-           
+            <h1>Listado de clientes</h1>                
                 
                 <h:dataTable id="clientes" value="#{ClienteBean.listClientes}" var="cliente" border="1" >
   					<h:column>

@@ -6,7 +6,7 @@
 <f:view>
 	<f:subview id="header">
 		<%@include file="header.jsp"%>
-	</f:subview>
+		</f:subview>
 	<h:form>
 		<h1>Modificar Cliente</h1>
 		<table>
