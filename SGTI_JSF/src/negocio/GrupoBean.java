@@ -116,26 +116,31 @@ public class GrupoBean {
 			evento=4;
 			System.out.println(encargadoCed);
 			return "grupoEncontrado";
-		}
-		else
-		{
-
+		}else{
 			System.out.println("grupo nulo!!");
 			evento = 3;// noexiste
 			return "grupoNoEncontrado";
 		}
 	}
 	
+	public String eliminarGrupo(){
+		Grupo g = new Grupo();
+		System.out.println(id);
+		g=statelessFacade.buscarGrupo(getId());
+		System.out.println(g.getDescripcion());
+		if(statelessFacade.bajaGrupo(g)){
+			System.out.println("grupo eliminado");
+			evento=1;
+			return "grupoEliminado";
+			
+		}
+		else {
+			System.out.println("grupo eliminado");
+			evento=4;
+			return "grupoNoEliminado";
+		}
+	}
 	
-		
-		
-	
-	
-//	public List<Encargado> traerEncargados(){
-//		encargadosHabilitados=statelessFacade.listarEncargadosHabilitados();
-//		
-//		return encargadosHabilitados;
-//	}
 	
 	
 	
