@@ -1,6 +1,7 @@
 
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
+<%-- <%@ taglib uri="https://ajax4jsf.dev.java.net/ajax" prefix="a4j"%>   --%>
 <f:view>
 	<f:subview id="header">
 		<%@include file="header.jsp"%>
@@ -22,8 +23,8 @@
 			<tr>
 				<th>Encargado</th>
 				<td>
-					<h:selectOneMenu id="comboEncargadosHabilitados" value="#{GrupoBean.encargado}" >					 					
-						<f:selectItems value="#{GrupoBean.encargadosHabilitados}"/>
+					<h:selectOneMenu id="comboEncargadosHabilitados" value="#{GrupoBean.encargadoCed}"> 					 					
+						<f:selectItems value="#{GrupoBean.encargadosHabilitados}"/>						
 					</h:selectOneMenu>					
 				</td>
 			</tr>

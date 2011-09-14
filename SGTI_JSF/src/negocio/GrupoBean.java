@@ -6,14 +6,14 @@ import java.util.List;
 import javax.faces.model.SelectItem;
 
 import stateless.FacadeRemote;
-import conexion.ConexionEJB;
 import beans.Encargado;
 import beans.Grupo;
+import conexion.ConexionEJB;
 
 public class GrupoBean {
 	private int id;
 	private String descripcion;
-	private Encargado encargado;
+	private String encargadoCed;
 	private List<Grupo> listGrupos;
 	private int evento=0;
 	
@@ -36,11 +36,11 @@ public class GrupoBean {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	public Encargado getEncargado() {
-		return encargado;
+	public String getEncargadoCed() {
+		return encargadoCed;
 	}
-	public void setEncargado(Encargado encargado) {
-		this.encargado = encargado;
+	public void setEncargadoCed(String encargado) {
+		this.encargadoCed = encargado;
 	}
 	public int getEvento() {
 		return evento;
@@ -70,25 +70,27 @@ public class GrupoBean {
 	            Encargado enc = new Encargado();
 	            enc = (Encargado)encargados.get(i);
 	            
-	           encargadosHabilitados.add(new SelectItem(enc, enc.getApellido()));
-	        }       
-	        
+	           encargadosHabilitados.add(new SelectItem(enc.getCedula(), enc.getApellido()));
+	        }
 	        return encargadosHabilitados;
 	    }
 	
 	
 	
 	public String altaGrupo(){
+		System.out.println(encargadoCed);
+		Encargado encargado = (Encargado)statelessFacade.encontrarUsuario(Long.valueOf(encargadoCed));
+		
 		Grupo g = new Grupo();
 		g.setDescripcion(getDescripcion());
-		System.out.println(encargado.getApellido());
-		g.setEnc(getEncargado());
+		g.setEnc(encargado);
 		
 		if(statelessFacade.altaGrupo(g)){
 			evento=1;
+			return "altaGrupoOK";
 		}
 		
-		return "altaGrupoOK";
+		return "altaGrupoFallo";
 	}
 	
 	public String listarGrupos(){
