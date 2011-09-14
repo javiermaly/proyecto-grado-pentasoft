@@ -84,7 +84,7 @@
             <li><span>Tareas</span>
  
                 <ul>
-                  <li><a href="#">Buscar Tarea</a></li>
+                  <li><a href="buscarTarea.jsf">Buscar Tarea</a></li>
                   <li><a href="abrirTarea.jsf">Abrir Tarea</a></li>
                   <li><a href="#">Modificar Tarea</a></li>
                   <li><a href="#">Reabrir Tarea</a></li>

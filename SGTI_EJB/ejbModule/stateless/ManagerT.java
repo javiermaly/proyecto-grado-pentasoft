@@ -52,7 +52,7 @@ public class ManagerT implements TareaRemote {
 		return todasT;
 		
 	}
-	public Tarea encontrarTarea(int id) {
+	public Tarea encontrarTarea(long id) {
 		Tarea t = em.find(Tarea.class, id);
 		return t;
 	}

@@ -11,7 +11,7 @@ public interface FacadeRemote {
         //TAREAS
 		public boolean abrirTarea(Tarea t, Tiene tiene, Grupo g);//queda dada de alta y asignada a un grupo con una prioridad determinada
         public boolean tomarTarea(Tarea t, Realiza r, Tipo ti);//cuando el tecnico trabaja sobre la tarea
-        public Tarea buscarTarea(int id);
+        public Tarea buscarTarea(long id);
         public Tarea modificarTarea(Tarea t);
         public boolean bajaTarea(Tarea t); //Solo si estado=ABIERTA
         public boolean asignarTareaGrupo(Tarea tar, Grupo gr);//solo Administrativo, administrador
