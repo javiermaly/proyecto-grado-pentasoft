@@ -27,6 +27,7 @@ public interface TareaRemote {
 	public boolean altaGrupo(Grupo gr);
 	public Grupo encontrarGrupo(int id);
 	public Grupo actualizarGrupo(Grupo gr) ;
+	public boolean eliminarGrupo(Grupo gr);
 	public Estado encontrarEstado(int id);
 	public Tiene tieneDeTarea(Tarea t);
 	public boolean cambiarEstadoTarea(Tarea t, Estado est) ;
@@ -43,6 +44,7 @@ public interface TareaRemote {
 	public boolean cerrarTarea(Tarea t);
 	
 	public List<Grupo> listadoGrupos();
+
 	
     //buscar el tipo de tarea
     public Tipo encontrarTipo(int id);       

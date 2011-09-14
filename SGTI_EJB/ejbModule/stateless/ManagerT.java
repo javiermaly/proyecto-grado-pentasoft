@@ -237,10 +237,19 @@ public class ManagerT implements TareaRemote {
 	}
 	public Grupo actualizarGrupo(Grupo gr) {
 		gr = em.merge(gr);
-
 		return gr;
 	}
-
+	public boolean eliminarGrupo(Grupo gr){
+		try{
+			System.out.println("entro a eliminarGrupo");
+			Grupo g=encontrarGrupo(gr.getId());
+			em.remove(g);
+			return true;
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+	}
 
 	public Estado encontrarEstado(int id) {
 		Estado e = em.find(Estado.class, id);

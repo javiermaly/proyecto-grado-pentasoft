@@ -182,8 +182,12 @@ public class FacadeMain implements FacadeRemote {
 
 	@Override
 	public boolean bajaGrupo(Grupo g) {
-		return false;
-		// TODO Auto-generated method stub
+		if(statelessMTar.eliminarGrupo(g)){
+			return true;
+		}
+		else
+			return false;
+		
 	}
 	public Grupo buscarGrupo(int id){
 		return statelessMTar.encontrarGrupo(id);
