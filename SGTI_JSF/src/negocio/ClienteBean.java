@@ -82,6 +82,9 @@ public class ClienteBean {
 
 
 	public List<Cliente> getListClientes() {
+		System.out.println("listado clientes");
+		
+		listClientes=statelessFacade.listadoClientes();
 		return listClientes;
 	}
 

@@ -11,10 +11,7 @@
 	
 	<center>
             <h1>Listado de grupos</h1>
-            <h:commandButton value="Listar grupos"
-						action="#{GrupoBean.listarGrupos}"></h:commandButton>
            
-                
                 <h:dataTable id="clientes" value="#{GrupoBean.listGrupos}" var="grupo" border="1" >
   					<h:column>
   						<f:facet name="header" >

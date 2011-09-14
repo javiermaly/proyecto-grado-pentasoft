@@ -50,6 +50,7 @@ public class GrupoBean {
 	}
 	
 	public List<Grupo> getListGrupos() {
+		listGrupos=statelessFacade.listGrupos();
 		return listGrupos;
 	}
 	public void setListGrupos(List<Grupo> listGrupos) {
