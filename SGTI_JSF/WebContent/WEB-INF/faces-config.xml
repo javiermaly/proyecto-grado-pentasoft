@@ -92,6 +92,18 @@
 </navigation-rule>
 
 <navigation-rule>
+		<from-view-id>/buscarTarea.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>TareaEncontrada</from-outcome>
+			<to-view-id>/buscarTarea.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>TareaNoEncontrada</from-outcome>
+			<to-view-id>/buscarTarea.jsp</to-view-id>
+		</navigation-case>
+</navigation-rule>
+
+<navigation-rule>
 		<from-view-id>/bajaGrupo.jsp</from-view-id>
 		<navigation-case>
 			<from-outcome>grupoEliminado</from-outcome>

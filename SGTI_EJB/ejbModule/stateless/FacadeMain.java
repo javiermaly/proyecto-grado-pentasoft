@@ -11,6 +11,7 @@ import beans.*;
 @Stateless
 public class FacadeMain implements FacadeRemote {
 	
+	
 
     Singleton singleton = new Singleton();
     TareaRemote statelessMTar = singleton.conectarMT();
@@ -28,7 +29,7 @@ public class FacadeMain implements FacadeRemote {
 		return true;
 	}
 
-	public Tarea buscarTarea(int id) { // buscar una tarea
+	public Tarea buscarTarea(long id) { // buscar una tarea
 		Tarea t = statelessMTar.encontrarTarea(id);
 		return t;
 	}

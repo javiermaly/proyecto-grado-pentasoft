@@ -28,14 +28,14 @@ public class Tarea implements Serializable {
 	   
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private long id;
 	private boolean esExterna;
 	private String descripcion;
 	private String observacion;
 	private @Temporal(TemporalType.DATE) Calendar fechaApertura;
 	private @Temporal(TemporalType.DATE) Calendar fechaComprometida;
 	private @Temporal(TemporalType.DATE) Calendar fechaCierre;
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	private Tipo tipo;	
 	@OneToMany(mappedBy="tarea")
 	private List<Realiza> listRealiza=new ArrayList<Realiza>();	
@@ -56,11 +56,11 @@ public class Tarea implements Serializable {
 	}   
 	
 	
-	public int getId() {
+	public long getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}   
 	public boolean getEsExterna() {

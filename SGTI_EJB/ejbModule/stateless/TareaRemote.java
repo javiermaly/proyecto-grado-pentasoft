@@ -18,7 +18,8 @@ import beans.Usuario;
 public interface TareaRemote {
 	public boolean agregarTarea(Tarea t, Tiene tiene, Grupo g);
 	public List<Tarea> traerTodasTareas( );
-	public Tarea encontrarTarea(int id);
+	public Tarea encontrarTarea(long id);
+	
 	public List<Tarea> tareasPorUsuario(Usuario u);
 	public Tarea actualizarTarea(Tarea t);
 	public boolean eliminarTarea(Tarea t);
