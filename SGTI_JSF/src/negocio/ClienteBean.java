@@ -15,8 +15,8 @@ public class ClienteBean {
 	private String telefono;
 	private Date fechaFinGarantia;
 	private ClienteSession cliSession;
-	private List<Cliente> listClientes;
-	List<ClienteSession> listClienteSession = null;
+private List<Cliente> listClientes;
+List<ClienteSession> listClienteSession = null;
 	private boolean empresa;
 	private int evento=0;//1=exito 2=error 3=noexiste 4=encontrado
 
@@ -70,20 +70,19 @@ public class ClienteBean {
 	public void setFechaFinGarantia(Date fechaFinGarantia) {
 		this.fechaFinGarantia = fechaFinGarantia;
 	}
-	public List<ClienteSession> getListClienteSession() {
+public List<ClienteSession> getListClienteSession() {
 		return listClienteSession;
-	}
+}
 	public void setListClienteSession(List<ClienteSession> listClienteSession) {
 	this.listClienteSession = listClienteSession;
 
 
-	}
+}
 
 
 
 	public List<Cliente> getListClientes() {
 		System.out.println("listado clientes");
-		
 		listClientes=statelessFacade.listadoClientes();
 		return listClientes;
 	}
@@ -127,32 +126,35 @@ public class ClienteBean {
 			evento=4;//encontrado
 			return "clienteEcontrado";
 		} else {
+			
+			cliSession.setClienteSession(null);
+			System.out.println("cliente nulo!!");
 			Cliente cli = new Cliente();
 			cli.setCedRut(cedRut);
 			cliSession.setClienteSession(cli);
-			System.out.println("cliente nulo!!");
+			
 			evento=3;//noexiste
 			return "clienteNoEncontrado";
 		}
 	}
 
 	public String altaCliente() {
-		long ceduln=cliSession.clienteSession.getCedRut();
-		System.out.println("veo si llega la cedula: " + ceduln);
+		Long ceduln = cliSession.clienteSession.getCedRut();
+		System.out.println("veo si llega la cedula: "+ceduln);
 		Cliente c = new Cliente();
 		// c=cliSession.getClienteSession();
 		c.setCedRut(ceduln);
 		c.setDireccion(getDireccion());
 		c.setNombre_RazonSocial(getNombreRazSocial());
-		c.setTelefono(getTelefono());		
+		c.setTelefono(getTelefono());
 		c.setEmpresa(empresa);
-		
+	
 		if (!(fechaFinGarantia == null)) {
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(fechaFinGarantia);
 			c.setFechaFinGarantia(cal);
 		}
-		System.out.println("altacliente en clienteBean" + ceduln);
+		System.out.println("altacliente en clienteBean" + c.getCedRut());
 		System.out.println(c.getNombre_RazonSocial());
 		if (statelessFacade.altaCliente(c)) {
 			evento=1;
