@@ -12,10 +12,9 @@
 		<table>
 			<tr>
 				<td><h:outputText> Cedula o RUT del Cliente </h:outputText></td>
-				<td><h:inputText id="cedrut" value="#{ClienteBean.cedRut}" required="true" >
-					<f:validateLength minimum="8" maximum="15"></f:validateLength>
-					<f:converter converterId="javax.faces.Long"/></h:inputText></td>
-					<h:message for="cedrut" style="color:red"></h:message>
+				<td><h:inputText id="cedRut" value="#{ClienteBean.cedRut}" required="true">
+					<f:converter converterId="javax.faces.Integer"/></h:inputText></td>
+					<h:message for="cedRut" style="color:red"></h:message>
 				<td><h:commandButton value="Aceptar" action="#{ClienteBean.buscarCliente}"></h:commandButton></td>
 				
 			</tr>
@@ -32,34 +31,32 @@
 				</td>
 			</tr>
 			<tr>
-				<th>Cédula / RUT</th>
-				<td><h:inputText id="cedrut" value="#{ClienteBean.cedRut}">
-					<f:validateLength minimum="8" maximum="15"></f:validateLength>
-					<f:converter converterId="javax.faces.Long"/></h:inputText>
+				<th>Cedula / RUT</th>
+				<td><h:inputText value="#{ClienteBean.cliSession.clienteSession.cedRut}" required="true" readonly="true"></h:inputText>
 				</td>
-					<h:message for="cedrut" style="color:red"></h:message>
+					<h:message for="cedRut" style="color:red"></h:message>
 			</tr>
 
 			<tr>
-				<th>Nombre Completo / Razón Social:</th>
+				<th>Nombre Completo / Razon Social:</th>
 				<td><h:inputText value="#{ClienteBean.nombreRazSocial}"></h:inputText>
 				</td>
 			</tr>
 			<tr>
-				<th>Dirección:</th>
-				<td><h:inputText value="#{ClienteBean.direccion}" size="30"></h:inputText>
+				<th>Direccion:</th>
+				<td><h:inputText value="#{ClienteBean.direccion}"></h:inputText>
 				</td>
 			</tr>
 			<tr>
-				<th>Teléfono:</th>
+				<th>Telefono:</th>
 				<td><h:inputText id="telefono" value="#{ClienteBean.telefono}">
-					<f:converter converterId="javax.faces.Integer"/>					
+					<f:converter converterId="javax.faces.Integer"/>
 					</h:inputText>
 					<h:message for="telefono" style="color:red"></h:message>					
 				</td>			
 			</tr>
 			<tr>
-				<th>Fecha de Fin de Garantía (año/mes/dia):</th>
+				<th>Fecha de Fin de Garantia (año/mes/dia):</th>
 
 				<td><h:inputText id="fchaGarantia" value="#{ClienteBean.fechaFinGarantia}">
 						<f:convertDateTime  pattern="yyyy/MM/dd" />
