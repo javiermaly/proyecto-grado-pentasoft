@@ -63,9 +63,10 @@
   					<h:column>
   						<f:facet name="header">
   						<h:outputText value="Habilitado"></h:outputText>
-  						</f:facet>  							  							
-  							<h:outputText value="#{usuario.habilitado}">
-   						 </h:outputText>
+  						</f:facet>  					
+  						<h:selectBooleanCheckbox value="#{usuario.habilitado}" readonly="true"></h:selectBooleanCheckbox>		  							
+  							
+   						 
   					</h:column>  
   					
   					<h:column>
