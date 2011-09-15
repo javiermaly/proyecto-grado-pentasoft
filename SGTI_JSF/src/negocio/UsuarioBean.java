@@ -5,6 +5,7 @@ import beans.Usuario;
 public class UsuarioBean {
 	public Usuario usuarioSession;
 	public int perfil;//perfiles de usuario para ver que le mostramos en el header
+	public String tipo;
 	
 	public Usuario getUsuarioSession() {
 		return usuarioSession;
@@ -22,6 +23,15 @@ public class UsuarioBean {
 	public void setPerfil(int perfil) {
 		this.perfil = perfil;
 	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+	
 	
 	
 	
