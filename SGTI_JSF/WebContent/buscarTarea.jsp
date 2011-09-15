@@ -75,11 +75,11 @@
 				<th><h:outputText value="#{TareaBean.tipoTarea.descripcion}"></h:outputText>
 				</th>
 			</tr>
-<!-- 			<tr> -->
-<!-- 				<th>Estado: </th> -->
-<%-- 				<th><h:outputText value="#{TareaBean.estado.descripcion}"></h:outputText> --%>
-<!-- 				</th> -->
-<!-- 			</tr> -->
+			<tr>
+				<th>Estado: </th>
+				<th><h:outputText value="#{TareaBean.tiene.estado.descripcion}"></h:outputText>
+				</th>
+			</tr>
 			<tr>
 				<th>Fecha Cierre: </th>
 				<th><h:outputText value="#{TareaBean.fechaCierre.time}">
