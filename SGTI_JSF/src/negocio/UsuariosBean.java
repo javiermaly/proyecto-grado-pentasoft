@@ -1,6 +1,9 @@
 package negocio;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.faces.model.SelectItem;
 
 import stateless.FacadeRemote;
 import conexion.ConexionEJB;
@@ -9,11 +12,13 @@ import beans.Administrador;
 import beans.Administrativo;
 
 import beans.Encargado;
+import beans.Grupo;
 import beans.Tecnico;
 import beans.Usuario;
 
 public class UsuariosBean {
 	public Usuario usuarioRequest;
+	public UsuarioBean usuSession;
 	private long cedula;
 	private String nombre;
 	private String apellido;
@@ -26,10 +31,15 @@ public class UsuariosBean {
 	private boolean habilitado;
 	private List<Usuario> listUsuarios;
 	int evento = 0;
-
+	private boolean esExterno;
+//	private List<Grupo> listGrupos;
+	public ArrayList comboGrupos = new ArrayList();//ListItems para el selectoOneMany 
+	public String grupoId;
+	
 	ConexionEJB con = new ConexionEJB();
 	FacadeRemote statelessFacade = con.conectar();
 
+	
 	public Usuario getUsuarioRequest() {
 		return usuarioRequest;
 	}
@@ -137,6 +147,172 @@ public class UsuariosBean {
 		this.habilitado = habilitado;
 	}
 
+	public boolean isEsExterno() {
+		return esExterno;
+	}
+
+	public void setEsExterno(boolean esExterno) {
+		this.esExterno = esExterno;
+	}
+	
+//	public List<Grupo> getListGrupos() {
+//		listGrupos=statelessFacade.listGrupos();
+//		return listGrupos;
+//	}
+
+//	public void setListGrupos(List<Grupo> listGrupos) {
+//		this.listGrupos = listGrupos;
+//	}	
+	
+	public String getGrupoId() {
+		return grupoId;
+	}
+
+	public void setGrupoId(String grupoId) {
+		this.grupoId = grupoId;
+	}
+	
+	public UsuarioBean getUsuSession() {
+		return usuSession;
+	}
+	public void setUsuSession(UsuarioBean usuSession) {
+		this.usuSession = usuSession;
+	}
+	
+	
+
+	//para combo de Grupos en alta Usuario Tecnico
+	@SuppressWarnings("rawtypes")
+	public ArrayList getComboGrupos() {		
+		
+		List<Grupo> listGrupos = statelessFacade.listGrupos();
+        comboGrupos.clear();
+        for(int i=0; i<listGrupos.size(); i++)
+        {
+            Grupo g = new Grupo();
+            g = (Grupo)listGrupos.get(i);
+            
+           comboGrupos.add(new SelectItem(g.getId(), g.getDescripcion()));
+        }
+		
+		return comboGrupos;
+	}
+
+	public void setComboGrupos(ArrayList comboGrupos) {
+		this.comboGrupos = comboGrupos;
+	}
+
+	
+	public String altaUsuario(){
+		String estado="ErrorIngreso";
+		perfil=usuSession.getTipo();
+		System.out.println("perfil: " +perfil);
+		Usuario ussu = new Usuario();
+		ussu=statelessFacade.encontrarUsuario(cedula);
+		//System.out.println("cedula: " +cedula+" "+getCedula());
+//		System.out.println("usuario y la reconn de tu hermana"+ ussu.getCedula());
+		if((ussu==null)){
+			System.out.println("usuario y la reconn de tu hermana");
+			if(perfil=="Administrador") {
+				System.out.println("entro a administrador" +perfil);
+				Administrador admin= new Administrador();
+				admin.setCedula(cedula);
+				admin.setNombre(nombre);
+				admin.setApellido(apellido);
+				admin.setTelefono(telefono);
+				admin.setCelular(celular);
+				admin.setDireccion(direccion);
+				admin.setHabilitado(true);
+				admin.setPwd(pwd);
+				admin.setUsuario(usuario);//--------------->hacer control que no deje vacio usu y pass
+			
+				if(statelessFacade.altaAdministrador(admin)){
+					evento=1;
+					estado="UsuarioIngresado";
+					
+				}else{
+					evento=2;
+					estado= "ErrorIngreso";
+				}				
+			}else if(perfil=="Administrativo"){
+				Administrativo admin= new Administrativo();
+				admin.setCedula(cedula);
+				admin.setNombre(nombre);
+				admin.setApellido(apellido);
+				admin.setTelefono(telefono);
+				admin.setCelular(celular);
+				admin.setDireccion(direccion);
+				admin.setHabilitado(true);
+				admin.setPwd(pwd);
+				admin.setUsuario(usuario);//--------------->hacer control que no deje vacio usu y pass
+			
+				if(statelessFacade.altaAdministrativo(admin)){
+					evento=1;
+					estado="UsuarioIngresado";
+				}else{
+					evento=2;
+					estado= "ErrorIngreso";
+				}				
+			}else if(usuSession.tipo=="Encargado"){
+				Encargado e= new Encargado();
+				e.setCedula(cedula);
+				e.setNombre(nombre);
+				e.setApellido(apellido);
+				e.setCelular(celular);
+				e.setTelefono(telefono);
+				e.setDireccion(direccion);
+				e.setHabilitado(true);
+				e.setPwd(pwd);
+				e.setUsuario(usuario);//--------------->hacer control que no deje vacio usu y pass
+				e.setEsExterno(esExterno);
+				
+				if(statelessFacade.altaEncargado(e)){
+					evento=1;
+					estado="UsuarioIngresado";
+				}else{
+					evento=2;
+					estado= "ErrorIngreso";
+				}				
+			}else if(perfil=="Tecnico"){
+				Tecnico t= new Tecnico();
+				t.setCedula(cedula);
+				t.setNombre(nombre);
+				t.setApellido(apellido);
+				t.setCelular(celular);
+				t.setTelefono(telefono);
+				t.setDireccion(direccion);
+				t.setHabilitado(true);
+				t.setPwd(pwd);
+				t.setUsuario(usuario);//--------------->hacer control que no deje vacio usu y pass
+				t.setEsExterno(esExterno);
+								
+					if(statelessFacade.altaTecnico(t)){
+						//agregar el tecnico al coltecnicos en grupo
+						Grupo g = (Grupo)statelessFacade.buscarGrupo(Integer.valueOf(grupoId));
+						g.getColTecnicos().add(t);
+						statelessFacade.modificarGrupo(g);
+						
+						evento=1;
+						estado="UsuarioIngresado";
+					}else{
+						evento=2;
+						estado= "ErrorIngreso";
+					}
+			}//else if tecnico
+					
+			
+			return estado;
+		}else{//del primer if comprueba si es nulo el usu
+			estado="UsuarioYaExiste";
+			return estado;
+		}
+			
+				
+		
+	}
+	
+	
+	
 	public List<Usuario> listadoUsuarios() {
 		List<Usuario> listUsuarios = statelessFacade.listarUsuarios();
 		System.out.println("usuariosBean listado usuarios");
@@ -187,11 +363,14 @@ public class UsuariosBean {
 			evento = 4;// encontrado
 			return "usuarioEncontrado";
 		} else {
-
 			System.out.println("usuario nulo!!");
 			evento = 3;// noexiste
 			return "usuarioNoEncontrado";
 		}
 	}
+	
+	
+
+	
 
 }
