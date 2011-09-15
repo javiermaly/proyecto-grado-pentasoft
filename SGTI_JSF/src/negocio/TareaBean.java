@@ -2,6 +2,7 @@ package negocio;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import beans.Cliente;
 import beans.Estado;
@@ -22,12 +23,15 @@ public class TareaBean {
 	private String descripcion;
 	private String observacion;
 	private Calendar fechaApertura;
-	private Date fechaComprometida;
+	private Calendar fechaComprometida;
 	// private Calendar fechaComprometida;
+	private Tiene tiene;
 	private Tipo tipoTarea;
 	private Estado estado;
 	private int tipo;
 	private Calendar fechaCierre;
+	
+	private List<Tarea> listadoTareasFinalizadasNoCerradas;
 
 	private int grupoId;
 	private int evento = 0;
@@ -36,6 +40,18 @@ public class TareaBean {
 
 	ConexionEJB con = new ConexionEJB();
 	FacadeRemote statelessFacade = con.conectar();
+
+	
+	
+	public List<Tarea> getListadoTareasFinalizadasNoCerradas() {
+		
+		return listadoTareasFinalizadasNoCerradas;
+	}
+
+	public void setListadoTareasFinalizadasNoCerradas(
+			List<Tarea> listadoTareasFinalizadasNoCerradas) {
+		this.listadoTareasFinalizadasNoCerradas = listadoTareasFinalizadasNoCerradas;
+	}
 
 	public boolean isEsExterna() {
 		return esExterna;
@@ -51,6 +67,15 @@ public class TareaBean {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+	
+
+	public Tiene getTiene() {
+		return tiene;
+	}
+
+	public void setTiene(Tiene tiene) {
+		this.tiene = tiene;
 	}
 
 	public String getObservacion() {
@@ -69,11 +94,11 @@ public class TareaBean {
 		this.tipo = tipo;
 	}
 
-	public Date getFechaComprometida() {
+	public Calendar getFechaComprometida() {
 		return fechaComprometida;
 	}
 
-	public void setFechaComprometida(Date fechaComprometida) {
+	public void setFechaComprometida(Calendar fechaComprometida) {
 		this.fechaComprometida = fechaComprometida;
 	}
 
@@ -84,6 +109,7 @@ public class TareaBean {
 	public void setId(long id) {
 		this.id = id;
 	}
+	
 
 	public Cliente getCliente() {
 		return cliente;
@@ -177,7 +203,7 @@ public class TareaBean {
 
 		if (fechaComprometida != null) { // comprueba si no ingresó una fecha
 			Calendar cal = Calendar.getInstance();
-			cal.setTime(fechaComprometida);
+			cal.setTime(fechaComprometida.getTime());
 			t.setFechaComprometida(cal);
 		}
 
@@ -215,8 +241,10 @@ public class TareaBean {
 			descripcion=t.getDescripcion();
 			observacion=t.getObservacion();
 			fechaApertura=t.getFechaApertura();
-			//fechaComprometida=t.getFechaComprometida();
+			fechaComprometida=t.getFechaComprometida();
 			tipoTarea=t.getTipo();
+			tiene=statelessFacade.tieneDeTarea(t);
+			System.out.println(tiene.getEstado().getDescripcion());
 			//estado=;
 			fechaCierre=t.getFechaCierre();
 			evento = 4;// encontrado

@@ -363,5 +363,11 @@ public class FacadeMain implements FacadeRemote {
 		 
 	}
 
+	@Override
+	public Tiene tieneDeTarea(Tarea t) {
+		Tiene tiene=statelessMTar.tieneDeTarea(t);
+		return tiene;
+	}
+
 	
 }
