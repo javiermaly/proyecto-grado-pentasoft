@@ -204,17 +204,16 @@ public class UsuariosBean {
 
 	
 	public String altaUsuario(){
-		String estado="ErrorIngreso";
-		perfil=usuSession.getTipo();
+		String estado="";
+		
 		System.out.println("perfil: " +perfil);
 		Usuario ussu = new Usuario();
 		ussu=statelessFacade.encontrarUsuario(cedula);
-		//System.out.println("cedula: " +cedula+" "+getCedula());
-//		System.out.println("usuario y la reconn de tu hermana"+ ussu.getCedula());
+		
 		if((ussu==null)){
-			System.out.println("usuario y la reconn de tu hermana");
-			if(perfil=="Administrador") {
-				System.out.println("entro a administrador" +perfil);
+			System.out.println("entro con  " + usuSession.tipo );
+			if((usuSession.tipo.equalsIgnoreCase("Administrador"))) {
+				System.out.println("entro a administrador");
 				Administrador admin= new Administrador();
 				admin.setCedula(cedula);
 				admin.setNombre(nombre);
@@ -228,13 +227,14 @@ public class UsuariosBean {
 			
 				if(statelessFacade.altaAdministrador(admin)){
 					evento=1;
-					estado="UsuarioIngresado";
+					return estado="UsuarioIngresado";
 					
 				}else{
 					evento=2;
-					estado= "ErrorIngreso";
+					return estado= "ErrorIngreso";
 				}				
-			}else if(perfil=="Administrativo"){
+			}else if((usuSession.tipo.equalsIgnoreCase("Administrativo"))){
+				System.out.println("entro a administrativo");
 				Administrativo admin= new Administrativo();
 				admin.setCedula(cedula);
 				admin.setNombre(nombre);
@@ -248,12 +248,12 @@ public class UsuariosBean {
 			
 				if(statelessFacade.altaAdministrativo(admin)){
 					evento=1;
-					estado="UsuarioIngresado";
+					return estado="UsuarioIngresado";
 				}else{
 					evento=2;
-					estado= "ErrorIngreso";
+					return estado= "ErrorIngreso";
 				}				
-			}else if(usuSession.tipo=="Encargado"){
+			}else if((usuSession.tipo.equalsIgnoreCase("Encargado"))){
 				Encargado e= new Encargado();
 				e.setCedula(cedula);
 				e.setNombre(nombre);
@@ -268,12 +268,12 @@ public class UsuariosBean {
 				
 				if(statelessFacade.altaEncargado(e)){
 					evento=1;
-					estado="UsuarioIngresado";
+					return estado="UsuarioIngresado";
 				}else{
 					evento=2;
-					estado= "ErrorIngreso";
+					return estado= "ErrorIngreso";
 				}				
-			}else if(perfil=="Tecnico"){
+			}else if((usuSession.tipo.equalsIgnoreCase("Tecnico"))){
 				Tecnico t= new Tecnico();
 				t.setCedula(cedula);
 				t.setNombre(nombre);
@@ -293,16 +293,18 @@ public class UsuariosBean {
 						statelessFacade.modificarGrupo(g);
 						
 						evento=1;
-						estado="UsuarioIngresado";
+						return estado="UsuarioIngresado";
 					}else{
 						evento=2;
-						estado= "ErrorIngreso";
+						return estado= "ErrorIngreso";
 					}
-			}//else if tecnico
-					
-			
-			return estado;
+			}else{
+				evento=2;
+				return estado= "ErrorIngreso";
+			}
+		
 		}else{//del primer if comprueba si es nulo el usu
+			evento=3;
 			estado="UsuarioYaExiste";
 			return estado;
 		}
