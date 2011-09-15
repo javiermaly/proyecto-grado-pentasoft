@@ -13,11 +13,10 @@
 			<tr>
 				<td><h:outputText>Cédula del Usuario </h:outputText>
 				</td>
-				<td><h:inputText id="cedula" value="#{UsuariosBean.cedula}"
-						required="true"></h:inputText>
-				</td>
-				<td><h:commandButton value="Aceptar"
-						action="#{UsuariosBean.buscarUsuario}"></h:commandButton>
+				<td><h:inputText id="cedula" value="#{UsuariosBean.cedula}"	required="true"><f:validateLength  maximum="8"></f:validateLength>
+						<f:converter converterId="javax.faces.Long"/></h:inputText></td>
+						<h:message for="cedula" style="color:red"></h:message>						
+				<td><h:commandButton value="Aceptar" action="#{UsuariosBean.buscarUsuario}"></h:commandButton>
 				</td>
 			</tr>
 		</table>
