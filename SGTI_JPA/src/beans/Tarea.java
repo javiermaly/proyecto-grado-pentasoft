@@ -12,14 +12,20 @@ import javax.persistence.*;
 
 @NamedQueries(value = { 
 		@NamedQuery(name="todosTareas", query="select t from Tarea t"),
-		//@NamedQuery(name="tareasFinalizadasNoCerradas", query="select t from Tarea t where t.tiene.estado.id=")
 		
 })
-@NamedNativeQuery(
-    name="tareasPorUsuario",
+@NamedNativeQueries(
+		{
+		@NamedNativeQuery(name="tareasPorUsuario",
     query = "SELECT * FROM Tarea T join Realiza R on T.id=R.tarea_id where ((R.usu_cedula = 1?))",
-    resultClass=Tarea.class
+    resultClass=Tarea.class),
+    
+    @NamedNativeQuery(name="tareasFinalizadasNoCerradas",
+    query = "SELECT * from Tarea where id= ANY( SELECT Ta.Tarea_id FROM Tiene T join Tarea_Tiene Ta on T.id=Ta.Tarea_id  where T.estado_id=6);",
+    resultClass=Tarea.class)
+		}
 )
+
 
 @Entity
 

@@ -447,7 +447,17 @@ public class ManagerT implements TareaRemote {
         Tipo t = em.find(Tipo.class, id);
         return t;
     }
+    
+    
 	
-	
+	//devuelve una lista de tareas finalizadas no cerradas
+    
+    public List<Tarea> tareasFinalizadasNoCerradas(){
+		System.out.println("tareasFinalizadasNoCerradas managerT");
+
+    	List<Tarea> tareasFinalizadasNoCerradas;
+    	tareasFinalizadasNoCerradas=em.createNamedQuery("tareasFinalizadasNoCerradas").getResultList();
+    	return tareasFinalizadasNoCerradas;
+    }
 	
 }

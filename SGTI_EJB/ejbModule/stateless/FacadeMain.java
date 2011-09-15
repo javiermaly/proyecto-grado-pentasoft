@@ -369,5 +369,16 @@ public class FacadeMain implements FacadeRemote {
 		return tiene;
 	}
 
+	@Override
+	public List<Tarea> tareasFinalizadasNoCerradas() {
+		System.out.println("tareasFinalizadasNoCerradas Facade");
+		
+		List<Tarea> tareasFinalizadasNoCerradas=null;
+		tareasFinalizadasNoCerradas=statelessMTar.tareasFinalizadasNoCerradas();
+		return tareasFinalizadasNoCerradas;
+	}
+
+	
+	
 	
 }

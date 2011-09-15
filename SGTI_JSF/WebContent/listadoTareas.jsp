@@ -13,69 +13,79 @@
 	<center>
             <h1>Listado de tareas</h1>
                                        
-                <h:dataTable value="#{TareaBean.listTareas}" var="tarea" border="1" >
+                <h:dataTable value="#{TareaBean.listadoTareasFinalizadasNoCerradas}" var="tarea" border="1" >
   					<h:column>
   						<f:facet name="header" >
-  							<h:outputText value="Cedula"></h:outputText>
+  							<h:outputText value="Id"></h:outputText>
   						</f:facet>
-  							<h:outputText value="#{usuario.cedula}"></h:outputText>
+  							<h:outputText value="#{tarea.id}"></h:outputText>
   					</h:column>
+<%--   					<h:column> --%>
+<%--   						<f:facet name="header"> --%>
+<%--   						<h:outputText value="Cliente"></h:outputText> --%>
+<%--   						</f:facet> --%>
+<%--   							<h:outputText value="#{tarea.cliente_cedRut}"></h:outputText> --%>
+<%--   					</h:column>              --%>
   					<h:column>
   						<f:facet name="header">
-  						<h:outputText value="Nombre"></h:outputText>
+  						<h:outputText value="Prioridad"></h:outputText>
   						</f:facet>
-  							<h:outputText value="#{usuario.nombre}"></h:outputText>
-  					</h:column>             
-  					<h:column>
-  						<f:facet name="header">
-  						<h:outputText value="Apellido"></h:outputText>
-  						</f:facet>
-  							<h:outputText value="#{usuario.apellido}"></h:outputText>
+  							<h:outputText value="#{tarea.prioridad}"></h:outputText>
   					</h:column>  
   					<h:column>
   						<f:facet name="header">
-  						<h:outputText value="Usuario"></h:outputText>
+  						<h:outputText value="Es Externa"></h:outputText>
   						</f:facet>
-  							<h:outputText value="#{usuario.usuario}"></h:outputText>
+  							<h:selectBooleanCheckbox disabled="true"
+						value="#{tarea.esExterna}"></h:selectBooleanCheckbox>
   					</h:column>  
   					<h:column>
   						<f:facet name="header">
-  						<h:outputText value="Teléfono"></h:outputText>
+  						<h:outputText value="Descripcion"></h:outputText>
   						</f:facet>  							  							
-  							<h:outputText value="#{usuario.telefono}">
+  							<h:outputText value="#{tarea.descripcion}">
    						 </h:outputText>
   					</h:column>       
   					<h:column>
   						<f:facet name="header">
-  						<h:outputText value="Dirección"></h:outputText>
+  						<h:outputText value="Observacion"></h:outputText>
   						</f:facet>  							  							
-  							<h:outputText value="#{usuario.direccion}">
-   						 </h:outputText>
-  					</h:column>       
-  					<h:column>
-  						<f:facet name="header">
-  						<h:outputText value="Celular"></h:outputText>
-  						</f:facet>  							  							
-  							<h:outputText value="#{usuario.celular}">
+  							<h:outputText value="#{tarea.observacion}">
    						 </h:outputText>
   					</h:column>     
-  					     
   					<h:column>
   						<f:facet name="header">
-  						<h:outputText value="Habilitado"></h:outputText>
-  						</f:facet>  					
-  						<h:selectBooleanCheckbox disabled="true" value="#{usuario.habilitado}" ></h:selectBooleanCheckbox>		  							
-  							
-   						 
-  					</h:column>  
+  						<h:outputText value="Fecha Apertura"></h:outputText>
+  						</f:facet>  							  							
+  							<h:outputText value="#{tarea.fechaApertura.time}">
+   						 	<f:convertDateTime type="both" dateStyle="short" pattern="yyyy/MM/dd" />
+						
+   						 </h:outputText>
+  					</h:column>       
   					
   					<h:column>
   						<f:facet name="header">
-  						<h:outputText value="Perfil"></h:outputText>
+  						<h:outputText value="Fecha Comprometida"></h:outputText>
   						</f:facet>  							  							
-  							<h:outputText value="#{usuario.perfil}">
+  							<h:outputText value="#{tarea.fechaComprometida.time}">
+   						 	<f:convertDateTime type="both" dateStyle="short" pattern="yyyy/MM/dd" />
+					 </h:outputText>
+  					</h:column>   
+  					<h:column>
+  						<f:facet name="header">
+  						<h:outputText value="Tipo"></h:outputText>
+  						</f:facet>  							  							
+  							<h:outputText value="#{tarea.tipo.descripcion}">
    						 </h:outputText>
-  					</h:column>       
+  					</h:column>    
+  					<h:column>
+  						<f:facet name="header">
+  						<h:outputText value="ACCIÓN"></h:outputText>
+  						</f:facet>  							  							
+  							<h:commandButton value="CERRAR"
+						action="#{TareaBean.cerrarTarea}"></h:commandButton>
+   						 
+  					</h:column>    
   					
                 </h:dataTable>
          </center>

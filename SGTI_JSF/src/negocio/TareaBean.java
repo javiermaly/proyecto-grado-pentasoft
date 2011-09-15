@@ -44,7 +44,7 @@ public class TareaBean {
 	
 	
 	public List<Tarea> getListadoTareasFinalizadasNoCerradas() {
-		
+		listadoTareasFinalizadasNoCerradas=statelessFacade.tareasFinalizadasNoCerradas();
 		return listadoTareasFinalizadasNoCerradas;
 	}
 
@@ -191,7 +191,7 @@ public class TareaBean {
 		Tiene tiene = new Tiene();
 		Grupo g = new Grupo();
 		Cliente c = new Cliente();
-
+		
 		c = cliSession.getClienteSession();// asignar a c el cliente que está en
 											// la sesion
 

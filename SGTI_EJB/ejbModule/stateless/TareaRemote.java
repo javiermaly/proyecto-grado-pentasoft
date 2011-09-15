@@ -43,7 +43,7 @@ public interface TareaRemote {
 	public boolean derivarTarea(Tarea t, Grupo gr);
 	public boolean reabrirTarea(Tarea t);
 	public boolean cerrarTarea(Tarea t);
-	
+	public List<Tarea> tareasFinalizadasNoCerradas();
 	public List<Grupo> listadoGrupos();
 
 	

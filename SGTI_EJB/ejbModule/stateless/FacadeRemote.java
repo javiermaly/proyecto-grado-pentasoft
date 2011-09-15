@@ -22,6 +22,7 @@ public interface FacadeRemote {
         public boolean reabrirTarea(Tarea tar, Usuario usu);//solo administrativo y administrador ---> reabre al mismo grupo que la estaba trabajando
         public boolean cerrarTarea(Tarea tar, Usuario usu);//solo los ADM
         public Tiene tieneDeTarea(Tarea t);
+        public List<Tarea> tareasFinalizadasNoCerradas();
         
         //CLIENTES
         public Cliente buscarCliente(long cedRut);
