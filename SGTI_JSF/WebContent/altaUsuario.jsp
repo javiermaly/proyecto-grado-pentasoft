@@ -14,7 +14,7 @@
 				<td>Seleccione el tipo de Usuario que desea Ingresar: </td>						
 			</tr>
 			<tr>
-				<td><h:selectOneRadio value="#{UsuarioBean.tipo}" onchange="submit()" >
+				<td><h:selectOneRadio value="#{UsuarioBean.tipo}" onchange="submit()">
 					<f:selectItem itemValue="Administrador" itemLabel="Administrador" />
 					<f:selectItem itemValue="Administrativo" itemLabel="Administrativo"/>	
 					<f:selectItem itemValue="Encargado" itemLabel="Encargado"/>	
